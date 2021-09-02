@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Banana021s/css-generator/issues"
   },
-  "homepage": "https://github.com/Banana021s/css-generator#readme"
+  "homepage": "https://github.com/Banana021s/css-generator#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.5.0"
+  }
 }
