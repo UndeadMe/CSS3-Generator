@@ -1,0 +1,15 @@
+:root {
+    --dark-black : #0C0910;
+    --matte-black : #171717 ;
+    --minimal-dark : #1C1C23 ;
+
+    --dark-blue : #3F3FCB ;
+    --minimal-blue : #5151CD ;
+
+    --light-purple : #9B9BEC ;
+    --minimal-purple : #7777E1 ;
+
+    --white : #FFFFFF;
+    --minimal-white : #EBEBEB ;
+    --gray : #BFBFBF ;
+}
