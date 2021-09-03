@@ -4,7 +4,9 @@ body {
     background : var(--home-gradient) ;
     position: relative;
     display: flex;
-    /* height: 100vh; */
+    perspective: 1000px;
+    perspective-origin: left;
+    height: 100vh;
 }
 body::before {
     content: '';

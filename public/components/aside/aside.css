@@ -13,6 +13,18 @@
     overflow: hidden;
     transform-origin: left;
     transition: 0.4s;
+    animation: sidebar-movement cubic-bezier(.33,.41,.34,.86) 3s alternate forwards;
+}
+@keyframes sidebar-movement {
+    0% {
+        transform: translateX(-200px) rotateY(110deg) ;
+    }
+    60% , 70% {
+        transform: translateX(0) scale(0.9) rotateY(0);
+    }
+    64% , 100% {
+        transform: translateX(0) scale(1) rotateY(0);
+    }
 }
 .sidebar::before {
     content: '';
@@ -24,13 +36,20 @@
     background: var(--minimal-blue);
     clip-path: polygon(100% 13%, 100% 39%, 0 78%, 0 51%);
     animation: sidebar 1.5s alternate forwards;
+    opacity: 0;
+    animation-delay: 3s;
 }
 @keyframes sidebar {
     0% {
         top: -50%;
+        opacity: 0;
+    }
+    1% {
+        opacity: 1;
     }
     100% {
         top: 100%;
+        opacity: 1;
     }
 }
 /* ! ------------------------------ sidebar dots ------------------------------ ! */
