@@ -16,4 +16,5 @@ body::before {
     background-repeat: no-repeat;
     background-position: left;
     background-size: contain;
+    z-index: -1;
 }

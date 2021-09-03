@@ -13,5 +13,12 @@
     --minimal-white : #EBEBEB ;
     --gray : #BFBFBF ;
 
+    --red-dot : #D90007 ;
+    --yellow-dot : #E8E100 ;
+    --green-dot : #0ED800 ;
+
     --home-gradient : linear-gradient(45deg, var(--dark-black), #1C1820);
+    --sidebar-gradient : linear-gradient(to bottom, #1C1C27, #1F1F27);
+
+    --sidebar-border : #403F3F ; 
 }
