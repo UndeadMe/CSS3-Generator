@@ -12,4 +12,6 @@
     --white : #FFFFFF;
     --minimal-white : #EBEBEB ;
     --gray : #BFBFBF ;
+
+    --home-gradient : linear-gradient(45deg, var(--dark-black), #1C1820);
 }

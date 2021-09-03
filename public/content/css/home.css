@@ -1,1 +1,5 @@
 @import url(../../components/aside/aside.css);
+
+body {
+    background : var(--home-gradient) ;
+}
