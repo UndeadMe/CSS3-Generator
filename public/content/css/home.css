@@ -99,8 +99,8 @@ main {
 /* ! ------------------------------- tools boxes ------------------------------ ! */
 .tools-wrap {
     margin-top: 50px;
-    perspective: 1000px;
-    perspective-origin: center;
+    perspective: 1500px;
+    perspective-origin: right;
     display: grid;
     grid-template-columns: repeat(auto-fill,250px);
     grid-template-rows: auto;
@@ -115,7 +115,6 @@ main {
     color: var(--minimal-white);
     text-transform: capitalize;
     border-radius: 25px;
-    /* background: linear-gradient(45deg, var(--light-purple), var(--minimal-purple)); */
     background: linear-gradient(45deg, var(--dark-blue) 20%, var(--minimal-blue) 50%);
     border: rgba(255, 255, 255, 0.2) 1px solid;
     transition: 0.3s;
