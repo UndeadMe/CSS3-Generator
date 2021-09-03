@@ -1,3 +1,5 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 :root {
     --dark-black : #0C0910;
     --matte-black : #171717 ;
@@ -21,4 +23,7 @@
     --sidebar-gradient : linear-gradient(to bottom, #1C1C27, #1F1F27);
 
     --light-border : #403F3F ; 
+}
+body {
+    font-family: 'Varela Round', sans-serif;
 }

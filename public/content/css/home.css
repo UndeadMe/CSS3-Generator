@@ -86,7 +86,7 @@ main {
     border: 1px solid var(--dark-blue);
     color: var(--dark-blue);
     text-transform: capitalize;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     transition: .3s;
     box-shadow: 0 0 10px var(--dark-black);
 }
