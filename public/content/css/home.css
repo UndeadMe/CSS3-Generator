@@ -4,7 +4,7 @@ body {
     background : var(--home-gradient) ;
     position: relative;
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
 }
 body::before {
     content: '';
@@ -47,12 +47,11 @@ main {
 }
 .search-box-group {
     width: 50%;
-    box-shadow: 0 0 10px var(--dark-black);
+    box-shadow: 0 0 5px var(--dark-black);
     border-radius: 25px;
     overflow: hidden;
 }
 .search-input {
-    width: 50%;
     padding: 0 !important;
     outline: none;
     border-radius: 0 25px 25px 0 ;
@@ -94,4 +93,32 @@ main {
     background-color: var(--minimal-blue);
     color: var(--minimal-white);
     box-shadow: 0 0 10px 1px var(--minimal-blue);
+}
+/* ! ------------------------------- tools boxes ------------------------------ ! */
+.tools-wrap {
+    margin-top: 50px;
+    perspective: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,250px);
+    grid-template-rows: auto;
+    grid-gap: 20px 30px;
+}
+.tool-box {
+    width: 250px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--minimal-white);
+    text-transform: capitalize;
+    border-radius: 25px;
+    /* background: linear-gradient(45deg, var(--light-purple), var(--minimal-purple)); */
+    background: linear-gradient(45deg, var(--dark-blue) 20%, var(--minimal-blue) 50%);
+    border: rgba(255, 255, 255, 0.2) 1px solid;
+}
+.tool-box > * {
+    font-size: 22px;
+}
+.tool-icon {
+    margin-right: 15px;
 }

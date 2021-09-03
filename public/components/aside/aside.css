@@ -7,10 +7,12 @@
     height: 89vh;
     border-radius: 30px;
     background: var(--sidebar-gradient);
-    box-shadow: 0 0 10px var(--dark-black);
+    box-shadow: 0 0 5px var(--dark-black);
     z-index: 9999;
     border: var(--light-border)  1px solid;
     overflow: hidden;
+    transform-origin: left;
+    transition: 0.4s;
 }
 .sidebar::before {
     content: '';
