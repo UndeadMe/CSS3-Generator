@@ -3,6 +3,7 @@
 body {
     background : var(--home-gradient) ;
     position: relative;
+    display: flex;
     height: 100vh;
 }
 body::before {
@@ -17,4 +18,80 @@ body::before {
     background-position: left;
     background-size: contain;
     z-index: -1;
+}
+/* ! ---------------------------------- main ---------------------------------- ! */
+.wrap {
+    width: 100%;
+    margin-left: 250px;
+    margin-right: 250px;
+    z-index: 9990;
+}
+main {
+    margin-top: 90px;
+}
+.main-title {
+    text-transform: capitalize;
+    font-size: 4rem;
+    color: var(--white);
+}
+.main-title-desc {
+    font-size: 2rem;
+    color: var(--minimal-white);
+    text-transform: capitalize;
+}
+.main-title-desc i {
+    font-size: 1.8rem;
+}
+.search-box {
+    margin-top: 20px;
+}
+.search-box-group {
+    width: 50%;
+    box-shadow: 0 0 10px var(--dark-black);
+    border-radius: 25px;
+    overflow: hidden;
+}
+.search-input {
+    width: 50%;
+    padding: 0 !important;
+    outline: none;
+    border-radius: 0 25px 25px 0 ;
+    border-top: var(--light-border) 1px solid !important;
+    border-right: var(--light-border) 1px solid !important;
+    border-bottom: var(--light-border) 1px solid !important;
+    border-left: none;
+    background-color: var(--matte-black) !important;
+    color: var(--gray) !important;
+    font-size: 1.1rem;
+    box-shadow: none !important;
+}
+.search-group-icon {
+    border-top: var(--light-border) 1px solid;
+    border-left: var(--light-border) 1px solid;
+    border-bottom: var(--light-border) 1px solid;
+    border-right: none !important;
+    border-radius: 25px 0 0 25px;
+    padding-left: 20px !important;
+    background-color: var(--matte-black);
+    color: var(--gray);
+}
+.search-btn {
+    border: none;
+    outline: none;
+    padding: 10px 25px;
+    margin-left: 10px;
+    border-radius: 40px;
+    vertical-align: middle;
+    background: transparent;
+    border: 1px solid var(--dark-blue);
+    color: var(--dark-blue);
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    transition: .3s;
+    box-shadow: 0 0 10px var(--dark-black);
+}
+.search-btn:hover {
+    background-color: var(--minimal-blue);
+    color: var(--minimal-white);
+    box-shadow: 0 0 10px 1px var(--minimal-blue);
 }

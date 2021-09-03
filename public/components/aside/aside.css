@@ -9,7 +9,7 @@
     background: var(--sidebar-gradient);
     box-shadow: 0 0 10px var(--dark-black);
     z-index: 9999;
-    border: var(--sidebar-border)  1px solid;
+    border: var(--light-border)  1px solid;
     overflow: hidden;
 }
 .sidebar::before {
