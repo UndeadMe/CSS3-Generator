@@ -100,43 +100,62 @@ main {
 .tools-wrap {
     margin-top: 50px;
     display: grid;
-    grid-template-columns: repeat(auto-fill,250px);
+    grid-template-columns: repeat(auto-fit,240px);
     grid-template-rows: auto;
     grid-gap: 20px 30px;
 }
 .tool-box {
-    width: 250px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--minimal-white);
-    text-transform: capitalize;
-    border-radius: 25px;
-    /* background-image: var(--home-gradient); */
-    background-image: linear-gradient(45deg, var(--dark-blue) 20%, var(--minimal-blue) 50%);
-    border: rgba(255, 255, 255, 0.1) 1px solid;
-    transition: 0.3s;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
+    padding: 0;
 }
-.tool-box::before {
+.tool-box-button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 0;
+    background-color: var(--minimal-blue);
+    border: 1px groove var(--tool-border);
+    color: var(--white) !important;
+    position: relative;
+    overflow: hidden;
+    font-size: 20px;
+    box-shadow:  0 4px 10px var(--tool-shadow);
+    transition: transform 0.3s;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.tool-box-button::before {
     content: '';
     position: absolute;
-    inset: 0;
-    /* background-image: linear-gradient(45deg, var(--dark-blue) 20%, var(--minimal-blue) 50%); */
-    background-image: linear-gradient(45deg, var(--minimal-blue) 20%, var(--dark-blue) 50%);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.4s linear;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 7px;
+    background: var(--minimal-blue);
+    filter: brightness(80%);
 }
-.tool-box:hover::before {
-    opacity: 1;
+.tool-box-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 7px;
+    background-color: var(--minimal-white);
+    box-shadow: 0 0 5px var(--minimal-white);
+    z-index: 1;
+    transition: 0.7s ease-in;
 }
-.tool-box > * {
-    font-size: 22px;
+.tool-box-button:hover {
+    transform: scale(1.09);
 }
-.tool-icon {
-    margin-right: 15px;
+.tool-box-button:hover::after {
+    width: 100%;
+}
+.tool-box-button span {
+    margin-right: 12px;
 }
