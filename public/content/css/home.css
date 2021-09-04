@@ -99,8 +99,6 @@ main {
 /* ! ------------------------------- tools boxes ------------------------------ ! */
 .tools-wrap {
     margin-top: 50px;
-    perspective: 1500px;
-    perspective-origin: right;
     display: grid;
     grid-template-columns: repeat(auto-fill,250px);
     grid-template-rows: auto;
@@ -118,8 +116,6 @@ main {
     background: linear-gradient(45deg, var(--dark-blue) 20%, var(--minimal-blue) 50%);
     border: rgba(255, 255, 255, 0.2) 1px solid;
     transition: 0.3s;
-    cursor: pointer;
-    position: relative;
     overflow: hidden;
 }
 .tool-box > * {
