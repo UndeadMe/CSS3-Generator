@@ -23,6 +23,9 @@
     --sidebar-gradient : linear-gradient(to bottom, #1C1C27, #1F1F27);
 
     --light-border : #403F3F ; 
+    --tool-border : rgba(255, 255, 255, 0.3);
+
+    --tool-shadow : rgb(81, 81, 205, 0.5);
 }
 body {
     font-family: 'Varela Round', sans-serif;
