@@ -7,7 +7,8 @@
 
     --dark-blue : #3F3FCB ;
     --minimal-blue : #5151CD ;
-
+    --prety-blue : rgb(102, 0, 255) ;
+    
     --light-purple : #9B9BEC ;
     --minimal-purple : #7777E1 ;
 
@@ -23,9 +24,10 @@
     --sidebar-gradient : linear-gradient(to bottom, #1C1C27, #1F1F27);
 
     --light-border : #403F3F ; 
-    --tool-border : rgba(255, 255, 255, 0.3);
-
-    --tool-shadow : rgb(81, 81, 205, 0.5);
+    --tool-border  :  rgba(102, 0, 255, 0.3) ;
+    --tool-progress : rgba(102, 0, 255, 0.6) ;
+     
+    --tool-shadow : rgba(0, 0, 0, 0.6);
 }
 body {
     font-family: 'Varela Round', sans-serif;

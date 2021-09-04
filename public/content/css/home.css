@@ -92,9 +92,8 @@ main {
     box-shadow: 0 0 10px var(--dark-black);
 }
 .search-btn:hover {
-    background-color: var(--minimal-blue);
+    background-color: var(--prety-blue);
     color: var(--minimal-white);
-    box-shadow: 0 0 10px 1px var(--minimal-blue);
 }
 /* ! ------------------------------- tools boxes ------------------------------ ! */
 .tools-wrap {
@@ -114,16 +113,16 @@ main {
     justify-content: center;
     align-items: center;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     padding: 15px 0;
-    background-color: var(--minimal-blue);
-    border: 1px groove var(--tool-border);
+    background-color : var(--matte-black) ;
+    border: 1px groove var(--tool-border) ;
     color: var(--white) !important;
     position: relative;
     overflow: hidden;
     font-size: 20px;
     box-shadow:  0 4px 10px var(--tool-shadow);
-    transition: transform 0.3s;
+    transition: transform .3s , border .5s ease-in;
     text-transform: capitalize;
     text-decoration: none;
 }
@@ -135,8 +134,8 @@ main {
     right: 0;
     width: 100%;
     height: 7px;
-    background: var(--minimal-blue);
-    filter: brightness(80%);
+    background: var(--matte-black);
+    filter: brightness(70%);
 }
 .tool-box-button::after {
     content: '';
@@ -145,13 +144,13 @@ main {
     left: 0;
     width: 0;
     height: 7px;
-    background-color: var(--minimal-white);
-    box-shadow: 0 0 5px var(--minimal-white);
+    background-color: var(--tool-progress);
     z-index: 1;
-    transition: 0.7s ease-in;
+    transition: .5s ease-in;
 }
 .tool-box-button:hover {
     transform: scale(1.09);
+    border: 1px solid var(--prety-blue);
 }
 .tool-box-button:hover::after {
     width: 100%;
