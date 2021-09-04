@@ -1,1 +1,22 @@
 @import url(../../components/aside/aside.css);
+body {
+    background : var(--home-gradient) ;
+    position: relative;
+    display: flex;
+    perspective: 1000px;
+    perspective-origin: left;
+    height: 100vh;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/background-tool/body-background.png) ;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    z-index: -1;
+}
