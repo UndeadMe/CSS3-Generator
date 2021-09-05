@@ -68,4 +68,56 @@ body {
 .header-pannel-heading-icon {
     color: var(--white);
     cursor: pointer;
+    font-size: 1.5rem;
+}
+/* ! --------------------------- component selector --------------------------- ! */
+.component-selector-wrap {
+    position: relative;
+}
+.component-selector-box {
+    background: var(--black-blue) ;
+    color: var(--d-white);
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+.component-selector-dropdown-box {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    border-radius: 5px;
+    width: 100%;
+    background: var(--black-blue);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    overflow: hidden;
+    transition: all 0.5s;
+    transform : translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+}
+.component-selector-dropdown-item {
+    padding: 8px 10px;
+    color: var(--minimal-white);
+    transition: background .5s , color .5s;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.component-selector-dropdown-item:hover:not(.component-selector-dropdown-item.active) {
+    background-color: var(--minimal-white);
+    color: var(--dark-black);
+    font-weight: bolder;
+}
+.component-selector-dropdown-item.active {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-weight: bolder;
+}
+.component-selector-box.active ~ .component-selector-dropdown-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }

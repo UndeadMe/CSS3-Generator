@@ -9,13 +9,16 @@
     --dark-blue : #3F3FCB ;
     --minimal-blue : #5151CD ;
     --prety-blue : rgb(102, 0, 255) ;
-    
+    --black-blue : #00082D ;
+
     --light-purple : #9B9BEC ;
     --minimal-purple : #7777E1 ;
 
     --white : #FFFFFF;
     --minimal-white : #EBEBEB ;
     --gray : #BFBFBF ;
+    --d-white : #DDDDDD;
+    --dark-gray : #53535C;
 
     --red-dot : #D90007 ;
     --yellow-dot : #E8E100 ;
@@ -27,7 +30,7 @@
     --light-border : #403F3F ; 
     --tool-border  :  rgba(102, 0, 255, 0.3) ;
     --tool-progress : rgba(102, 0, 255, 0.6) ;
-     
+    
     --tool-shadow : rgba(0, 0, 0, 0.6);
 }
 body {
