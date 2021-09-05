@@ -132,5 +132,15 @@ body {
     font-weight: bolder;
 }
 .element-class-name-text-icon {
-    color: var(--gray);
+    color: var(--white);
+}
+/* ! ------------------------------- type effect ------------------------------ ! */
+.type-effect {
+    color: var(--white);
+    text-transform: capitalize;
+}
+.type-effect-icon {
+    font-size: 20px;
+    color: var(--white);
+    cursor: pointer;
 }
