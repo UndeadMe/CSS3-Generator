@@ -121,3 +121,16 @@ body {
     visibility: visible;
     transform: translateY(0);
 }
+/* ! ------------------------ element class name input ------------------------ ! */
+.element-class-name-input {
+    color: var(--white) !important;
+    font-weight: bolder !important;
+}
+.element-class-name-input::placeholder {
+    color: var(--gray) !important;
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+.element-class-name-text-icon {
+    color: var(--gray);
+}
