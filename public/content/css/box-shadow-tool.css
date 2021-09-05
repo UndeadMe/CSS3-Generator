@@ -124,7 +124,6 @@ body {
 /* ! ------------------------ element class name input ------------------------ ! */
 .element-class-name-input {
     color: var(--white) !important;
-    font-weight: bolder !important;
 }
 .element-class-name-input::placeholder {
     color: var(--gray) !important;
@@ -143,4 +142,15 @@ body {
     font-size: 20px;
     color: var(--white);
     cursor: pointer;
+}
+/* ! ----------------------------- properties box ----------------------------- ! */
+.peroperties-input {
+    color: var(--white) !important;
+}
+.peroperties-input::placeholder {
+    color: var(--gray) !important;
+    text-transform: capitalize;
+}
+.peroperties-icon {
+    
 }
