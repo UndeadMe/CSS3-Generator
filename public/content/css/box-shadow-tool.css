@@ -151,6 +151,35 @@ body {
     color: var(--gray) !important;
     text-transform: capitalize;
 }
-.peroperties-icon {
-    
+/* ! ------------------------------ color picker ------------------------------ ! */
+.color-picker-box {
+    margin-top: 30px;
+}
+#choose-color-picker-label {
+    width: 100px;
+    height: 35px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.1);
+    background-color: var(--prety-blue);
+    cursor: pointer;
+}
+.choose-color-picker-text {
+    color: var(--minimal-white);
+    font-size: 18px;
+}
+.color-picker-tool {
+    color: var(--white);
+    cursor: pointer;
+    font-size: 18px;
+}
+/* ! ------------------------------ footer pannel ----------------------------- ! */
+.css-code-btn {
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--prety-blue);
+    color: var(--white);
+    box-shadow:  5px 5px 10px #1b1b23,
+             -5px -5px 10px #21212b;
+    padding: 10px 0;
+    font-size: 17px;
 }
