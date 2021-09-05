@@ -5,7 +5,7 @@
     left: 40px;
     width: 100px;
     height: 89vh;
-    border-radius: 30px;
+    border-radius: 8px;
     background: var(--sidebar-gradient);
     box-shadow: 0 0 5px var(--dark-black);
     z-index: 9999;
