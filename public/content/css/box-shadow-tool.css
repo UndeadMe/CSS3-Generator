@@ -204,6 +204,9 @@ body {
     position: relative;
     border-radius: 30px;
     border: 1px solid var(--light-border);
+    min-width: 100px;
+    min-height: 100px;
+    max-height: 500px;
 }
 .resizable::before {
     content: '';
@@ -221,11 +224,11 @@ body {
     box-sizing: border-box;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.6s linear;
+    transition: all 0.4s linear;
 }
 .resizable .resizers .resizer {
-    width: 10px;
-    height: 10px;
+    width: 13px;
+    height: 13px;
     background: var(--prety-blue);
     border-radius: 100%;
     border: 2px solid var(--d-white);
@@ -251,7 +254,11 @@ body {
     bottom: -5px;
     cursor: nwse-resize;
 }
+.resizers.active {
+    opacity: 1;
+    visibility: visible;
+}
 .resizable:hover .resizers {
     opacity: 1;
-    visibility: visible;    
+    visibility: visible;
 }
