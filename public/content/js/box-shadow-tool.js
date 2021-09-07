@@ -62,3 +62,22 @@ const makeResizableElem = elem => {
 }
 
 makeResizableElem(".resizable")
+
+// ? ------------------------- make component dropdown ------------------------ ? //
+const componentSelectorBox = document.querySelector(".component-selector-box")
+componentSelectorBox.addEventListener("click", () => {
+    //? add active class to component selector box
+    componentSelectorBox.classList.toggle("active")
+    //? get all component selector dropdown item
+    const componentDropItem = document.querySelectorAll(".component-selector-dropdown-item")
+
+    //? create activator for dropdown item
+    componentDropItem.forEach(item => {
+        item.addEventListener("click" , (e) => {
+            componentDropItem.forEach(allItem => {
+                allItem.innerText.trim() === item.innerText.trim() ? 
+                    allItem.classList.add("active") : allItem.classList.remove("active")
+            })
+        })
+    })    
+})
