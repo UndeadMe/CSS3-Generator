@@ -57,12 +57,33 @@ let Shadow = {
     isHover: false
 }
 
+//? upload shadow data in inputs
+const uploadShadowData = () => {
+    let {box: {noHover: {shadowColor,horizental,vertical,blur,speard}}} = Shadow
+    
+    horizentalInp.value = horizental
+    verticalInp.value = vertical
+    blurInp.value = blur
+    speardInp.value = speard
+
+    resizableBox.style.boxShadow = 
+        `${horizental}px 
+         ${vertical}px
+         ${blur}px
+         ${speard}px
+         ${shadowColor}`
+}
+
 //? check inputs 
 const checkInputs = e => {
     if (e.target.value.trim().length !== 0) {
-        Shadow.isInit = true
         e.target.parentElement.previousElementSibling.innerHTML = ""
+
+        Shadow.isInit = true
+        Shadow.elemClass = e.target.value
+        
         activeInputs()
+        uploadShadowData()
     }else {
         Shadow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
