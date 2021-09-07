@@ -36,3 +36,6 @@
 body {
     font-family: 'Raleway', sans-serif;
 }
+* {
+    user-select: none;
+}
