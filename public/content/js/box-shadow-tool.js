@@ -10,7 +10,7 @@ pickr.on('change', (color) => {
     resizableBox.style.background = color.toHEXA().toString()
 })
 
-
+// ? --------------------- make resizable for resizable bo -------------------- ? //
 const makeResizableElem = elem => {
     const element  = document.querySelector(elem)
     const resizers = document.querySelector(`${elem} .resizers`)
