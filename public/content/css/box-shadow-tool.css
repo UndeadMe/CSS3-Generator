@@ -277,6 +277,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     border: 1px solid var(--d-white);
+    transition: 0.4s;
 }
 .vh-top-right {
     top: 0;
@@ -298,6 +299,6 @@ body {
     left: 0;
     border-top-right-radius: 100px;
 }
-.vh-top-right.active {
+.vh-tool.active {
     background-color: var(--d-white);
 }

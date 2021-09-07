@@ -10,7 +10,7 @@ pickr.on('change', (color) => {
     resizableBox.style.background = color.toHEXA().toString()
 })
 
-// ? --------------------- make resizable for resizable bo -------------------- ? //
+// ? make resizable for resizable box
 const makeResizableElem = elem => {
     const element  = document.querySelector(elem)
     const resizers = document.querySelector(`${elem} .resizers`)
@@ -63,7 +63,7 @@ const makeResizableElem = elem => {
 
 makeResizableElem(".resizable")
 
-// ? ------------------------- make component dropdown ------------------------ ? //
+//? make component dropdown
 const componentSelectorBox = document.querySelector(".component-selector-box")
 componentSelectorBox.addEventListener("click", () => {
     //? add active class to component selector box
@@ -80,4 +80,16 @@ componentSelectorBox.addEventListener("click", () => {
             })
         })
     })    
+})
+
+//? create activator for vh tool
+const vhTool = document.querySelectorAll(".vh-tool")
+vhTool.forEach(tool => {
+    tool.addEventListener("click" , () => {
+        vhTool.forEach(allTool => {
+            allTool.classList.value === tool.className ?
+                allTool.classList.add("active")
+            : allTool.classList.remove("active")
+        })
+    })
 })
