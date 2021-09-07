@@ -38,12 +38,33 @@ const activeInputs = () => {
     vhTools.forEach(tool => tool.style.pointerEvents = "")
 }
 
+//? shadow object
+let Shadow = {
+    elemClass: null,
+    box: {
+        noHover: {
+            shadowColor: "#53535C",
+            horizental: 0,
+            vertical: 0,
+            blur: 0,
+            speard: 0
+        },
+        hover: {
+
+        }
+    },
+    isInit: false,
+    isHover: false
+}
+
 //? check inputs 
 const checkInputs = e => {
     if (e.target.value.trim().length !== 0) {
+        Shadow.isInit = true
         e.target.parentElement.previousElementSibling.innerHTML = ""
         activeInputs()
     }else {
+        Shadow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
         disableInputs()
     }
