@@ -1,6 +1,5 @@
 import { createPickr } from "./pickr.js";
 
-const componentSelectorBox = document.querySelector(".component-selector-box")
 const colorPickerBtn = document.querySelector(".color-picker")
 const resizableBox = document.querySelector(".resizable")
 const elemClassName = document.querySelector(".element-class-name-input")
@@ -12,11 +11,18 @@ const vhTools = document.querySelectorAll(".vh-tool")
 
 //? disable inputs
 const disableInputs = () => {
-    componentSelectorBox.style.pointerEvents = "none"
     horizentalInp.style.pointerEvents = "none"
+    horizentalInp.value = ""
+
     verticalInp.style.pointerEvents = "none"
+    verticalInp.value = ""
+
     blurInp.style.pointerEvents = "none"
+    blurInp.value = ""
+
     speardInp.style.pointerEvents = "none"
+    speardInp.value = ""
+    
     colorPickerBtn.style.pointerEvents = "none"
     vhTools.forEach(tool => tool.style.pointerEvents = "none")
     resizableBox.style.boxShadow = ""
@@ -24,7 +30,6 @@ const disableInputs = () => {
 
 //? active inputs
 const activeInputs = () => {
-    componentSelectorBox.style.pointerEvents = ""
     horizentalInp.style.pointerEvents = ""
     verticalInp.style.pointerEvents = ""
     blurInp.style.pointerEvents = ""
@@ -102,32 +107,6 @@ const makeResizableElem = elem => {
 }
 
 makeResizableElem(".resizable")
-
-//? make component dropdown
-componentSelectorBox.addEventListener("click", () => {
-    //? add active class to component selector box
-    componentSelectorBox.classList.toggle("active")
-    
-    //? get all component selector dropdown item
-    const componentDropItem = document.querySelectorAll(".component-selector-dropdown-item")
-    
-    //? get component selector box text
-    const componentText = document.querySelector(".component-selector-box-text")
-
-    //? create activator for dropdown item
-    componentDropItem.forEach(item => {
-        item.addEventListener("click" , (e) => {
-            componentDropItem.forEach(allItem => {
-                if (allItem.innerText.trim() === item.innerText.trim()) {
-                    
-                    allItem.classList.add("active") 
-                    componentText.innerHTML = allItem.innerText 
-                    
-                } else allItem.classList.remove("active")
-            })
-        })
-    })    
-})
 
 //? create activator for vh tool
 const vhTool = document.querySelectorAll(".vh-tool")

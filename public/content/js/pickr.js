@@ -3,6 +3,7 @@ export const createPickr = (element) => {
         el: element,
         theme: 'classic',
         useAsButton : true ,
+        default : "#53535C",
         components: {
             preview: true,
             opacity: true,

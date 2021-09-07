@@ -72,64 +72,6 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
 }
-/* ! --------------------------- component selector --------------------------- ! */
-.component-selector-wrap {
-    position: relative;
-}
-.component-selector-box {
-    background: var(--black-blue) ;
-    color: var(--d-white);
-    border-radius: 5px;
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    text-transform: capitalize;
-    cursor: pointer;
-}
-.component-selector-dropdown-box {
-    position: absolute;
-    top: 55px;
-    right: 0;
-    border-radius: 5px;
-    width: 100%;
-    background: var(--black-blue);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    overflow: hidden;
-    transition: all 0.5s;
-    transform : translateY(-10px);
-    opacity: 0;
-    visibility: hidden;
-}
-.component-selector-dropdown-item {
-    padding: 8px 10px;
-    color: var(--minimal-white);
-    transition: background .5s , color .5s;
-    cursor: pointer;
-    text-transform: capitalize;
-}
-.component-selector-dropdown-item:hover:not(.component-selector-dropdown-item.active) {
-    background-color: var(--minimal-white);
-    color: var(--dark-black);
-    font-weight: bolder;
-}
-.component-selector-dropdown-item.active {
-    background-color: var(--dark-blue);
-    color: var(--white);
-    font-weight: bolder;
-}
-.component-selector-box.active ~ .component-selector-dropdown-box {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-.component-selector-icon {
-    transition: 0.4s;
-}
-.component-selector-box.active .component-selector-icon {
-    transform: rotate(180deg);
-    margin-top: -5px;
-}
 /* ! ------------------------ element class name input ------------------------ ! */
 .element-class-name-input {
     color: var(--white) !important;
@@ -170,7 +112,7 @@ body {
     border-radius: 3px;
     border : none;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    background : var(--prety-blue);
+    background : var(--dark-gray);
     position: relative;
     border : 1px solid var(--light-border);
 }
