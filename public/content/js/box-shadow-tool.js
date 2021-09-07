@@ -1,13 +1,53 @@
 import { createPickr } from "./pickr.js";
 
+const componentSelectorBox = document.querySelector(".component-selector-box")
+const colorPickerBtn = document.querySelector(".color-picker")
+const resizableBox = document.querySelector(".resizable")
+const elemClassName = document.querySelector(".element-class-name-input")
+const horizentalInp = document.querySelector(".horizental-inp")
+const verticalInp = document.querySelector(".vertical-inp")
+const blurInp = document.querySelector(".blur-inp")
+const speardInp = document.querySelector(".speard-inp")
+const vhTools = document.querySelectorAll(".vh-tool")
+
+//? disable inputs
+const disableInputs = () => {
+    componentSelectorBox.style.pointerEvents = "none"
+    horizentalInp.style.pointerEvents = "none"
+    verticalInp.style.pointerEvents = "none"
+    blurInp.style.pointerEvents = "none"
+    speardInp.style.pointerEvents = "none"
+    colorPickerBtn.style.pointerEvents = "none"
+    vhTools.forEach(tool => tool.style.pointerEvents = "none")
+    resizableBox.style.boxShadow = ""
+}
+
+//? active inputs
+const activeInputs = () => {
+    componentSelectorBox.style.pointerEvents = ""
+    horizentalInp.style.pointerEvents = ""
+    verticalInp.style.pointerEvents = ""
+    blurInp.style.pointerEvents = ""
+    speardInp.style.pointerEvents = ""
+    colorPickerBtn.style.pointerEvents = ""
+    vhTools.forEach(tool => tool.style.pointerEvents = "")
+}
+
+//? check inputs 
+const checkInputs = e => {
+    if (e.target.value.trim().length !== 0) {
+        e.target.parentElement.previousElementSibling.innerHTML = ""
+        activeInputs()
+    }else {
+        e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
+        disableInputs()
+    }
+}
+
 //? create pickr
 let pickr = createPickr(".color-picker")
 pickr.on('change', (color) => {
-    const colorPickerBtn = document.querySelector(".color-picker")
-    const resizableBox = document.querySelector(".resizable")
-    
     colorPickerBtn.style.background = color.toHEXA().toString()
-    resizableBox.style.background = color.toHEXA().toString()
 })
 
 // ? make resizable for resizable box
@@ -64,7 +104,6 @@ const makeResizableElem = elem => {
 makeResizableElem(".resizable")
 
 //? make component dropdown
-const componentSelectorBox = document.querySelector(".component-selector-box")
 componentSelectorBox.addEventListener("click", () => {
     //? add active class to component selector box
     componentSelectorBox.classList.toggle("active")
@@ -101,3 +140,6 @@ vhTool.forEach(tool => {
         })
     })
 })
+
+window.addEventListener("load", disableInputs)
+elemClassName.addEventListener("keyup", checkInputs)
