@@ -123,6 +123,13 @@ body {
     visibility: visible;
     transform: translateY(0);
 }
+.component-selector-icon {
+    transition: 0.4s;
+}
+.component-selector-box.active .component-selector-icon {
+    transform: rotate(180deg);
+    margin-top: -5px;
+}
 /* ! ------------------------ element class name input ------------------------ ! */
 .element-class-name-input {
     color: var(--white) !important;
