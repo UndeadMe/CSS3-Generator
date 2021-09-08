@@ -103,6 +103,7 @@ const addHorizentalInShadowData = number => {
     let ShadowNoHover = Shadow.box.noHover
 
     if (Shadow.isInit === true) {
+        disableAllVhTool()
         if (number === "") {
             ShadowNoHover.horizental = 0
             addStyleToResizable()
@@ -112,12 +113,12 @@ const addHorizentalInShadowData = number => {
                 (ShadowNoHover.horizental.length >= 1 && ShadowNoHover.horizental[0] !== "0") || 
                 (ShadowNoHover.horizental.length < 2 && ShadowNoHover.horizental === "0")
             ) {
+                Shadow.Validation.horizentalValidate = true 
                 elemValidationInputs.innerHTML = ""
                 addStyleToResizable()
-                Shadow.Validation.horizentalValidate = true 
             } else {
-                elemValidationInputs.innerHTML = "Please enter the number correctly"
                 Shadow.Validation.horizentalValidate = false
+                elemValidationInputs.innerHTML = "Please enter the number correctly"
             }
         }
     } else 
@@ -129,6 +130,7 @@ const addVerticalInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
 
     if (Shadow.isInit === true) {
+        disableAllVhTool()
         if (number === "") {
             ShadowNoHover.vertical = 0
             addStyleToResizable()
@@ -155,6 +157,7 @@ const addBlurInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
 
     if (Shadow.isInit === true) {
+        disableAllVhTool()
         if (number === "") {
             ShadowNoHover.blur = 0
             addStyleToResizable()
@@ -183,6 +186,7 @@ const addSpeardInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
     
     if (Shadow.isInit) {
+        disableAllVhTool()
         if (number === "") {
             ShadowNoHover.speard = 0
             addStyleToResizable()
@@ -267,16 +271,52 @@ const makeResizableElem = elem => {
 
 makeResizableElem(".resizable")
 
-//? create activator for vh tool
+//? create activator for vh tool and vh tools shadow
 vhTool.forEach(tool => {
     tool.addEventListener("click" , () => {
         vhTool.forEach(allTool => {
-            allTool.classList.value === tool.className ? 
-                allTool.classList.add("active") 
-            : allTool.classList.remove("active")
+            if (allTool.classList.value === tool.className) {
+                if (Shadow.Validation.horizentalValidate || Shadow.Validation.verticalValidate) {
+                    if (allTool.classList.contains("vh-top-right")) {
+                    
+                        Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
+                        if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
+                    
+                    } else if (allTool.classList.contains("vh-top-left")) {
+                    
+                        if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
+                        if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
+                    
+                    } else if (allTool.classList.contains("vh-bottom-left")) {
+
+                        if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
+                        Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
+                        
+                    } else {
+
+                        Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
+                        Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
+
+                    }
+                    
+                    allTool.classList.add("active")
+                    uploadShadowDataInDom()
+                    addStyleToResizable()
+                    
+                } else 
+                    alert("please complete fields")
+            } else 
+                allTool.classList.remove("active")
         })
     })
 })
+
+//? disable all vh tools
+const disableAllVhTool = () => {
+    vhTool.forEach(tool => {
+        tool.classList.remove("active")
+    })
+}
 
 window.addEventListener("load", disableInputs)
 elemClassName.addEventListener("keyup", checkInputs)
