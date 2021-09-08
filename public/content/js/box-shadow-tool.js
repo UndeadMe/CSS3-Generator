@@ -58,10 +58,10 @@ let Shadow = {
     isInit: false,
     isHover: false,
     Validation : {
-        horizentalValidate: false,
-        verticalValidate: false,
-        blurValidate: false,
-        speardValidate: false
+        horizentalValidate: true,
+        verticalValidate: true,
+        blurValidate: true,
+        speardValidate: true
     }
 }
 
@@ -114,8 +114,11 @@ const addHorizentalInShadowData = number => {
                 (ShadowNoHover.horizental.length < 2 && ShadowNoHover.horizental === "0")
             ) {
                 Shadow.Validation.horizentalValidate = true 
-                elemValidationInputs.innerHTML = ""
-                addStyleToResizable()
+                if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
+                    elemValidationInputs.innerHTML = ""
+                    addStyleToResizable()
+                } else 
+                    elemValidationInputs.innerHTML = "Please complete the fields correctly"
             } else {
                 Shadow.Validation.horizentalValidate = false
                 elemValidationInputs.innerHTML = "Please enter the number correctly"
@@ -140,9 +143,12 @@ const addVerticalInShadowData = (number) => {
                 (ShadowNoHover.vertical.length >= 1 && ShadowNoHover.vertical[0] !== "0") || 
                 (ShadowNoHover.vertical.length < 2 && ShadowNoHover.vertical === "0")
             ) {
-                elemValidationInputs.innerHTML = ""
-                addStyleToResizable()
                 Shadow.Validation.verticalValidate = true 
+                if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
+                    elemValidationInputs.innerHTML = ""
+                    addStyleToResizable()
+                } else 
+                    elemValidationInputs.innerHTML = "Please complete the fields correctly"
             } else {
                 elemValidationInputs.innerHTML = "Please enter the number correctly"   
                 Shadow.Validation.verticalValidate = false
@@ -169,9 +175,12 @@ const addBlurInShadowData = (number) => {
                 (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0") ||
                 (ShadowNoHover.blur[0] !== "-") 
             ) {
-                elemValidationInputs.innerHTML = ""
-                addStyleToResizable()
                 Shadow.Validation.blurValidate = true 
+                if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
+                    elemValidationInputs.innerHTML = ""
+                    addStyleToResizable()
+                } else 
+                    elemValidationInputs.innerHTML = "Please complete the fields correctly"
             } else {
                 elemValidationInputs.innerHTML = "Please enter the number correctly"   
                 Shadow.Validation.blurValidate = false
@@ -197,9 +206,12 @@ const addSpeardInShadowData = (number) => {
                 (ShadowNoHover.speard.length >= 1 && ShadowNoHover.speard[0] !== "0") || 
                 (ShadowNoHover.speard.length < 2 && ShadowNoHover.speard === "0")
             ) {
-                elemValidationInputs.innerHTML = ""
-                addStyleToResizable()
                 Shadow.Validation.speardValidate = true 
+                if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
+                    elemValidationInputs.innerHTML = ""
+                    addStyleToResizable()
+                } else 
+                    elemValidationInputs.innerHTML = "Please complete the fields correctly"
             } else {
                 elemValidationInputs.innerHTML = "Please enter the number correctly"   
                 Shadow.Validation.speardValidate = false
@@ -276,33 +288,35 @@ vhTool.forEach(tool => {
     tool.addEventListener("click" , () => {
         vhTool.forEach(allTool => {
             if (allTool.classList.value === tool.className) {
-                if (Shadow.Validation.horizentalValidate || Shadow.Validation.verticalValidate) {
-                    if (allTool.classList.contains("vh-top-right")) {
+                if (Shadow.isInit) {
+                    if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate) {
+                        if (allTool.classList.contains("vh-top-right")) {
                     
-                        Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
-                        if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
-                    
-                    } else if (allTool.classList.contains("vh-top-left")) {
-                    
-                        if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
-                        if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
-                    
-                    } else if (allTool.classList.contains("vh-bottom-left")) {
-
-                        if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
-                        Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
+                            Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
+                            if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
                         
-                    } else {
-
-                        Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
-                        Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
-
-                    }
-                    
-                    allTool.classList.add("active")
-                    uploadShadowDataInDom()
-                    addStyleToResizable()
-                    
+                        } else if (allTool.classList.contains("vh-top-left")) {
+                        
+                            if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
+                            if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
+                        
+                        } else if (allTool.classList.contains("vh-bottom-left")) {
+    
+                            if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
+                            Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
+                            
+                        } else {
+    
+                            Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
+                            Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
+    
+                        }
+                        
+                        allTool.classList.add("active")
+                        uploadShadowDataInDom()
+                        addStyleToResizable()
+                    } else 
+                        alert("Please complete the fields correctly")
                 } else 
                     alert("please complete fields")
             } else 
