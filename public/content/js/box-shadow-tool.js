@@ -58,20 +58,12 @@ let Shadow = {
 }
 
 //? upload shadow data in inputs
-const uploadShadowData = () => {
-    let {box: {noHover: {shadowColor,horizental,vertical,blur,speard}}} = Shadow
-    
+const uploadShadowDataInDom = () => {
+    let {box: {noHover: { shadowColor,horizental,vertical,blur,speard }}} = Shadow
     horizentalInp.value = horizental
     verticalInp.value = vertical
     blurInp.value = blur
     speardInp.value = speard
-
-    resizableBox.style.boxShadow = 
-        `${horizental}px 
-         ${vertical}px
-         ${blur}px
-         ${speard}px
-         ${shadowColor}`
 }
 
 //? check inputs 
@@ -80,10 +72,10 @@ const checkInputs = e => {
         e.target.parentElement.previousElementSibling.innerHTML = ""
 
         Shadow.isInit = true
-        Shadow.elemClass = e.target.value
+        Shadow.elemClass = `.${e.target.value}`
         
         activeInputs()
-        uploadShadowData()
+        uploadShadowDataInDom()
     }else {
         Shadow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
@@ -91,10 +83,55 @@ const checkInputs = e => {
     }
 }
 
+//? add style to resizable box
+const addStyleToResizable = () => {
+    let {box: {noHover: { shadowColor,horizental,vertical,blur,speard }}} = Shadow
+    resizableBox.style.boxShadow = `${horizental}px ${vertical}px ${blur}px ${speard}px ${shadowColor}`
+}
+
+//? add horizental number in shadow data
+const addHorizentalInShadowData = number => {
+    if (Shadow.isInit) {
+        Shadow.box.noHover.horizental = number
+        addStyleToResizable()
+    } else 
+        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+}
+
+//? add vertical number in shadow data
+const addVerticalInShadowData = (number) => {
+    if (Shadow.isInit) {
+        Shadow.box.noHover.vertical = number
+        addStyleToResizable()
+    } else 
+        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+}
+
+//? add blur number in shadow data 
+const addBlurInShadowData = (number) => {
+    if (Shadow.isInit) {
+        Shadow.box.noHover.blur = number
+        addStyleToResizable()
+    } else 
+        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+}
+
+//? add speard number in shadow data
+const addSpeardInShadowData = (number) => {
+    if (Shadow.isInit) {
+        Shadow.box.noHover.speard = number
+        addStyleToResizable()
+    } else 
+        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+}
+
 //? create pickr
 let pickr = createPickr(".color-picker")
 pickr.on('change', (color) => {
-    colorPickerBtn.style.background = color.toHEXA().toString()
+    let shadowColor = color.toHEXA().toString()
+    Shadow.box.noHover.shadowColor = shadowColor
+    colorPickerBtn.style.background = shadowColor
+    addStyleToResizable()
 })
 
 // ? make resizable for resizable box
@@ -164,3 +201,7 @@ vhTool.forEach(tool => {
 
 window.addEventListener("load", disableInputs)
 elemClassName.addEventListener("keyup", checkInputs)
+horizentalInp.addEventListener("keyup", (e) => addHorizentalInShadowData(e.target.value))
+verticalInp.addEventListener("keyup", (e) => addVerticalInShadowData(e.target.value))
+blurInp.addEventListener("keyup", (e) => addBlurInShadowData(e.target.value))
+speardInp.addEventListener("keyup", (e) => addSpeardInShadowData(e.target.value))
