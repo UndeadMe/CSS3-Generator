@@ -8,6 +8,7 @@ const verticalInp = document.querySelector(".vertical-inp")
 const blurInp = document.querySelector(".blur-inp")
 const speardInp = document.querySelector(".speard-inp")
 const vhTools = document.querySelectorAll(".vh-tool")
+const vhTool = document.querySelectorAll(".vh-tool")
 
 //? disable inputs
 const disableInputs = () => {
@@ -24,7 +25,7 @@ const disableInputs = () => {
     speardInp.value = ""
     
     colorPickerBtn.style.pointerEvents = "none"
-    vhTools.forEach(tool => tool.style.pointerEvents = "none")
+    vhTools.forEach(tool => {tool.style.pointerEvents = "none"; tool.classList.remove("active")})
     resizableBox.style.boxShadow = ""
 }
 
@@ -76,6 +77,7 @@ const checkInputs = e => {
         
         activeInputs()
         uploadShadowDataInDom()
+        addStyleToResizable()
     }else {
         Shadow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
@@ -188,12 +190,11 @@ const makeResizableElem = elem => {
 makeResizableElem(".resizable")
 
 //? create activator for vh tool
-const vhTool = document.querySelectorAll(".vh-tool")
 vhTool.forEach(tool => {
     tool.addEventListener("click" , () => {
         vhTool.forEach(allTool => {
-            allTool.classList.value === tool.className ?
-                allTool.classList.add("active")
+            allTool.classList.value === tool.className ? 
+                allTool.classList.add("active") 
             : allTool.classList.remove("active")
         })
     })
