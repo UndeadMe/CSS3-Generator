@@ -9,6 +9,7 @@ const blurInp = document.querySelector(".blur-inp")
 const speardInp = document.querySelector(".speard-inp")
 const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
+const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 
 //? disable inputs
 const disableInputs = () => {
@@ -55,7 +56,13 @@ let Shadow = {
         }
     },
     isInit: false,
-    isHover: false
+    isHover: false,
+    Validation : {
+        horizentalValidate: false,
+        verticalValidate: false,
+        blurValidate: false,
+        speardValidate: false
+    }
 }
 
 //? upload shadow data in inputs
@@ -93,13 +100,25 @@ const addStyleToResizable = () => {
 
 //? add horizental number in shadow data
 const addHorizentalInShadowData = number => {
-    if (Shadow.isInit) {
+    let ShadowNoHover = Shadow.box.noHover
+
+    if (Shadow.isInit === true) {
         if (number === "") {
-            Shadow.box.noHover.horizental = 0
+            ShadowNoHover.horizental = 0
             addStyleToResizable()
         } else {
-            Shadow.box.noHover.horizental = number
-            addStyleToResizable()
+            ShadowNoHover.horizental = number
+            if (
+                (ShadowNoHover.horizental.length >= 1 && ShadowNoHover.horizental[0] !== "0") || 
+                (ShadowNoHover.horizental.length < 2 && ShadowNoHover.horizental === "0")
+            ) {
+                elemValidationInputs.innerHTML = ""
+                addStyleToResizable()
+                Shadow.Validation.horizentalValidate = true 
+            } else {
+                elemValidationInputs.innerHTML = "Please enter the number correctly"
+                Shadow.Validation.horizentalValidate = false
+            }
         }
     } else 
         horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
@@ -107,44 +126,83 @@ const addHorizentalInShadowData = number => {
 
 //? add vertical number in shadow data
 const addVerticalInShadowData = (number) => {
-    if (Shadow.isInit) {
+    let ShadowNoHover = Shadow.box.noHover
+
+    if (Shadow.isInit === true) {
         if (number === "") {
-            Shadow.box.noHover.vertical = 0
+            ShadowNoHover.vertical = 0
             addStyleToResizable()
         } else {
-            Shadow.box.noHover.vertical = number
-            addStyleToResizable()   
+            ShadowNoHover.vertical = number
+            if (
+                (ShadowNoHover.vertical.length >= 1 && ShadowNoHover.vertical[0] !== "0") || 
+                (ShadowNoHover.vertical.length < 2 && ShadowNoHover.vertical === "0")
+            ) {
+                elemValidationInputs.innerHTML = ""
+                addStyleToResizable()
+                Shadow.Validation.verticalValidate = true 
+            } else {
+                elemValidationInputs.innerHTML = "Please enter the number correctly"   
+                Shadow.Validation.verticalValidate = false
+            }
         }
     } else 
-        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+        verticalInp.value = verticalInp.value.slice(0, verticalInp.value.length - 1)
 }
 
 //? add blur number in shadow data 
 const addBlurInShadowData = (number) => {
-    if (Shadow.isInit) {
+    let ShadowNoHover = Shadow.box.noHover
+
+    if (Shadow.isInit === true) {
         if (number === "") {
-            Shadow.box.noHover.blur = 0
+            ShadowNoHover.blur = 0
             addStyleToResizable()
         } else {
-            Shadow.box.noHover.blur = number
-            addStyleToResizable()
+            ShadowNoHover.blur = number
+
+            if (
+                (ShadowNoHover.blur.length >= 1 && ShadowNoHover.blur[0] !== "0") || 
+                (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0") ||
+                (ShadowNoHover.blur[0] !== "-") 
+            ) {
+                elemValidationInputs.innerHTML = ""
+                addStyleToResizable()
+                Shadow.Validation.blurValidate = true 
+            } else {
+                elemValidationInputs.innerHTML = "Please enter the number correctly"   
+                Shadow.Validation.blurValidate = false
+            }
         }
     } else 
-        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+        blurInp.value = blurInp.value.slice(0, blurInp.value.length - 1)
 }
 
 //? add speard number in shadow data
 const addSpeardInShadowData = (number) => {
+    let ShadowNoHover = Shadow.box.noHover
+    
     if (Shadow.isInit) {
-        if (number === 0) {
-            Shadow.box.noHover.speard = 0
+        if (number === "") {
+            ShadowNoHover.speard = 0
             addStyleToResizable()
         } else {
-            Shadow.box.noHover.speard = number
-            addStyleToResizable()
+            ShadowNoHover.speard = number
+
+            if (
+                (ShadowNoHover.speard.length >= 1 && ShadowNoHover.speard[0] !== "0") || 
+                (ShadowNoHover.speard.length < 2 && ShadowNoHover.speard === "0")
+            ) {
+                elemValidationInputs.innerHTML = ""
+                addStyleToResizable()
+                Shadow.Validation.speardValidate = true 
+            } else {
+                elemValidationInputs.innerHTML = "Please enter the number correctly"   
+                Shadow.Validation.speardValidate = false
+            }
         }
     } else 
-        horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
+        speardInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
 
 //? create pickr
@@ -222,11 +280,15 @@ vhTool.forEach(tool => {
 
 window.addEventListener("load", disableInputs)
 elemClassName.addEventListener("keyup", checkInputs)
+
 horizentalInp.addEventListener("keyup", (e) => addHorizentalInShadowData(e.target.value))
 horizentalInp.addEventListener("change", (e) => addHorizentalInShadowData(e.target.value))
+
 verticalInp.addEventListener("keyup", (e) => addVerticalInShadowData(e.target.value))
 verticalInp.addEventListener("change", (e) => addVerticalInShadowData(e.target.value))
-blurInp.addEventListener("keyup", (e) => addBlurInShadowData(e.target.value))
+
+blurInp.addEventListener("keyup", (e) =>  addBlurInShadowData(e.target.value))
 blurInp.addEventListener("change", (e) => addBlurInShadowData(e.target.value))
-speardInp.addEventListener("keyup", (e) => addSpeardInShadowData(e.target.value))
+
+speardInp.addEventListener("keyup", (e)  => addSpeardInShadowData(e.target.value))
 speardInp.addEventListener("change", (e) => addSpeardInShadowData(e.target.value))
