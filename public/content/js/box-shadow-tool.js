@@ -1,5 +1,6 @@
 import { createPickr } from "./pickr.js";
 
+//? get element form dom
 const colorPickerBtn = document.querySelector(".color-picker")
 const resizableBox = document.querySelector(".resizable")
 const elemClassName = document.querySelector(".element-class-name-input")
@@ -11,27 +12,46 @@ const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 
+//? create pickr
+let pickr = createPickr(".color-picker")
+pickr.on('change', (color) => {
+    let shadowColor = color.toHEXA().toString()
+    Shadow.box.noHover.shadowColor = shadowColor
+    colorPickerBtn.style.background = shadowColor
+    addStyleToResizable()
+})
+
 //? disable inputs
 const disableInputs = () => {
+    //? disable pointerEvents of horizental input and empty value of this input
     horizentalInp.style.pointerEvents = "none"
     horizentalInp.value = ""
 
+    //? disable pointerEvents of vertical input and empty value of this input
     verticalInp.style.pointerEvents = "none"
     verticalInp.value = ""
 
+    //? disable pointerEvents of blur input and empty value of this input
     blurInp.style.pointerEvents = "none"
     blurInp.value = ""
 
+    //? disable pointerEvents of speardI input and empty value of this input
     speardInp.style.pointerEvents = "none"
     speardInp.value = ""
     
+    //? disable pointerEvents of color picker button
     colorPickerBtn.style.pointerEvents = "none"
+    
+    //? remove all active class of vh tools and disable pointerEvents of vh tools
     vhTools.forEach(tool => {tool.style.pointerEvents = "none"; tool.classList.remove("active")})
+    
+    //? clear the box shadow of resizable box
     resizableBox.style.boxShadow = ""
 }
 
 //? active inputs
 const activeInputs = () => {
+    //? empty the pointer events of inputs
     horizentalInp.style.pointerEvents = ""
     verticalInp.style.pointerEvents = ""
     blurInp.style.pointerEvents = ""
@@ -77,17 +97,27 @@ const uploadShadowDataInDom = () => {
 //? check inputs 
 const checkInputs = e => {
     if (e.target.value.trim().length !== 0) {
+        //? active shadow init
+        Shadow.isInit = true
+
+        //? empty msg box
         e.target.parentElement.previousElementSibling.innerHTML = ""
 
-        Shadow.isInit = true
+        //? put class name in shadow elem class
         Shadow.elemClass = `.${e.target.value}`
         
+        //? call to another functions
         activeInputs()
         uploadShadowDataInDom()
         addStyleToResizable()
     }else {
+        //? disable shadow init
         Shadow.isInit = false
+
+        //? put this msg in msg box
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
+        
+        //? call to disable inputs
         disableInputs()
     }
 }
@@ -101,19 +131,27 @@ const addStyleToResizable = () => {
 //? add horizental number in shadow data
 const addHorizentalInShadowData = number => {
     let ShadowNoHover = Shadow.box.noHover
-
+    
+    //? if shadow elem class isn't null or undefined
     if (Shadow.isInit === true) {
+        //? call to this function to remove all active class form vh tools
         disableAllVhTool()
+        
+        //? if e.target.value === "" --> put zero in shadow horizental and add style to resizable box
         if (number === "") {
             ShadowNoHover.horizental = 0
             addStyleToResizable()
         } else {
+            //? put e.target.value in shadow horizental
             ShadowNoHover.horizental = number
             if (
                 (ShadowNoHover.horizental.length >= 1 && ShadowNoHover.horizental[0] !== "0") || 
                 (ShadowNoHover.horizental.length < 2 && ShadowNoHover.horizental === "0")
             ) {
+                //? active horizental validation
                 Shadow.Validation.horizentalValidate = true 
+                
+                //? if all validation of inputs is true so add style to resizable box
                 if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
                     elemValidationInputs.innerHTML = ""
                     addStyleToResizable()
@@ -132,18 +170,26 @@ const addHorizentalInShadowData = number => {
 const addVerticalInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
 
+    //? if shadow elem class isn't null or undefined
     if (Shadow.isInit === true) {
+        //? call to this function to remove all active class form vh tools
         disableAllVhTool()
+        
+        //? if e.target.value === "" --> put zero in shadow vertical and add style to resizable box
         if (number === "") {
             ShadowNoHover.vertical = 0
             addStyleToResizable()
         } else {
+            //? put e.target.value in shadow vertical
             ShadowNoHover.vertical = number
             if (
                 (ShadowNoHover.vertical.length >= 1 && ShadowNoHover.vertical[0] !== "0") || 
                 (ShadowNoHover.vertical.length < 2 && ShadowNoHover.vertical === "0")
             ) {
+                //? active vertical validation
                 Shadow.Validation.verticalValidate = true 
+                
+                //? if all validation of inputs is true so add style to resizable box
                 if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
                     elemValidationInputs.innerHTML = ""
                     addStyleToResizable()
@@ -162,19 +208,27 @@ const addVerticalInShadowData = (number) => {
 const addBlurInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
     
+    //? if shadow elem class isn't null or undefined
     if (Shadow.isInit) {
+        //? call to this function to remove all active class form vh tools
         disableAllVhTool()
+        
+        //? if e.target.value === "" --> put zero in shadow blur and add style to resizable box
         if (number === "") {
             ShadowNoHover.blur = 0
             addStyleToResizable()
         } else {
+            //? put e.target.value in shadow vertical
             ShadowNoHover.blur = number
 
             if (
                 (ShadowNoHover.blur.length >= 1 && ShadowNoHover.blur[0] !== "0") || 
                 (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0")
             ) {
+                //? active blur validation
                 Shadow.Validation.blurValidate = true 
+                
+                //? if all validation of inputs is true so add style to resizable box
                 if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
                     elemValidationInputs.innerHTML = ""
                     addStyleToResizable()
@@ -192,20 +246,28 @@ const addBlurInShadowData = (number) => {
 //? add speard number in shadow data
 const addSpeardInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
-    
+
+    //? if shadow elem class isn't null or undefined
     if (Shadow.isInit) {
+        //? call to this function to remove all active class form vh tools
         disableAllVhTool()
+        
+        //? if e.target.value === "" --> put zero in shadow speard and add style to resizable box
         if (number === "") {
             ShadowNoHover.speard = 0
             addStyleToResizable()
         } else {
+            //? put e.target.value in shadow speard
             ShadowNoHover.speard = number
 
             if (
                 (ShadowNoHover.speard.length >= 1 && ShadowNoHover.speard[0] !== "0") || 
                 (ShadowNoHover.speard.length < 2 && ShadowNoHover.speard === "0")
             ) {
+                //? active speard validation
                 Shadow.Validation.speardValidate = true 
+
+                //? if all validation of inputs is true so add style to resizable box
                 if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
                     elemValidationInputs.innerHTML = ""
                     addStyleToResizable()
@@ -219,15 +281,6 @@ const addSpeardInShadowData = (number) => {
     } else 
         speardInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
-
-//? create pickr
-let pickr = createPickr(".color-picker")
-pickr.on('change', (color) => {
-    let shadowColor = color.toHEXA().toString()
-    Shadow.box.noHover.shadowColor = shadowColor
-    colorPickerBtn.style.background = shadowColor
-    addStyleToResizable()
-})
 
 // ? make resizable for resizable box
 const makeResizableElem = elem => {
@@ -286,50 +339,60 @@ makeResizableElem(".resizable")
 vhTool.forEach(tool => {
     tool.addEventListener("click" , () => {
         vhTool.forEach(allTool => {
+            
+            //? if all tool class list value === tool.name 
             if (allTool.classList.value === tool.className) {
+                
+                //? if elem class input isn't empty
                 if (Shadow.isInit) {
-                    if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate) {
-                        if (allTool.classList.contains("vh-top-right")) {
                     
+                    //? if horizental and vertical validation is true
+                    if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate) {
+
+                        //? if e.target === "vh-top-right" so create position based top-right
+                        if (allTool.classList.contains("vh-top-right")) {
                             Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
                             if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
-                        
-                        } else if (allTool.classList.contains("vh-top-left")) {
-                        
+                        } 
+                        //? if e.target === "vh-top-left" so create position based top-left
+                        else if (allTool.classList.contains("vh-top-left")) {
                             if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
                             if (Number(Shadow.box.noHover.vertical) > 0) Shadow.box.noHover.vertical = -(Shadow.box.noHover.vertical)
-                        
-                        } else if (allTool.classList.contains("vh-bottom-left")) {
-    
+                        } 
+                        //? if e.target === "vh-bottom-left" so create position based bottom-left
+                        else if (allTool.classList.contains("vh-bottom-left")) {
                             if (Number(Shadow.box.noHover.horizental) > 0) Shadow.box.noHover.horizental = -(Shadow.box.noHover.horizental)
                             Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
-                            
-                        } else {
-    
+                        } 
+                        //? if e.target === "vh-bottom-right" so create position based bottom-right
+                        else {
                             Shadow.box.noHover.horizental = Math.abs(Shadow.box.noHover.horizental)
                             Shadow.box.noHover.vertical = Math.abs(Shadow.box.noHover.vertical)
-    
                         }
                         
+                        //? active e.target 
                         allTool.classList.add("active")
+                        
+                        //? upload shadow data in inputs 
                         uploadShadowDataInDom()
+
+                        //? add style to resizbale box
                         addStyleToResizable()
+
                     } else 
                         alert("Please complete the fields correctly")
+                        
                 } else 
                     alert("please complete fields")
+                    
             } else 
                 allTool.classList.remove("active")
         })
     })
 })
 
-//? disable all vh tools
-const disableAllVhTool = () => {
-    vhTool.forEach(tool => {
-        tool.classList.remove("active")
-    })
-}
+//? disable all vh tools function
+const disableAllVhTool = () => { vhTool.forEach(tool => tool.classList.remove("active")) }
 
 window.addEventListener("load", disableInputs)
 elemClassName.addEventListener("keyup", checkInputs)
