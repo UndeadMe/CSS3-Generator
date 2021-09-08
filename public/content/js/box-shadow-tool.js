@@ -94,8 +94,13 @@ const addStyleToResizable = () => {
 //? add horizental number in shadow data
 const addHorizentalInShadowData = number => {
     if (Shadow.isInit) {
-        Shadow.box.noHover.horizental = number
-        addStyleToResizable()
+        if (number === "") {
+            Shadow.box.noHover.horizental = 0
+            addStyleToResizable()
+        } else {
+            Shadow.box.noHover.horizental = number
+            addStyleToResizable()
+        }
     } else 
         horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
@@ -103,8 +108,13 @@ const addHorizentalInShadowData = number => {
 //? add vertical number in shadow data
 const addVerticalInShadowData = (number) => {
     if (Shadow.isInit) {
-        Shadow.box.noHover.vertical = number
-        addStyleToResizable()
+        if (number === "") {
+            Shadow.box.noHover.vertical = 0
+            addStyleToResizable()
+        } else {
+            Shadow.box.noHover.vertical = number
+            addStyleToResizable()   
+        }
     } else 
         horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
@@ -112,8 +122,13 @@ const addVerticalInShadowData = (number) => {
 //? add blur number in shadow data 
 const addBlurInShadowData = (number) => {
     if (Shadow.isInit) {
-        Shadow.box.noHover.blur = number
-        addStyleToResizable()
+        if (number === "") {
+            Shadow.box.noHover.blur = 0
+            addStyleToResizable()
+        } else {
+            Shadow.box.noHover.blur = number
+            addStyleToResizable()
+        }
     } else 
         horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
@@ -121,8 +136,13 @@ const addBlurInShadowData = (number) => {
 //? add speard number in shadow data
 const addSpeardInShadowData = (number) => {
     if (Shadow.isInit) {
-        Shadow.box.noHover.speard = number
-        addStyleToResizable()
+        if (number === 0) {
+            Shadow.box.noHover.speard = 0
+            addStyleToResizable()
+        } else {
+            Shadow.box.noHover.speard = number
+            addStyleToResizable()
+        }
     } else 
         horizentalInp.value = horizentalInp.value.slice(0, horizentalInp.value.length - 1)
 }
