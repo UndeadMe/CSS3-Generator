@@ -161,8 +161,8 @@ const addVerticalInShadowData = (number) => {
 //? add blur number in shadow data 
 const addBlurInShadowData = (number) => {
     let ShadowNoHover = Shadow.box.noHover
-
-    if (Shadow.isInit === true) {
+    
+    if (Shadow.isInit) {
         disableAllVhTool()
         if (number === "") {
             ShadowNoHover.blur = 0
@@ -172,8 +172,7 @@ const addBlurInShadowData = (number) => {
 
             if (
                 (ShadowNoHover.blur.length >= 1 && ShadowNoHover.blur[0] !== "0") || 
-                (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0") ||
-                (ShadowNoHover.blur[0] !== "-") 
+                (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0")
             ) {
                 Shadow.Validation.blurValidate = true 
                 if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
