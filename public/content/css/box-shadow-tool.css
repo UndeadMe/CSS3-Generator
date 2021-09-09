@@ -120,11 +120,6 @@ body {
     color: var(--minimal-white);
     font-size: 18px;
 }
-.color-picker-tool {
-    color: var(--white);
-    cursor: pointer;
-    font-size: 18px;
-}
 /* ! ------------------------------ footer pannel ----------------------------- ! */
 .css-code-btn {
     width: 100%;
