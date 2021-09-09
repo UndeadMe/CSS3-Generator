@@ -219,25 +219,35 @@ const addBlurInShadowData = (number) => {
             addStyleToResizable()
         } else {
             //? put e.target.value in shadow vertical
+
             ShadowNoHover.blur = number
 
-            if (
-                (ShadowNoHover.blur.length >= 1 && ShadowNoHover.blur[0] !== "0") || 
-                (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0")
-            ) {
-                //? active blur validation
-                Shadow.Validation.blurValidate = true 
+            if (!ShadowNoHover.blur.includes("-")) {
+
+                elemValidationInputs.innerHTML = ""
+
+                if (
+                    (ShadowNoHover.blur.length >= 1 && ShadowNoHover.blur[0] !== "0") || 
+                    (ShadowNoHover.blur.length < 2 && ShadowNoHover.blur === "0")
+                ) {
+                    //? active blur validation
+                    Shadow.Validation.blurValidate = true 
+                    
+                    //? if all validation of inputs is true so add style to resizable box
+                    if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
+                        elemValidationInputs.innerHTML = ""
+                        addStyleToResizable()
+                    } else 
+                        elemValidationInputs.innerHTML = "Please complete the fields correctly"
+                } else {
+                    elemValidationInputs.innerHTML = "Please enter the number correctly"   
+                    Shadow.Validation.blurValidate = false
+                }
                 
-                //? if all validation of inputs is true so add style to resizable box
-                if (Shadow.Validation.horizentalValidate && Shadow.Validation.verticalValidate && Shadow.Validation.blurValidate && Shadow.Validation.speardValidate) {
-                    elemValidationInputs.innerHTML = ""
-                    addStyleToResizable()
-                } else 
-                    elemValidationInputs.innerHTML = "Please complete the fields correctly"
             } else {
-                elemValidationInputs.innerHTML = "Please enter the number correctly"   
                 Shadow.Validation.blurValidate = false
-            }
+                elemValidationInputs.innerHTML = "Please enter only a positive number"
+            } 
         }
     } else 
         blurInp.value = blurInp.value.slice(0, blurInp.value.length - 1)
