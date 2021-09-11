@@ -95,6 +95,19 @@ body {
     cursor: pointer;
 }
 /* ! ----------------------------- properties box ----------------------------- ! */
+.property-box {
+    width: 318px;
+    overflow: hidden;
+}
+.properies-box-no-hover {
+    width: 100%;
+    transition: 0.4s;
+}
+.properties-box-hover {
+    width: 100%;
+    margin-right: -318px;
+    transition: 0.4s;
+}
 .peroperties-input {
     color: var(--white) !important;
 }
