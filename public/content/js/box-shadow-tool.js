@@ -12,6 +12,8 @@ const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 
+// resizableBox.style.boxShadow = "0 0 10px red"
+
 //? shadow object
 let Shadow = {
     elemClass: null,
@@ -33,11 +35,19 @@ let Shadow = {
     },
     isInit: false,
     isHover: false,
-    Validation : {
-        horizentalValidate: true,
-        verticalValidate: true,
-        blurValidate: true,
-        speardValidate: true
+    Validation: {
+        noHover: {
+            horizentalValidate: true,
+            verticalValidate: true,
+            blurValidate: true,
+            speardValidate: true
+        },
+        hover: {
+            horizentalValidate: true,
+            verticalValidate: true,
+            blurValidate: true,
+            speardValidate: true
+        }
     }
 }
 
@@ -47,8 +57,42 @@ pickr.on('change', (color) => {
     let shadowColor = color.toHEXA().toString()
     Shadow.box.noHover.shadowColor = shadowColor
     colorPickerBtn.style.background = shadowColor
-    addStyleToResizable()
+    addStyleToResizable(false)
 })
+
+//? disable inputs function 
+const disableAllInputs = (isHover) => {
+    if (!isHover) {
+        horizentalInp.disabled = true
+        verticalInp.disabled = true
+        blurInp.disabled = true
+        speardInp.disabled = true
+        colorPickerBtn.style.pointerEvents = "none"
+    }
+}
+disableAllInputs()
+
+//? remove shadow data from dom 
+const removeShadowDataFromDom = (isHover) => {
+    //? if hover is false upload shadow data in noHover 
+    if (!isHover) {
+        horizentalInp.value = ""
+        verticalInp.value = ""
+        blurInp.value = ""
+        speardInp.value = ""
+    }
+}
+
+//? active inputs function
+const activeAllInputs = (isHover) => {
+    if (!isHover) {
+        horizentalInp.disabled = false
+        verticalInp.disabled = false
+        blurInp.disabled = false
+        speardInp.disabled = false
+        colorPickerBtn.style.pointerEvents = ""
+    }
+}
 
 //? disable all vh tools function
 const disableAllVhTool = () => { vhTool.forEach(tool => tool.classList.remove("active")) }  
@@ -68,10 +112,10 @@ const uploadShadowDataInDom = (isHover) => {
 //? add style to resizable box
 const addStyleToResizable = (isHover) => {
     if (isHover) {
-        let {box: {noHover: { shadowColor, horizental, vertical, blur, speard }}} = Shadow 
+        let {box: {hover: { shadowColor, horizental, vertical, blur, speard }}} = Shadow 
         resizableBox.style.boxShadow = `${horizental}px ${vertical}px ${blur}px ${speard}px ${shadowColor}`
     } else {
-        let {box: {hover: { shadowColor, horizental, vertical, blur, speard }}} = Shadow 
+        let {box: {noHover: { shadowColor, horizental, vertical, blur, speard }}} = Shadow 
         resizableBox.style.boxShadow = `${horizental}px ${vertical}px ${blur}px ${speard}px ${shadowColor}`
     }
 }
@@ -89,6 +133,7 @@ const checkInputs = e => {
         Shadow.elemClass = `.${e.target.value.split(" ").join("-")}`
 
         //? call to another functions
+        activeAllInputs(false)
         uploadShadowDataInDom(false)
         addStyleToResizable(false)
     } else {
@@ -97,6 +142,63 @@ const checkInputs = e => {
 
         //? put this msg in msg box
         e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
+
+        resizableBox.style.boxShadow = ""
+
+        //? active inputs
+        disableAllInputs(false)
+        removeShadowDataFromDom(false)
+    }
+}
+
+//? check validation of inputs
+const checkValidationInput = (inputValue, isHover, inputName) => {
+    if (!isHover) {
+        let validateObject = Shadow.Validation.noHover
+
+        if (inputName === "horizental" || inputName === "vertical") {
+            let regexCode = /^\+?-?\d{0,2}$/g
+            let regexResult = regexCode.test(inputValue)
+
+            if (inputName === "horizental") {
+                if (regexResult) {
+                    validateObject.horizentalValidate = true
+                    Shadow.box.noHover.horizental = Number(horizentalInp.value)
+                } else {
+                    validateObject.horizentalValidate = false
+                }
+            } else {
+                if (regexResult) {
+                    validateObject.verticalValidate = true
+                    Shadow.box.noHover.vertical = Number(verticalInp.value)
+                } else {
+                    validateObject.verticalValidate = false
+                }
+            }
+
+            return regexResult
+        } else if (inputName === "blur" || inputName === "speard") {
+            let regexCode = /^\+?\d{0,2}$/g
+            let regexResult = regexCode.test(inputValue)
+
+            if (inputName === "blur") {
+                if (regexResult) {
+                    validateObject.blurValidate = true
+                    Shadow.box.noHover.blur = Number(blurInp.value)
+                } else {
+                    validateObject.blurValidate = false
+                }
+            } else {
+                if (regexResult) {
+                    validateObject.speardValidate = true
+                    Shadow.box.noHover.speard = Number(speardInp.value)
+                } else {
+                    validateObject.speardValidate = false
+                }
+            }
+            
+            return regexResult
+        }
     }
 }
 
@@ -153,3 +255,51 @@ const makeResizableElem = elem => {
 makeResizableElem(".resizable")
 
 elemClassName.addEventListener("keyup", checkInputs)
+horizentalInp.addEventListener("keyup", (e) => {
+    let isValidateTrue = checkValidationInput(e.target.value, false, "horizental")
+
+    if (isValidateTrue) {
+        if (Shadow.Validation.noHover.verticalValidate && Shadow.Validation.noHover.blurValidate && Shadow.Validation.noHover.speardValidate) {
+            elemValidationInputs.innerHTML = ""
+            addStyleToResizable(false)
+        }
+    } else 
+        elemValidationInputs.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
+
+})
+
+verticalInp.addEventListener("keyup", (e) => {
+    let isValidateTrue = checkValidationInput(e.target.value, false, "vertical")
+
+    if (isValidateTrue) {
+        if (Shadow.Validation.noHover.horizentalValidate && Shadow.Validation.noHover.blurValidate && Shadow.Validation.noHover.speardValidate) {
+            elemValidationInputs.innerHTML = ""
+            addStyleToResizable(false)
+        }
+    } else 
+        elemValidationInputs.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
+})
+
+blurInp.addEventListener("keyup", (e) => {
+    let isValidateTrue = checkValidationInput(e.target.value, false, "blur")
+
+    if (isValidateTrue) {
+        if (Shadow.Validation.noHover.horizentalValidate && Shadow.Validation.noHover.verticalValidate && Shadow.Validation.noHover.speardValidate) {
+            elemValidationInputs.innerHTML = ""
+            addStyleToResizable(false)
+        }
+    } else 
+        elemValidationInputs.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
+})
+
+speardInp.addEventListener("keyup", (e) => {
+    let isValidateTrue = checkValidationInput(e.target.value, false, "speard")
+
+    if (isValidateTrue) {
+        if (Shadow.Validation.noHover.horizentalValidate && Shadow.Validation.noHover.verticalValidate && Shadow.Validation.noHover.speardValidate) {
+            elemValidationInputs.innerHTML = ""
+            addStyleToResizable(false)
+        }
+    } else 
+        elemValidationInputs.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
+})
