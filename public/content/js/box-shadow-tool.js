@@ -4,24 +4,21 @@ import { createPickr } from "./pickr.js";
 const colorPickerBtn = document.querySelector(".color-picker")
 const resizableBox = document.querySelector(".resizable")
 const elemClassName = document.querySelector(".element-class-name-input")
-
 const horizentalInp = document.querySelector(".horizental-inp")
 const horizentalHoverInp = document.querySelector(".horizental-hover-inp")
-
 const verticalInp = document.querySelector(".vertical-inp")
 const verticalHoverInp = document.querySelector(".vertical-hover-inp")
-
 const blurInp = document.querySelector(".blur-inp")
 const blurHoverInp = document.querySelector(".blur-hover-inp")
-
 const speardInp = document.querySelector(".speard-inp")
 const speardHoverInp = document.querySelector(".speard-hover-inp")
-
+const typeEffectIcon = document.querySelector(".type-effect-icon")
+const propertiesNoHoverBox = document.querySelector(".properies-box-no-hover")
+const propertiesHoverBox = document.querySelector(".properies-box-hover")
+let typeEffectBox = document.querySelector(".type-effect-box")
 const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
-
-// resizableBox.style.boxShadow = "0 0 10px red"
 
 //? shadow object
 let Shadow = {
@@ -36,8 +33,8 @@ let Shadow = {
         },
         hover: {
             shadowColor: "#53535C",
-            horizental: 0,
-            vertical: 0,
+            horizental: 5,
+            vertical: 5,
             blur: 0,
             speard: 0
         }
@@ -111,6 +108,12 @@ const activeAllInputs = (isHover) => {
         blurInp.disabled = false
         speardInp.disabled = false
         colorPickerBtn.style.pointerEvents = ""
+    } else {
+        horizentalHoverInp.disabled = false
+        verticalHoverInp.disabled = false
+        blurHoverInp.disabled = false
+        speardHoverInp.disabled = false
+        colorPickerBtn.style.pointerEvents = ""
     }
 }
 
@@ -146,6 +149,58 @@ const addStyleToResizable = (isHover) => {
     }
 }
 
+let typeBox = null
+
+//? create default and hover box
+const createDH_box = (nameBox) => {
+    typeEffectBox.innerText = ""
+
+    let defaultBox = document.createElement("div")
+    defaultBox.className = "d-flex align-items-center default-box-type"
+    defaultBox.innerHTML = "default"
+
+    let hoverBox = document.createElement("div")
+    hoverBox.className = "d-flex align-items-center hover-box-type"
+    hoverBox.innerHTML = "hover"
+
+    if (nameBox === "defaultBox") {
+        defaultBox.classList.add("active")
+    } else if (nameBox === "hoverBox") {
+        hoverBox.classList.add("active")
+    } else {
+        defaultBox.classList.add("active")
+    }
+
+    defaultBox.addEventListener("click", () => {
+        typeBox = "defaultBox"
+        hoverBox.classList.remove("active")
+        defaultBox.classList.add("active")
+        propertiesNoHoverBox.style.marginLeft = "0"
+        removeShadowDataFromDom(true)
+        uploadShadowDataInDom(false)
+        disableAllInputs(true)
+        activeAllInputs(false)
+    })
+
+    hoverBox.addEventListener("click", () => {
+        typeBox = "hoverBox"
+        hoverBox.classList.add("active")
+        defaultBox.classList.remove("active")
+        propertiesNoHoverBox.style.marginLeft = "-318px"
+        uploadShadowDataInDom(true)
+        removeShadowDataFromDom(false)
+        disableAllInputs(false)
+        activeAllInputs(true)
+    })
+
+    typeEffectBox.append(defaultBox, hoverBox)
+}
+
+//? remove default and hover box 
+const removeDH_box = () => {
+    typeEffectBox.innerText = ""
+}
+
 //? check inputs 
 const checkInputs = e => {
     if (e.target.value.trim().length !== 0) {
@@ -162,6 +217,19 @@ const checkInputs = e => {
         activeAllInputs(false)
         uploadShadowDataInDom(false)
         addStyleToResizable(false)
+        if (Shadow.isHover) { 
+            createDH_box(typeBox)
+            uploadShadowDataInDom(true)
+            activeAllInputs(true)
+            if (typeBox === "defaultBox") {
+                propertiesNoHoverBox.style.marginLeft = 0
+            } else if (typeBox === "hoverBox") {
+                propertiesNoHoverBox.style.marginLeft = "-318px"
+            } else {
+                propertiesNoHoverBox.style.marginLeft = 0
+            }
+        }
+        console.log(typeBox)
     } else {
         //? disable shadow init
         Shadow.isInit = false
@@ -174,6 +242,13 @@ const checkInputs = e => {
         //? active inputs
         disableAllInputs(false)
         removeShadowDataFromDom(false)
+        if (Shadow.isHover) { 
+            removeDH_box()
+            disableAllInputs(true)
+            removeShadowDataFromDom(true)
+            propertiesNoHoverBox.style.marginLeft = 0
+            typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
+        }
     }
 }
 
@@ -281,6 +356,24 @@ const makeResizableElem = elem => {
 makeResizableElem(".resizable")
 
 elemClassName.addEventListener("keyup", checkInputs)
+typeEffectIcon.addEventListener("click", () => {
+    if (Shadow.isInit) {
+        if (Shadow.isHover) {
+            Shadow.isHover = false
+            removeDH_box()
+            propertiesNoHoverBox.style.marginLeft = "0"
+            typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
+            uploadShadowDataInDom(false)
+            activeAllInputs(false)
+        } else {
+            Shadow.isHover = true
+            typeBox ? createDH_box(typeBox) : createDH_box("defaultBox")
+            typeEffectIcon.innerHTML = '<i class="bi bi-x-square"></i>'
+        }
+    } else 
+        alert("Please fill in the field above")
+})
+
 horizentalInp.addEventListener("keyup", (e) => {
     let isValidateTrue = checkValidationInput(e.target.value, false, "horizental")
 

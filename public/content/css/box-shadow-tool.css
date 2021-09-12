@@ -124,8 +124,6 @@ body {
 }
 .properies-box-hover {
     width: 100%;
-    margin-left: 300px !important;
-    background: red;
     transition: 0.4s;
 }
 .peroperties-input {
