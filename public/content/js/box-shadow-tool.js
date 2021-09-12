@@ -4,10 +4,19 @@ import { createPickr } from "./pickr.js";
 const colorPickerBtn = document.querySelector(".color-picker")
 const resizableBox = document.querySelector(".resizable")
 const elemClassName = document.querySelector(".element-class-name-input")
+
 const horizentalInp = document.querySelector(".horizental-inp")
+const horizentalHoverInp = document.querySelector(".horizental-hover-inp")
+
 const verticalInp = document.querySelector(".vertical-inp")
+const verticalHoverInp = document.querySelector(".vertical-hover-inp")
+
 const blurInp = document.querySelector(".blur-inp")
+const blurHoverInp = document.querySelector(".blur-hover-inp")
+
 const speardInp = document.querySelector(".speard-inp")
+const speardHoverInp = document.querySelector(".speard-hover-inp")
+
 const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
@@ -68,9 +77,15 @@ const disableAllInputs = (isHover) => {
         blurInp.disabled = true
         speardInp.disabled = true
         colorPickerBtn.style.pointerEvents = "none"
+    } else {
+        horizentalHoverInp.disabled = true
+        verticalHoverInp.disabled = true
+        blurHoverInp.disabled = true
+        speardHoverInp.disabled = true
     }
 }
-disableAllInputs()
+disableAllInputs(false)
+disableAllInputs(true)
 
 //? remove shadow data from dom 
 const removeShadowDataFromDom = (isHover) => {
@@ -80,6 +95,11 @@ const removeShadowDataFromDom = (isHover) => {
         verticalInp.value = ""
         blurInp.value = ""
         speardInp.value = ""
+    } else {
+        horizentalHoverInp.value = ""
+        verticalHoverInp.value = ""
+        blurHoverInp.value = ""
+        speardHoverInp.value = ""
     }
 }
 
@@ -106,6 +126,12 @@ const uploadShadowDataInDom = (isHover) => {
         verticalInp.value = vertical
         blurInp.value = blur
         speardInp.value = speard
+    } else {
+        let {box: {hover: { shadowColor,horizental,vertical,blur,speard }}} = Shadow
+        horizentalHoverInp.value = horizental
+        verticalHoverInp.value = vertical
+        blurHoverInp.value = blur
+        speardHoverInp.value = speard
     }
 }
 

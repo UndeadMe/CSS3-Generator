@@ -94,6 +94,25 @@ body {
     color: var(--white);
     cursor: pointer;
 }
+.default-box-type, .hover-box-type {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background: var(--dark-black);
+    cursor: pointer;
+    padding: 20px 13px;
+    color: var(--white);
+    text-transform: capitalize;
+}
+.hover-box-type {
+    margin-bottom: 20px;
+}
+.default-box-type.active, .hover-box-type.active {
+    background: var(--white);
+    color: var(--prety-blue);
+    font-weight: bolder;
+}
 /* ! ----------------------------- properties box ----------------------------- ! */
 .property-box {
     width: 318px;
@@ -103,9 +122,10 @@ body {
     width: 100%;
     transition: 0.4s;
 }
-.properties-box-hover {
+.properies-box-hover {
     width: 100%;
-    margin-right: -318px;
+    margin-left: 300px !important;
+    background: red;
     transition: 0.4s;
 }
 .peroperties-input {
