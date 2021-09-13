@@ -1,4 +1,4 @@
-export const createPickr = (element) => {
+export const createPickr = (element, color) => {
     const pickr = Pickr.create({
         el: element,
         theme: 'classic',

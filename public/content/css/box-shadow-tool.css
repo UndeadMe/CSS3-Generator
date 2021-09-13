@@ -135,17 +135,22 @@ body {
 }
 /* ! ------------------------------ color picker ------------------------------ ! */
 .color-picker-box {
-    margin-top: 30px;
+    margin-top: 20px;
 }
-.color-picker {
+.color-picker-no-hover , .color-picker-hover {
     width: 80px;
     height: 35px;
     border-radius: 3px;
     border : none;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    background : var(--dark-gray);
     position: relative;
     border : 1px solid var(--light-border);
+}
+.color-picker-no-hover {
+    background : var(--dark-gray);
+}
+.color-picker-hover {
+    background: #C8C8C8 ;
 }
 .choose-color-picker-text {
     color: var(--minimal-white);
