@@ -257,13 +257,23 @@ const checkInputs = e => {
             if (typeBox === "defaultBox") {
                 propertiesNoHoverBox.style.marginLeft = 0
                 addStyleToResizable(false)
+                callCheckValidateInput(horizentalInp.value, true, "horizental")
+                callCheckValidateInput(verticalInp.value, true, "vertical")
+                callCheckValidateInput(blurInp.value, true, "blur")
+                callCheckValidateInput(speardInp.value, true, "speard")
             } else if (typeBox === "hoverBox") {
                 propertiesNoHoverBox.style.marginLeft = "-318px"
                 addStyleToResizable(true)
-            } else {
-                propertiesNoHoverBox.style.marginLeft = 0
+                callCheckValidateInput(horizentalHoverInp.value, true, "horizental")
+                callCheckValidateInput(verticalHoverInp.value, true, "vertical")
+                callCheckValidateInput(blurHoverInp.value, true, "blur")
+                callCheckValidateInput(speardHoverInp.value, true, "speard")
             }
         }
+        callCheckValidateInput(horizentalInp.value, false, "horizental")
+        callCheckValidateInput(verticalInp.value, false, "vertical")
+        callCheckValidateInput(blurInp.value, false, "blur")
+        callCheckValidateInput(speardInp.value, false, "speard")
     } else {
         //? disable shadow init
         Shadow.isInit = false
@@ -534,7 +544,6 @@ vhTools.forEach(vhTool => {
                 } else {
                     if (validateHoverObj.horizentalValidate && validateHoverObj.verticalValidate && validateHoverObj.blurValidate && validateHoverObj.speardValidate) {
                         if (e.target.className.includes("top-right")) {
-                            console.log(shadowHoverObj)
                             shadowHoverObj.horizental = Math.abs(shadowHoverObj.horizental)
                             if (shadowHoverObj.vertical > 0) { shadowHoverObj.vertical = -shadowHoverObj.vertical }
                             uploadShadowDataInDom(true)
