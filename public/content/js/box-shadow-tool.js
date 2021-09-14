@@ -443,6 +443,7 @@ typeEffectIcon.addEventListener("click", () => {
         let validateObject = Shadow.Validation.noHover
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
             if (Shadow.isHover) {
+                typeBox = "defaultBox"
                 Shadow.isHover = false
                 removeDH_box()
                 propertiesNoHoverBox.style.marginLeft = 0
