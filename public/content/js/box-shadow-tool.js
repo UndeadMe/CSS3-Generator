@@ -294,7 +294,7 @@ const checkValidationInput = (inputValue, isHover, inputName) => {
         let validateObject = Shadow.Validation.noHover
 
         if (inputName === "horizental" || inputName === "vertical") {
-            let regexCode = /^\+?-?\d{0,2}$/g
+            let regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
             let regexResult = regexCode.test(inputValue)
 
             if (inputName === "horizental") {
@@ -315,7 +315,7 @@ const checkValidationInput = (inputValue, isHover, inputName) => {
 
             return regexResult
         } else if (inputName === "blur" || inputName === "speard") {
-            let regexCode = /^\+?\d{0,2}$/g
+            let regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g
             let regexResult = regexCode.test(inputValue)
 
             if (inputName === "blur") {
@@ -340,7 +340,7 @@ const checkValidationInput = (inputValue, isHover, inputName) => {
         let validateObject = Shadow.Validation.hover
 
         if (inputName === "horizental" || inputName === "vertical") {
-            let regexCode = /^\+?-?\d{0,2}$/g
+            let regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
             let regexResult = regexCode.test(inputValue)
 
             if (inputName === "horizental") {
@@ -361,7 +361,7 @@ const checkValidationInput = (inputValue, isHover, inputName) => {
 
             return regexResult
         } else if (inputName === "blur" || inputName === "speard") {
-            let regexCode = /^\+?\d{0,2}$/g
+            let regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g
             let regexResult = regexCode.test(inputValue)
 
             if (inputName === "blur") {
