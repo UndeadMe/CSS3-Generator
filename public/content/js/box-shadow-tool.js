@@ -161,7 +161,7 @@ const addStyleToResizable = (isHover) => {
         resizableBox.style.boxShadow = `${horizental}px ${vertical}px ${blur}px ${speard}px ${shadowColor}`
     }
 }
-let typeBox = null
+let typeBox = "defaultBox"
 
 //? create default and hover box
 const createDH_box = (nameBox) => {
@@ -186,6 +186,9 @@ const createDH_box = (nameBox) => {
     defaultBox.addEventListener("click", () => {
         let validateObject = Shadow.Validation.hover
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
+            if (typeBox !== "defaultBox") {
+                disableAllVhTool()
+            }
             typeBox = "defaultBox"
             hoverBox.classList.remove("active")
             defaultBox.classList.add("active")
@@ -202,6 +205,9 @@ const createDH_box = (nameBox) => {
     hoverBox.addEventListener("click", () => {
         let validateObject = Shadow.Validation.noHover
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
+            if (typeBox !== "hoverBox") {
+                disableAllVhTool()
+            }
             typeBox = "hoverBox"
             hoverBox.classList.add("active")
             defaultBox.classList.remove("active")
@@ -277,6 +283,8 @@ const checkInputs = e => {
             propertiesNoHoverBox.style.marginLeft = 0
             typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
         }
+        
+        disableAllVhTool()
     }
 }
 
@@ -444,7 +452,6 @@ typeEffectIcon.addEventListener("click", () => {
                 addStyleToResizable(false)
             } else {
                 Shadow.isHover = true
-                typeBox = null
                 typeBox ? createDH_box(typeBox) : createDH_box("defaultBox")
                 typeEffectIcon.innerHTML = '<i class="bi bi-x-square"></i>'
             }
@@ -455,7 +462,8 @@ typeEffectIcon.addEventListener("click", () => {
 })
 
 //? call to checkValidation inputs function
-const callCheckInputs = (value, isHover, inputName) => {
+const callCheckValidateInput = (value, isHover, inputName) => {
+    disableAllVhTool()
     let isValidateTrue = checkValidationInput(value, isHover, inputName)
     let validateObject = undefined
     let elemValidation = undefined
@@ -475,12 +483,134 @@ const callCheckInputs = (value, isHover, inputName) => {
         elemValidation.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
 }
 
-horizentalInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, false, "horizental"))
-verticalInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, false, "vertical"))
-blurInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, false, "blur"))
-speardInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, false, "speard"))
+//? active vh tool
+const activeVhTool = (vhTool) => 
+    vhTools.forEach(allVhtools => allVhtools.className.includes(vhTool.className) ? allVhtools.classList.add("active") : allVhtools.classList.remove("active"))
 
-horizentalHoverInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, true, "horizental"))
-verticalHoverInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, true, "vertical"))
-blurHoverInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, true, "blur"))
-speardHoverInp.addEventListener("keyup", (e) => callCheckInputs(e.target.value, true, "speard"))
+//? vh tools 
+vhTools.forEach(vhTool => {
+    vhTool.addEventListener('click', (e) => {
+        if (Shadow.isInit) {
+            let validateNoHoverObj = Shadow.Validation.noHover
+            let validateHoverObj = Shadow.Validation.hover
+            let shadowNoHoverObj = Shadow.box.noHover
+            let shadowHoverObj = Shadow.box.hover
+            if (Shadow.isHover) {
+                if (typeBox === "defaultBox") {
+                    if (validateNoHoverObj.horizentalValidate && validateNoHoverObj.verticalValidate && validateNoHoverObj.blurValidate && validateNoHoverObj.speardValidate) {
+                        if (e.target.className.includes("top-right")) {
+                            
+                            shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                            if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                            uploadShadowDataInDom(false)
+                            addStyleToResizable(false)
+
+                        } else if (e.target.className.includes("top-left")) {
+
+                            if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                            if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                            uploadShadowDataInDom(false)
+                            addStyleToResizable(false)
+                            
+                        } else if (e.target.className.includes("bottom-right")) {
+
+                            shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                            shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                            uploadShadowDataInDom(false)
+                            addStyleToResizable(false)
+                            
+                        } else {
+    
+                            if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                            shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                            uploadShadowDataInDom(false)
+                            addStyleToResizable(false)
+    
+                        }
+                        activeVhTool(e.target)
+                    } else 
+                        alert("Please enter the information correctly")
+                } else {
+                    if (validateHoverObj.horizentalValidate && validateHoverObj.verticalValidate && validateHoverObj.blurValidate && validateHoverObj.speardValidate) {
+                        if (e.target.className.includes("top-right")) {
+                            console.log(shadowHoverObj)
+                            shadowHoverObj.horizental = Math.abs(shadowHoverObj.horizental)
+                            if (shadowHoverObj.vertical > 0) { shadowHoverObj.vertical = -shadowHoverObj.vertical }
+                            uploadShadowDataInDom(true)
+                            addStyleToResizable(true)
+    
+                        } else if (e.target.className.includes("top-left")) {
+    
+                            if (shadowHoverObj.horizental > 0) { shadowHoverObj.horizental = -shadowHoverObj.horizental }
+                            if (shadowHoverObj.vertical > 0) { shadowHoverObj.vertical = -shadowHoverObj.vertical }
+                            uploadShadowDataInDom(true)
+                            addStyleToResizable(true)
+                            
+                        } else if (e.target.className.includes("bottom-right")) {
+    
+                            shadowHoverObj.horizental = Math.abs(shadowHoverObj.horizental)
+                            shadowHoverObj.vertical = Math.abs(shadowHoverObj.vertical)
+                            uploadShadowDataInDom(true)
+                            addStyleToResizable(true)
+                            
+                        } else {
+    
+                            if (shadowHoverObj.horizental > 0) { shadowHoverObj.horizental = -shadowHoverObj.horizental }
+                            shadowHoverObj.vertical = Math.abs(shadowHoverObj.vertical)
+                            uploadShadowDataInDom(true)
+                            addStyleToResizable(true)
+    
+                        }
+                        activeVhTool(e.target)
+                    } else 
+                        alert("Please enter the information correctly")
+                }
+            } else {
+                if (validateNoHoverObj.horizentalValidate && validateNoHoverObj.verticalValidate && validateNoHoverObj.blurValidate && validateNoHoverObj.speardValidate) {
+                    if (e.target.className.includes("top-right")) {
+                        
+                        shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                        if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                        uploadShadowDataInDom(false)
+                        addStyleToResizable(false)
+
+                    } else if (e.target.className.includes("top-left")) {
+                        
+                        if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                        if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                        uploadShadowDataInDom(false)
+                        addStyleToResizable(false)
+
+                    } else if (e.target.className.includes("bottom-right")) {
+
+                        shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                        shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                        uploadShadowDataInDom(false)
+                        addStyleToResizable(false)
+                        
+                    } else {
+
+                        if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                        shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                        uploadShadowDataInDom(false)
+                        addStyleToResizable(false)
+
+                    }
+                    activeVhTool(e.target)
+                } else 
+                    alert("Please enter the information correctly")
+            }
+        } else 
+            alert("please fill out the fields")
+    })
+})
+
+horizentalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "horizental"))
+verticalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "vertical"))
+blurInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "blur"))
+speardInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "speard"))
+
+horizentalHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "horizental"))
+verticalHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "vertical"))
+blurHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "blur"))
+speardHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "speard"))
