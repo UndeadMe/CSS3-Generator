@@ -167,6 +167,42 @@ body {
     padding: 10px 0;
     font-size: 17px;
 }
+/* ! ------------------------------ generate box ------------------------------ ! */
+.generate-wrap-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+.generate-wrap-box.active {
+    visibility: visible;
+}
+.generate-wrap-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--one-c-dark);
+    opacity: 0.5;
+}
+.generate-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    background: var(--one-c-dark);
+    z-index: 10;
+    transition: 0.5s;
+}
+.generate-wrap-box.active .generate-box {
+    height: 73%;
+}
 /* ! --------------------------- resizable container -------------------------- ! wrap left box */
 .resizable-container {
     width: 50%;

@@ -21,6 +21,8 @@ const vhTools = document.querySelectorAll(".vh-tool")
 const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 const elemValidationInputsHover = document.querySelector(".valdiation-inputs-hover-elem")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 //? shadow object
 let Shadow = {
@@ -246,9 +248,6 @@ const checkInputs = e => {
         Shadow.elemClass = `.${e.target.value.split(" ").join("-")}`
 
         //? call to another functions
-        activeAllInputs(false)
-        uploadShadowDataInDom(false)
-        addStyleToResizable(false)
         if (Shadow.isHover) {
             createDH_box(typeBox)
             uploadShadowDataInDom(true)
@@ -269,11 +268,15 @@ const checkInputs = e => {
                 callCheckValidateInput(blurHoverInp.value, true, "blur")
                 callCheckValidateInput(speardHoverInp.value, true, "speard")
             }
+        } else {
+            activeAllInputs(false)
+            uploadShadowDataInDom(false)
+            addStyleToResizable(false)
+            callCheckValidateInput(horizentalInp.value, false, "horizental")
+            callCheckValidateInput(verticalInp.value, false, "vertical")
+            callCheckValidateInput(blurInp.value, false, "blur")
+            callCheckValidateInput(speardInp.value, false, "speard")
         }
-        callCheckValidateInput(horizentalInp.value, false, "horizental")
-        callCheckValidateInput(verticalInp.value, false, "vertical")
-        callCheckValidateInput(blurInp.value, false, "blur")
-        callCheckValidateInput(speardInp.value, false, "speard")
     } else {
         //? disable shadow init
         Shadow.isInit = false
@@ -461,6 +464,7 @@ typeEffectIcon.addEventListener("click", () => {
                 uploadShadowDataInDom(false)
                 activeAllInputs(false)
                 addStyleToResizable(false)
+                resetShadowHoverData()
             } else {
                 Shadow.isHover = true
                 typeBox ? createDH_box(typeBox) : createDH_box("defaultBox")
@@ -471,6 +475,15 @@ typeEffectIcon.addEventListener("click", () => {
     } else 
         alert("Please fill in the field above")
 })
+
+//? reset shadow hover data
+const resetShadowHoverData = () => {
+    Shadow.box.noHover.horizental = 5
+    Shadow.box.noHover.vertical = 5
+    Shadow.box.noHover.blur = 0
+    Shadow.box.noHover.speard = 0
+    Shadow.box.noHover.shadowColor = "#C8C8C8"
+}
 
 //? call to checkValidation inputs function
 const callCheckValidateInput = (value, isHover, inputName) => {
@@ -490,8 +503,13 @@ const callCheckValidateInput = (value, isHover, inputName) => {
             elemValidation.innerHTML = ""
             addStyleToResizable(isHover)
         }
-    } else 
-        elemValidation.innerHTML = "Please select a negative number from 0 to 100 or a positive number from 0 to 100"
+    } else {
+        if (inputName === "horizental" || inputName === "vertical") {
+            elemValidation.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"
+        } else {
+            elemValidation.innerHTML = "Please select positive number from 0 to 100"
+        }
+    }
 }
 
 //? active vh tool
@@ -615,6 +633,22 @@ vhTools.forEach(vhTool => {
     })
 })
 
+//? check all inputs and other elements validation is true 
+const checkAllElementIsTrue = () => {
+    if (Shadow.isInit) {
+        if (Shadow.isHover) {
+            
+        } else {
+            let validateNoHoverObj = Shadow.Validation.noHover
+            if (validateNoHoverObj.horizentalValidate && validateNoHoverObj.verticalValidate && validateNoHoverObj.blurValidate && validateNoHoverObj.speardValidate) {
+                generateWrapBox.classList.add("active")
+            } else 
+                alert("Enter the information correctly")
+        }
+    } else
+        alert("Please enter the fields above")
+}
+
 horizentalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "horizental"))
 verticalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "vertical"))
 blurInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "blur"))
@@ -624,3 +658,5 @@ horizentalHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.tar
 verticalHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "vertical"))
 blurHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "blur"))
 speardHoverInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, true, "speard"))
+
+cssCodeBtn.addEventListener("click", checkAllElementIsTrue)
