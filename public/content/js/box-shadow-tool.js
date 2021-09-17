@@ -18,7 +18,6 @@ const propertiesNoHoverBox = document.querySelector(".properies-box-no-hover")
 const propertiesHoverBox = document.querySelector(".properies-box-hover")
 let typeEffectBox = document.querySelector(".type-effect-box")
 const vhTools = document.querySelectorAll(".vh-tool")
-const vhTool = document.querySelectorAll(".vh-tool")
 const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 const elemValidationInputsHover = document.querySelector(".valdiation-inputs-hover-elem")
 const cssCodeBtn = document.querySelector(".css-code-btn")
@@ -133,7 +132,7 @@ const activeAllInputs = (isHover) => {
 }
 
 //? disable all vh tools function
-const disableAllVhTool = () => { vhTool.forEach(tool => tool.classList.remove("active")) }  
+const disableAllVhTool = () => { vhTools.forEach(tool => tool.classList.remove("active")) }  
 
 //? upload shadow data in inputs
 const uploadShadowDataInDom = (isHover) => {
@@ -163,8 +162,8 @@ const addStyleToResizable = (isHover) => {
         resizableBox.style.boxShadow = `${horizental}px ${vertical}px ${blur}px ${speard}px ${shadowColor}`
     }
 }
-let typeBox = "defaultBox"
 
+let typeBox = "defaultBox"
 //? create default and hover box
 const createDH_box = (nameBox) => {
     typeEffectBox.innerText = ""
@@ -236,8 +235,11 @@ const removeDH_box = () => {
 }
 
 //? check inputs 
-const checkInputs = e => {
-    if (e.target.value.trim().length !== 0) {
+const checkInputs = (e) => {
+    let regexCode = /^[a-zA-Z]{1,30}$/g
+    let regexResult = regexCode.test(e.target.value)
+    
+    if (regexResult) {
         //? active shadow init
         Shadow.isInit = true
 
@@ -282,7 +284,7 @@ const checkInputs = e => {
         Shadow.isInit = false
 
         //? put this msg in msg box
-        e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
+        e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
 
         resizableBox.style.boxShadow = ""
 
@@ -450,7 +452,6 @@ const makeResizableElem = elem => {
 }
 makeResizableElem(".resizable")
 
-elemClassName.addEventListener("keyup", checkInputs)
 typeEffectIcon.addEventListener("click", () => {
     if (Shadow.isInit) {
         let validateObject = Shadow.Validation.noHover
@@ -458,16 +459,15 @@ typeEffectIcon.addEventListener("click", () => {
             if (Shadow.isHover) {
                 typeBox = "defaultBox"
                 Shadow.isHover = false
-                removeDH_box()
                 propertiesNoHoverBox.style.marginLeft = 0
                 typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
                 uploadShadowDataInDom(false)
                 activeAllInputs(false)
                 addStyleToResizable(false)
-                resetShadowHoverData()
+                removeDH_box()
             } else {
                 Shadow.isHover = true
-                typeBox ? createDH_box(typeBox) : createDH_box("defaultBox")
+                createDH_box("defaultBox")
                 typeEffectIcon.innerHTML = '<i class="bi bi-x-square"></i>'
             }
         } else 
@@ -475,15 +475,6 @@ typeEffectIcon.addEventListener("click", () => {
     } else 
         alert("Please fill in the field above")
 })
-
-//? reset shadow hover data
-const resetShadowHoverData = () => {
-    Shadow.box.noHover.horizental = 5
-    Shadow.box.noHover.vertical = 5
-    Shadow.box.noHover.blur = 0
-    Shadow.box.noHover.speard = 0
-    Shadow.box.noHover.shadowColor = "#C8C8C8"
-}
 
 //? call to checkValidation inputs function
 const callCheckValidateInput = (value, isHover, inputName) => {
@@ -648,6 +639,8 @@ const checkAllElementIsTrue = () => {
     } else
         alert("Please enter the fields above")
 }
+
+elemClassName.addEventListener("keyup", checkInputs)
 
 horizentalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "horizental"))
 verticalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, false, "vertical"))

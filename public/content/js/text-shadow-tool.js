@@ -81,7 +81,10 @@ const addStyleToResizable = () => {
 
 //? check inputs 
 const checkInputs = e => {
-    if (e.target.value.trim().length !== 0) {
+    let regexCode = /^[a-zA-Z]{1,30}$/g
+    let regexResult = regexCode.test(e.target.value)
+    
+    if (regexResult) {
         //? active shadow init
         Shadow.isInit = true
 
@@ -103,13 +106,13 @@ const checkInputs = e => {
         Shadow.isInit = false
 
         //? put this msg in msg box
-        e.target.parentElement.previousElementSibling.innerHTML = "please fill out the field below"
+        e.target.parentElement.previousElementSibling.innerHTML = "please complete the field below. You are allowed to enter up to 30 letters"
 
         generatorTxt.style.textShadow = ""
 
         //? disable all inputs
         disableAllInputs()
-        removeShadowDataFromDom()        
+        removeShadowDataFromDom()
         disableAllVhTool()
     }
 }
