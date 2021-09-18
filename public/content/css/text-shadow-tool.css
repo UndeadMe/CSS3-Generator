@@ -90,6 +90,10 @@ body {
     color: var(--gray) !important;
     text-transform: capitalize;
 }
+/* ! ------------------------ element validations input ----------------------- ! */
+.valdiation-inputs-elem {
+    color: var(--white)
+}
 /* ! ------------------------------ color picker ------------------------------ ! */
 .color-picker-box {
     margin-top: 20px;
@@ -109,6 +113,36 @@ body {
 .choose-color-picker-text {
     color: var(--minimal-white);
     font-size: 18px;
+}
+/* ! ------------------------------ shadow option ----------------------------- ! */
+.shadow-option-title-box {
+    color: var(--white);
+    border-bottom: 1px solid var(--gray);
+}
+.shadow-option-title-box h5 {
+    margin-bottom: 10px;
+}
+.shadow-option-wrap {
+    height: 150px;
+    overflow-y: auto;
+}
+.shadow-option {
+    background-color: var(--light-border);
+    color: var(--white);
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: 0.4s;
+}
+.shadow-option.active {
+    background-color: var(--dark-blue);
+}
+.shadow-option:not(.shadow-option.active) {
+    cursor: pointer;
+}
+.new-shadow-option {
+    display: flex;
+    justify-content: space-between;
 }
 /* ! ------------------------------ footer pannel ----------------------------- ! */
 .css-code-btn {
