@@ -42,10 +42,11 @@ let Shadow = {
 let pickr = createPickr(".color-picker")
 
 pickr.on('change', (color) => {
+    let shadowOption = findShadowObj(Shadow.nowShadow)
     let shadowColor = color.toHEXA().toString()
-    Shadow.style.shadowColor = shadowColor
+    shadowOption.shadowColor = shadowColor
     colorPicker.style.background = shadowColor
-    addStyleToResizable()
+    addStyleToGenerateTxt()
 })
 
 //? disable inputs function 
@@ -100,8 +101,37 @@ const findShadowObj = (shadowName, isStyle) => {
 }
 
 //? add style to resizable box
-const addStyleToResizable = () => {
+const addStyleToGenerateTxt = () => {
+    let shadowStyle = []
+    shadowStyle = []
     
+    generatorTxt.style.textShadow = ""
+    
+    Shadow.style.forEach(shadowOption => {
+        shadowStyle.push({
+            horizental : shadowOption.horizental + "px",
+            vertical : shadowOption.vertical + "px",
+            blur : shadowOption.blur + "px",
+            shadowColor : shadowOption.shadowColor,
+        })
+    })
+
+    if (shadowStyle.length !== 1) {
+        let shadow = ""
+        shadowStyle.forEach((shadowOption, shadowOptionIndex) => {
+            for(let optionItem in shadowOption) {
+                shadow += shadowOption[optionItem] + " "
+            }
+            if (shadowOptionIndex !== shadowStyle.length - 1) {
+                shadow += ","
+            }
+        })
+        generatorTxt.style.textShadow = shadow
+    } else {
+        shadowStyle.forEach(shadowOption => {
+            generatorTxt.style.textShadow = `${shadowOption.horizental} ${shadowOption.vertical} ${shadowOption.blur} ${shadowOption.shadowColor}`
+        })
+    }
 }
 
 //? check inputs 
@@ -122,7 +152,7 @@ const checkInputs = e => {
         //? call to another functions
         activeAllInputs()
         uploadShadowDataInDom(Shadow.nowShadow)
-        addStyleToResizable()
+        addStyleToGenerateTxt()
         callCheckValidateInput(horizentalInp.value , "horizental", Shadow.nowShadow)
         callCheckValidateInput(verticalInp.value, "vertical", Shadow.nowShadow)
         callCheckValidateInput(blurInp.value, "blur", Shadow.nowShadow)
@@ -153,7 +183,7 @@ const callCheckValidateInput = (value, inputName, shadowName) => {
     if (isValidateTrue) {
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate) {
             elemValidationInputs.innerHTML = ""
-            addStyleToResizable()
+            addStyleToGenerateTxt()
         }
     } else {
         if (inputName === "horizental" || inputName === "vertical") {
@@ -218,28 +248,28 @@ vhTools.forEach(vhTool => {
                     shadowStyleObj.horizental = Math.abs(shadowStyleObj.horizental)
                     if (shadowStyleObj.vertical > 0) { shadowStyleObj.vertical = -Math.abs(shadowStyleObj.vertical) }
                     uploadShadowDataInDom()
-                    addStyleToResizable()
+                    addStyleToGenerateTxt()
 
                 } else if (e.target.className.includes("top-left")) {
                     
                     if (shadowStyleObj.horizental > 0) { shadowStyleObj.horizental = -Math.abs(shadowStyleObj.horizental) }
                     if (shadowStyleObj.vertical > 0) { shadowStyleObj.vertical = -Math.abs(shadowStyleObj.vertical) }
                     uploadShadowDataInDom()
-                    addStyleToResizable()
+                    addStyleToGenerateTxt()
 
                 } else if (e.target.className.includes("bottom-right")) {
 
                     shadowStyleObj.horizental = Math.abs(shadowStyleObj.horizental)
                     shadowStyleObj.vertical = Math.abs(shadowStyleObj.vertical)
                     uploadShadowDataInDom()
-                    addStyleToResizable()
+                    addStyleToGenerateTxt()
                     
                 } else {
 
                     if (shadowStyleObj.horizental > 0) { shadowStyleObj.horizental = -Math.abs(shadowStyleObj.horizental) }
                     shadowStyleObj.vertical = Math.abs(shadowStyleObj.vertical)
                     uploadShadowDataInDom()
-                    addStyleToResizable()
+                    addStyleToGenerateTxt()
 
                 }
                 activeVhTool(e.target)
@@ -367,6 +397,7 @@ const generateRandomColor = () => {
 //? switch to this shadow option
 const switchToShadowOption = (switchShadowId) => {
     if (Shadow.nowShadow !== switchShadowId) {
+        addStyleToGenerateTxt()
         let shadowValidateObj = findShadowObj(Shadow.nowShadow, false)
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate) {
             Shadow.nowShadow = switchShadowId
@@ -387,10 +418,14 @@ const minusShadowOption = (shadowId) => {
         const wrap = document.querySelector(".shadow-option-ul")
         wrap.innerText = ""
 
+        const shadowOptionWrap = document.createElement("div")
+        shadowOptionWrap.className = "shadow-option-wrap"
+        wrap.appendChild(shadowOptionWrap)
+
         Shadow.style.forEach(shadowOption => {
             let shadowNumber = shadowOption.shadowName.split("-")[1]
             let shadowBox = createNewShadowOption(shadowNumber, shadowOption.shadowName)
-            wrap.appendChild(shadowBox)
+            shadowNumber === 1 ? wrap.appendChild(shadowBox) : shadowOptionWrap.appendChild(shadowBox)
         })
 
         let isNowShadowFind = Shadow.style.findIndex(shadowOption => {
@@ -400,12 +435,14 @@ const minusShadowOption = (shadowId) => {
         if (isNowShadowFind !== -1) {
             uploadShadowDataInDom(Shadow.nowShadow)
             activeShadowOption(Shadow.nowShadow)
+            addStyleToGenerateTxt()
         } else {
             let shadowText = Shadow.nowShadow.split("-")[0]
             let shadowNumber = Number(Shadow.nowShadow.split("-")[1])
             Shadow.nowShadow = `${shadowText}-${shadowNumber-1}`
             uploadShadowDataInDom(Shadow.nowShadow)
             activeShadowOption(Shadow.nowShadow)
+            addStyleToGenerateTxt()
         }
 
     } else 
