@@ -115,14 +115,20 @@ body {
     font-size: 18px;
 }
 /* ! ------------------------------ shadow option ----------------------------- ! */
+.shadow-option-sec {
+    margin-top: 40px;
+}
 .shadow-option-title-box {
     color: var(--white);
     border-bottom: 1px solid var(--gray);
 }
+.shadow-option-plus-btn , .shadow-option-minus-btn {
+    cursor: pointer;
+}
 .shadow-option-title-box h5 {
     margin-bottom: 10px;
 }
-.shadow-option-wrap {
+.shadow-option-ul {
     height: 150px;
     overflow-y: auto;
 }
