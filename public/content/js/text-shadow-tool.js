@@ -12,7 +12,7 @@ const elemValidationInputs = document.querySelector(".valdiation-inputs-elem")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 const shadowOptionPlusBtn = document.querySelector(".shadow-option-plus-btn")
-let shadowOptionMinusBtn = null;
+const shadowOptionDefault = document.querySelector(".shadow-option-default")
 
 //? shadow object
 let Shadow = {
@@ -101,8 +101,7 @@ const findShadowObj = (shadowName, isStyle) => {
 
 //? add style to resizable box
 const addStyleToResizable = () => {
-    let {style: { shadowColor, horizental, vertical, blur } } = Shadow 
-    generatorTxt.style.textShadow = `${horizental}px ${vertical}px ${blur}px ${shadowColor}`
+    
 }
 
 //? check inputs 
@@ -454,5 +453,6 @@ verticalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.val
 blurInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, "blur", Shadow.nowShadow))
 
 shadowOptionPlusBtn.addEventListener("click", appendNewShadowOption)
+shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id))
 
 cssCodeBtn.addEventListener("click", checkAllElementIsTrue)
