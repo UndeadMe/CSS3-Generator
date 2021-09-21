@@ -39,10 +39,10 @@ let Shadow = {
 }
 
 //? create pickr
-let pickr = createPickr(".color-picker")
+let pickr = createPickr(".color-picker", Shadow.style[0].shadowColor)
 
 pickr.on('change', (color) => {
-    let shadowOption = findShadowObj(Shadow.nowShadow)
+    let shadowOption = findShadowObj(Shadow.nowShadow, true)
     let shadowColor = color.toHEXA().toString()
     shadowOption.shadowColor = shadowColor
     colorPicker.style.background = shadowColor
@@ -317,10 +317,29 @@ const appendNewShadowOption = () => {
 
             //? active new shadow option
             activeShadowOption(newShadowOption.dataset.id)
+
+            //? change backgorund of color picker button
+            let shadowStyleOptionObj = findShadowObj(Shadow.nowShadow, true)
+            colorPicker.style.background = shadowStyleOptionObj.shadowColor
+
+            //? create new color picker
+            createNewPickr(".color-picker", shadowStyleOptionObj.shadowColor)
         } else 
             alert("You need to enter the information correctly")
     } else 
         alert("please complete the fields")
+}
+
+//? create new pickr 
+const createNewPickr = (buttonClass, color) => {
+    let newPickr = createPickr(buttonClass, color)
+    newPickr.on('change', (color) => {
+        let shadowOption = findShadowObj(Shadow.nowShadow, true)
+        let shadowColor = color.toHEXA().toString()
+        shadowOption.shadowColor = shadowColor
+        colorPicker.style.background = shadowColor
+        addStyleToGenerateTxt()
+    })
 }
 
 //? create new shadow option box
@@ -401,8 +420,12 @@ const switchToShadowOption = (switchShadowId) => {
         let shadowValidateObj = findShadowObj(Shadow.nowShadow, false)
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate) {
             Shadow.nowShadow = switchShadowId
+            
             uploadShadowDataInDom(switchShadowId)
             activeShadowOption(switchShadowId)
+
+            createNewPickr(".color-picker", findShadowObj(Shadow.nowShadow, true).shadowColor)
+            colorPicker.style.background = findShadowObj(Shadow.nowShadow, true).shadowColor
         } else 
             alert("You need to enter the information correctly")
     }
@@ -412,16 +435,19 @@ const switchToShadowOption = (switchShadowId) => {
 const minusShadowOption = (shadowId) => {
     let shadowValidateObj = findShadowObj(Shadow.nowShadow, false)
     if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate) {
-        
+        //? delete style and validate object in Shadow style and validate
         deleteStyleAndValidateObj(shadowId)
         
+        //? get wrap and empty that
         const wrap = document.querySelector(".shadow-option-ul")
         wrap.innerText = ""
 
+        //? create shadow option wrap and put this element in wrap
         const shadowOptionWrap = document.createElement("div")
         shadowOptionWrap.className = "shadow-option-wrap"
         wrap.appendChild(shadowOptionWrap)
 
+        //? append shadow options
         Shadow.style.forEach(shadowOption => {
             let shadowNumber = shadowOption.shadowName.split("-")[1]
             let shadowBox = createNewShadowOption(shadowNumber, shadowOption.shadowName)
@@ -440,9 +466,13 @@ const minusShadowOption = (shadowId) => {
             let shadowText = Shadow.nowShadow.split("-")[0]
             let shadowNumber = Number(Shadow.nowShadow.split("-")[1])
             Shadow.nowShadow = `${shadowText}-${shadowNumber-1}`
+            
             uploadShadowDataInDom(Shadow.nowShadow)
             activeShadowOption(Shadow.nowShadow)
             addStyleToGenerateTxt()
+
+            createNewPickr(".color-picker", findShadowObj(Shadow.nowShadow, true).shadowColor)
+            colorPicker.style.background = findShadowObj(Shadow.nowShadow, true).shadowColor
         }
 
     } else 
@@ -457,6 +487,8 @@ const deleteStyleAndValidateObj = (shadowId) => {
     let shadowValidateIndex = Shadow.Validation.findIndex(shadowOption => {
         return shadowOption.shadowName === shadowId
     })
+    
+    //? delete them
     Shadow.style.splice(shadowStyleIndex, 1)
     Shadow.Validation.splice(shadowValidateIndex, 1)
     
