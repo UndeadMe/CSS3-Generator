@@ -240,35 +240,35 @@ const activeVhTool = (vhTool) =>
 vhTools.forEach(vhTool => {
     vhTool.addEventListener('click', (e) => {
         if (Shadow.isInit) {
-            let validateObj = Shadow.Validation
-            let shadowStyleObj = Shadow.style
-            if (validateObj.horizentalValidate && validateObj.verticalValidate && validateObj.blurValidate) {
+            let shadowOptionValidateObj = findShadowObj(Shadow.nowShadow, false)
+            let shadowOptionStyleObj = findShadowObj(Shadow.nowShadow, true)
+            if (shadowOptionValidateObj.horizentalValidate && shadowOptionValidateObj.verticalValidate && shadowOptionValidateObj.blurValidate) {
                 if (e.target.className.includes("top-right")) {
                     
-                    shadowStyleObj.horizental = Math.abs(shadowStyleObj.horizental)
-                    if (shadowStyleObj.vertical > 0) { shadowStyleObj.vertical = -Math.abs(shadowStyleObj.vertical) }
-                    uploadShadowDataInDom()
+                    shadowOptionStyleObj.horizental = Math.abs(shadowOptionStyleObj.horizental)
+                    if (shadowOptionStyleObj.vertical > 0) { shadowOptionStyleObj.vertical = -Math.abs(shadowOptionStyleObj.vertical) }
+                    uploadShadowDataInDom(Shadow.nowShadow)
                     addStyleToGenerateTxt()
 
                 } else if (e.target.className.includes("top-left")) {
                     
-                    if (shadowStyleObj.horizental > 0) { shadowStyleObj.horizental = -Math.abs(shadowStyleObj.horizental) }
-                    if (shadowStyleObj.vertical > 0) { shadowStyleObj.vertical = -Math.abs(shadowStyleObj.vertical) }
-                    uploadShadowDataInDom()
+                    if (shadowOptionStyleObj.horizental > 0) { shadowOptionStyleObj.horizental = -Math.abs(shadowOptionStyleObj.horizental) }
+                    if (shadowOptionStyleObj.vertical > 0) { shadowOptionStyleObj.vertical = -Math.abs(shadowOptionStyleObj.vertical) }
+                    uploadShadowDataInDom(Shadow.nowShadow)
                     addStyleToGenerateTxt()
 
                 } else if (e.target.className.includes("bottom-right")) {
 
-                    shadowStyleObj.horizental = Math.abs(shadowStyleObj.horizental)
-                    shadowStyleObj.vertical = Math.abs(shadowStyleObj.vertical)
-                    uploadShadowDataInDom()
+                    shadowOptionStyleObj.horizental = Math.abs(shadowOptionStyleObj.horizental)
+                    shadowOptionStyleObj.vertical = Math.abs(shadowOptionStyleObj.vertical)
+                    uploadShadowDataInDom(Shadow.nowShadow)
                     addStyleToGenerateTxt()
                     
                 } else {
 
-                    if (shadowStyleObj.horizental > 0) { shadowStyleObj.horizental = -Math.abs(shadowStyleObj.horizental) }
-                    shadowStyleObj.vertical = Math.abs(shadowStyleObj.vertical)
-                    uploadShadowDataInDom()
+                    if (shadowOptionStyleObj.horizental > 0) { shadowOptionStyleObj.horizental = -Math.abs(shadowOptionStyleObj.horizental) }
+                    shadowOptionStyleObj.vertical = Math.abs(shadowOptionStyleObj.vertical)
+                    uploadShadowDataInDom(Shadow.nowShadow)
                     addStyleToGenerateTxt()
 
                 }
@@ -324,6 +324,9 @@ const appendNewShadowOption = () => {
 
             //? create new color picker
             createNewPickr(".color-picker", shadowStyleOptionObj.shadowColor)
+
+            //? disable all vh tool
+            disableAllVhTool()
         } else 
             alert("You need to enter the information correctly")
     } else 
@@ -426,6 +429,8 @@ const switchToShadowOption = (switchShadowId) => {
 
             createNewPickr(".color-picker", findShadowObj(Shadow.nowShadow, true).shadowColor)
             colorPicker.style.background = findShadowObj(Shadow.nowShadow, true).shadowColor
+
+            disableAllVhTool()
         } else 
             alert("You need to enter the information correctly")
     }
@@ -475,6 +480,7 @@ const minusShadowOption = (shadowId) => {
             colorPicker.style.background = findShadowObj(Shadow.nowShadow, true).shadowColor
         }
 
+    disableAllVhTool()
     } else 
         alert("You need to enter the information correctly after then you can delete you shadow option")
 }
