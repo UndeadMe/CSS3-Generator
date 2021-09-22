@@ -14,43 +14,24 @@
     <link rel="stylesheet" href="public/content/css/home.css">
 </head>
 <body>
-    <!-- ! ------------------------------- sidebar ------------------------------- ! -->
-    <aside class="sidebar d-flex flex-column align-items-center">
-        <!-- ! ---------------------------- sidebar dots ----------------------------- ! -->
-        <div class="sidebar-dots-box">
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-dot"></div>
-            <div class="sidebar-dot"></div>
-        </div>
-        <!-- ! ---------------------------- sidebar icons ---------------------------- ! -->
-        <div class="sidebar-icons-box">
-            <ul class="list-unstyled p-0 m-0 w-100">
-                <li class="sidebar-icon-item">
-                    <a href="home.html" class="sidebar-icon-link">
-                        <i class="bi bi-house"></i>
-                    </a>
-                </li>
-                <li class="sidebar-icon-item">
-                    <a href="home.html" class="sidebar-icon-link">
-                        <i class="bi bi-box"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-    <!-- ! -------------------------------- main ---------------------------------! -->
+    <!-- ! ------------------------------ triangle ------------------------------- ! -->
+    <div class="trianlge">
+        <img src="public/content/img/triangle/triangle.png" alt="">
+    </div>
+    
+    <!-- ! -------------------------------- wrap --------------------------------- ! -->
     <div class="wrap">
-        <main>
-            <div class="container">
-                
+        <div class="container">
+            <!-- ! ------------------------------- header -------------------------------- ! -->
+            <header class="header">
                 <div class="row text-center">
-                    
+                
                     <h1 class="main-title text-center">css generator</h1>
                     
                     <h5 class="text-center mt-4 main-title-desc">
                         <i class="bi bi-search me-2"></i> search your tool
                     </h5>
-
+    
                     <!-- ! ----------------------------- search box ------------------------------ ! -->
                     <div class="search-box d-flex justify-content-center">
                         <div class="input-group search-box-group">
@@ -59,78 +40,111 @@
                         </div>
                         <button class="search-btn">search</button>
                     </div>
-
+    
                 </div>
+            </header>
 
-                <!-- ! ------------------------------ tools box ------------------------------ ! -->
-                <div class="tools-wrap row justify-content-center">
-                    
-                    <div class="tool-box">
-                        <a href="box-shadow-tool.html" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-bounding-box"></i></span>
-                            box-shadow
-                        </a>
+            <!-- ! ------------------------------ tools box ------------------------------ ! -->
+            <main class="main-tool-wrap d-flex justify-content-center w-100">
+                <div class="tools-wrap row">
+
+                    <div class="tools-row-box p-0">
+                        
+                        <h2 class="tools-row-title">peasodo class</h2>
+
+                        <div class="tools-row">
+                            <div class="tool-box">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-hand-index"></i></span>
+                                    hover
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-hand-index-fill"></i></span>
+                                    acitve
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-arrows-fullscreen"></i></span>
+                                    focus
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="tool-box">
-                        <a href="text-shadow-tool.html" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-border"></i></span>
-                            text-shadow
-                        </a>
+                    <div class="tools-row-box p-0">
+                        
+                        <h2 class="tools-row-title">border</h2>
+
+                        <div class="tools-row">
+                            <div class="tool-box">
+                                <a href="box-shadow-tool.html" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-bounding-box"></i></span>
+                                    box-shadow
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="text-shadow-tool.html" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-border"></i></span>
+                                    text-shadow
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-border"></i></span>
+                                    border-radius
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-border"></i></span>
-                            border-radius
-                        </a>
-                    </div>
+                    <div class="tools-row-box p-0">
+                        
+                        <h2 class="tools-row-title">transform</h2>
 
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-arrows-expand"></i></span>
-                            transform
-                        </a>
-                    </div>
+                        <div class="tools-row">
+                            <div class="tool-box">
+                                <a href="box-shadow-tool.html" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-arrow-left-right"></i></span>
+                                    translateX
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="text-shadow-tool.html" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-arrow-down-up"></i></span>
+                                    translateY
+                                </a>
+                            </div>
+        
+                            <div class="tool-box">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-zoom-in"></i></span>
+                                    scale
+                                </a>
+                            </div>
 
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-hand-index"></i></span>
-                            hover
-                        </a>
-                    </div>
+                            <div class="tool-box mt-4">
+                                <a href="" class="tool-box-button">
+                                    <span class="tool-icon"><i class="bi bi-arrows-angle-expand"></i></span>
+                                    skew
+                                </a>
+                            </div>
+                        </div>
 
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-hand-index-fill"></i></span>
-                            acitve
-                        </a>
                     </div>
-
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            focus
-                        </a>
-                    </div>
-
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-film"></i></span>
-                            animation
-                        </a>
-                    </div>
-
-                    <div class="tool-box">
-                        <a href="" class="tool-box-button">
-                            <span class="tool-icon"><i class="bi bi-file-earmark"></i></span>
-                            file input
-                        </a>
-                    </div>
-                    
                 </div>
+            </main>
 
-            </div>
-        </main>
+        </div>
     </div>
 </body>
 </html>

@@ -1,35 +1,31 @@
-@import url(../../components/aside/aside.css);
+/* @import url(../../components/aside/aside.css); */
+@import url(../../components/custom/custom.css);
 
 body {
     background : var(--home-gradient) ;
     position: relative;
     display: flex;
-    perspective: 1000px;
-    perspective-origin: left;
-    height: 100vh;
 }
-body::before {
-    content: '';
+/* ! -------------------------------- triangle -------------------------------- ! */
+.trianlge {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../img/triangle/triangle.png) ;
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: contain;
+    width: 60%;
+    height: 80%;
     z-index: -1;
 }
-/* ! ---------------------------------- main ---------------------------------- ! */
+.trianlge img {
+    width: 100%;
+    height: 100%;
+}
+/* ! ---------------------------------- wrap ---------------------------------- ! */
 .wrap {
     width: 100%;
-    margin-left: 250px;
-    margin-right: 250px;
-    z-index: 9990;
 }
-main {
-    margin-top: 90px;
+/* ! --------------------------------- header --------------------------------- ! */
+.header {
+    margin-top: 85px;
 }
 .main-title {
     text-transform: capitalize;
@@ -48,7 +44,7 @@ main {
     margin-top: 20px;
 }
 .search-box-group {
-    width: 50%;
+    width: 40%;
     box-shadow: 0 0 5px var(--dark-black);
     border-radius: 25px;
     overflow: hidden;
@@ -95,19 +91,39 @@ main {
     background-color: var(--prety-blue);
     color: var(--minimal-white);
 }
-/* ! ------------------------------- tools boxes ------------------------------ ! */
-.tools-wrap {
+/* ! ---------------------------------- main ---------------------------------- ! */
+.main-tool-wrap {
     margin-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,240px);
-    grid-template-rows: auto;
-    grid-gap: 20px 30px;
+    padding-bottom: 50px;
+}
+.tools-wrap {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+.tools-row-box {
+    width: 80%;
+}
+.tools-row-box:not(:first-child) {
+    margin-top: 40px;
+}
+.tools-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.tools-row-title {
+    color: var(--minimal-white);
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
 }
 .tool-box {
     padding: 0;
 }
 .tool-box-button {
-    width: 100%;
+    width: 240px;
     height: 100%;
     display: flex;
     justify-content: center;

@@ -1,16 +1,4 @@
 @import url(../../components/aside/aside.css);
-/* ! ---------------------------------- aside --------------------------------- ! */
-.sidebar {
-    left : 0;
-    top: 0;
-    border-radius: 0;
-    height: 100%;
-    border: none;
-    animation: none;
-}
-.sidebar::before {
-    animation-delay: 0s;
-}
 /* ! ---------------------------------- body ---------------------------------- ! */
 body {
     background : var(--home-gradient) ;
