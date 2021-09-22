@@ -1,4 +1,3 @@
-/* @import url(../../components/aside/aside.css); */
 @import url(../../components/custom/custom.css);
 
 body {
@@ -109,9 +108,13 @@ body {
 }
 .tools-row {
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,240px);
+    grid-template-rows: auto;
+    grid-row-gap: 20px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .tools-row-title {
     color: var(--minimal-white);
@@ -173,4 +176,77 @@ body {
 }
 .tool-box-button span {
     margin-right: 12px;
+}
+/* ! ------------------------------- media query ------------------------------ ! */
+@media screen and ( max-width : 1400px ) {
+    .tools-row-box {
+        width: 100%;
+    }
+}
+@media screen and ( max-width : 768px ) {
+    .tools-row-box {
+        text-align: center;
+    }
+    .tools-row {
+        justify-content: center;
+    }
+}
+@media screen and (min-width : 1400px) {
+    .trianlge {
+        width: 80%;
+        height: 100%;
+    }
+}
+@media screen and (min-width : 1460px) {
+    .trianlge {
+        width: 70%;
+        height: 100%;
+    }
+}
+@media screen and (max-width : 1200px) {
+    .trianlge {
+        width: 70%;
+    }
+}
+@media screen and (max-width : 992px) {
+    .trianlge {
+        width: 80%;
+    }
+}
+@media screen and (max-width : 575px) {
+    .trianlge {
+        height: 50%;
+    }
+}
+@media screen and (max-width : 440px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    .main-title-desc {
+        font-size: 25px;
+    }
+    .main-title-desc i {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width : 992px) {
+    .search-box-group {
+        width: 50%;
+    }
+}
+@media screen and (max-width : 560px) {
+    .search-box-group {
+        width: 60%;
+    }
+}
+@media screen and (max-width : 440px) {
+    .search-btn {
+        display: none;
+    }
+    .search-input {
+        padding: 10px !important;
+    }
+    .search-box-group {
+        width: 80%;
+    }
 }
