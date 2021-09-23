@@ -9,6 +9,8 @@ const translateYPlusIcon = document.querySelector(".translateY-plus-icon")
 const wrapTranslateBoxs = document.querySelector(".translate-x-y-box")
 const propertiesTranslateX = document.querySelector(".properties-translateX-box")
 const propertiesTranslateY = document.querySelector(".properties-translateY-box")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 //? shadow object
 let Translate = {
@@ -253,6 +255,21 @@ const switchToTranslateBox = (nameBox) => {
     }
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (Translate.isInit) {
+        if (Translate.initTranslateY) {
+            
+        } else {
+            if (Translate.validation.translateX_validate) {
+                generateWrapBox.classList.add("active")
+            } else 
+                alert("Enter the information correctly")
+        }
+    } else
+        alert("please complete the fields above")
+}
+
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 
 translateYPlusIcon.addEventListener("click", () => {
@@ -276,10 +293,12 @@ translateYPlusIcon.addEventListener("click", () => {
 
             Translate.nowTranslate = "translateX"
             translateYPlusIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
-    
         } else {
-            append_TX_TY_Box(Translate.nowTranslate)
-            translateYPlusIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
+            if (Translate.validation.translateX_validate) {
+                append_TX_TY_Box(Translate.nowTranslate)
+                translateYPlusIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
+            } else 
+                alert("please enter the information corrcetly")
         }
     } else 
         alert("please complete the fields")
@@ -287,3 +306,4 @@ translateYPlusIcon.addEventListener("click", () => {
 
 translateX_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, false))
 translateY_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, true))
+cssCodeBtn.addEventListener("click", openGeneratePannel)
