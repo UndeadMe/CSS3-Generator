@@ -236,7 +236,7 @@ const removeDH_box = () => {
 
 //? check inputs 
 const checkInputs = (e) => {
-    let regexCode = /^[a-zA-Z]{1,30}$/g
+    let regexCode = /^[a-zA-Z" "]{1,30}$/g
     let regexResult = regexCode.test(e.target.value)
     
     if (regexResult) {
