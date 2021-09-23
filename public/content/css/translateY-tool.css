@@ -71,11 +71,11 @@ body {
     color: var(--white);
 }
 /* ! ------------------------------- translateY ------------------------------- ! */
-.translateY-text {
+.translateX-text {
     color: var(--white);
     text-transform: capitalize;
 }
-.translateY-icon {
+.translateX-icon {
     font-size: 20px;
     color: var(--white);
     cursor: pointer;
@@ -106,7 +106,7 @@ body {
     width: 318px;
     overflow: hidden;
 }
-.properties-translateX-box , .properties-translateY-box  {
+.properties-translateX-box , .properties-translateY-box {
     width: 100%;
     transition: 0.4s;
 }

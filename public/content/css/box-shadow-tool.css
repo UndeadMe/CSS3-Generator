@@ -104,11 +104,7 @@ body {
     width: 318px;
     overflow: hidden;
 }
-.properies-box-no-hover {
-    width: 100%;
-    transition: 0.4s;
-}
-.properies-box-hover {
+.properies-box-no-hover , .properies-box-hover  {
     width: 100%;
     transition: 0.4s;
 }
