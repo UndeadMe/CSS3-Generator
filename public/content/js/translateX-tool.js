@@ -1,3 +1,5 @@
+import { makeResizableElem } from "./resizer.js";
+
 //? get elements
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const translateX_inp = document.querySelector(".translateX-inp")
@@ -27,6 +29,8 @@ let Translate = {
         translateY_validate: true,
     }
 }
+
+makeResizableElem(".resizable")
 
 const checkElemClassNameInput = (e) => {
     let regexCode = /^[a-zA-Z" "]{1,30}$/g
