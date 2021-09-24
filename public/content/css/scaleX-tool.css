@@ -70,57 +70,43 @@ body {
 .element-class-name-text-icon {
     color: var(--white);
 }
-/* ! ---------------------- scaleX and scaleY and scale3D --------------------- ! */
-.scales-propertie-sec {
-    position: relative;
-    padding-bottom: 20px;
-}
-.scale-propertie-box {
-    padding: 9px 15px;
-    background-color: var(--black-blue);
+/* ! --------------------------------- scaleY --------------------------------- ! */
+.scaleY-text {
     color: var(--white);
     text-transform: capitalize;
-    border-radius: 5px;
 }
-.scales-propertie-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+.scaleY-icon {
+    font-size: 20px;
+    color: var(--white);
+    cursor: pointer;
+}
+.scaleX-box, .scaleY-box {
     width: 100%;
-    background-color: var(--black-blue);
-    z-index: 9999;
-    visibility: hidden;
-    opacity: 0;
-    transition: all .3s;
-    border-radius: 5px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3) , -5px -5px 10px rgba(200, 200, 200, 0.1);
-    overflow: hidden;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 3px;
+    background: var(--dark-black);
+    cursor: pointer;
+    padding: 20px 13px;
+    color: var(--white);
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
 }
-.scales-propertie-sec:hover .scales-propertie-menu {
-    transform: translateY(62px);
-    visibility: visible;
-    opacity: 1;
+.scaleY-box {
+    margin-bottom: 20px;
 }
-.scales-propertie-menu-item {
-    padding: 8px 10px;
-    color: var(--d-white);
-    font-weight: bolder;
-    transition: 0.4s;
-}
-.scales-propertie-menu-item.active {
-    background-color: var(--white);
+.scaleX-box.active, .scaleY-box.active {
+    background: var(--white);
     color: var(--prety-blue);
-}
-.scales-propertie-menu-item:not(.scales-propertie-menu-item.active):hover {
-    background-color: var(--prety-blue);
+    font-weight: bolder;
 }
 /* ! ----------------------------- properties box ----------------------------- ! */
 .property-box {
     width: 318px;
     overflow: hidden;
 }
-.properties-scaleX-box , .properties-scaleY-box , .properties-scaleZ-box , .properties-scale3D-box {
+.properties-scaleX-box , .properties-scaleY-box {
     width: 100%;
     transition: 0.4s;
 }
@@ -198,58 +184,4 @@ body {
     max-height: 350px;
     max-width: 350px;
     transition : transform .3s ;
-}
-.resizable::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-.resizable .resizers {
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--d-white);
-    border-radius: 0;
-    box-sizing: border-box;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s linear;
-}
-.resizable .resizers .resizer {
-    width: 13px;
-    height: 13px;
-    background: var(--prety-blue);
-    border-radius: 100%;
-    border: 2px solid var(--d-white);
-    position: absolute;
-}
-.resizable .resizers .resizer.top-left {
-    left: -5px;
-    top: -5px;
-    cursor: nwse-resize; 
-}
-.resizable .resizers .resizer.top-right {
-    right: -5px;
-    top: -5px;
-    cursor: nesw-resize;
-}
-.resizable .resizers .resizer.bottom-left {
-    left: -5px;
-    bottom: -5px;
-    cursor: nesw-resize;
-}
-.resizable .resizers .resizer.bottom-right {
-    right: -5px;
-    bottom: -5px;
-    cursor: nwse-resize;
-}
-.resizers.active {
-    opacity: 1;
-    visibility: visible;
-}
-.resizable:hover .resizers {
-    opacity: 1;
-    visibility: visible;
 }

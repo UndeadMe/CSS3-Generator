@@ -14,7 +14,7 @@ const propertiesTranslateX = document.querySelector(".properties-translateX-box"
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 
-//? shadow object
+//? Translate object
 let Translate = {
     elemClass: null,
     isInit: false,
@@ -76,11 +76,7 @@ const checkElemClassNameInput = (e) => {
 
 //? disable all inputs 
 const disableAllInputs = (initTranslateX) => {
-    if (initTranslateX) {
-        translateX_inp.disabled = true
-    } else {
-        translateY_inp.disabled = true
-    }
+    initTranslateX ? translateX_inp.disabled = true : translateY_inp.disabled = true
 }
 
 disableAllInputs(true)
@@ -88,29 +84,17 @@ disableAllInputs(false)
 
 //? active all inputs
 const activeAllInputs = (initTranslateX) => {
-    if (initTranslateX) {
-        translateX_inp.disabled = false
-    } else {
-        translateY_inp.disabled = false
-    }
+    initTranslateX ? translateX_inp.disabled = false : translateY_inp.disabled = false
 }
 
 //? upload translate data in inputs
 const uploadTranslateDomInInputs = (initTranslateX) => {
-    if (initTranslateX) {
-        translateX_inp.value = Translate.box.translateX
-    } else {
-        translateY_inp.value = Translate.box.translateY
-    }
+    initTranslateX ? translateX_inp.value = Translate.box.translateX : translateY_inp.value = Translate.box.translateY
 }
 
 //? remove translate data from inputs
 const removeTranslateDataFromInputs = (initTranslateX) => {
-    if (initTranslateX) {
-        translateX_inp.value = ""
-    } else {
-        translateY_inp.value = ""
-    }
+    initTranslateX ? translateX_inp.value = "" : translateY_inp.value = ""
 }
 
 //? check translateX and translateY validation
@@ -154,11 +138,7 @@ const addStyleToResizable = () => {
 
 //? remove style from resizable box
 const removeStyleFromResizable = (initTranslateX) => {
-    if (initTranslateX) {
-        resizableBox.style.transform = `translateX(0)`
-    } else {
-        resizableBox.style.transform = `translateY(0)`
-    }
+    initTranslateX ? resizableBox.style.transform = `translateX(0)` : resizableBox.style.transform = `translateY(0)`
 }
 
 //? create translateX box and translateY box and append them in wrap box
@@ -248,9 +228,8 @@ const switchToTranslateBox = (nameBox) => {
         
                 uploadTranslateDomInInputs(Translate.initTranslateX)
                 activeAllInputs(Translate.initTranslateX)
-            } else {
+            } else 
                 alert("you need to enter the information correctly")
-            }
         }
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Css Generator - ScaleX</title>
+    <title>Css Generator - translateY</title>
 
     <!-- ! ------------------------------ fav icon ------------------------------- ! -->
     <link rel="icon" href="public/content/img/css-img/css.png" sizes="any">
@@ -73,33 +73,18 @@
                             <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
                         </div>
                     </section>
-                    <!-- ! -------------------- scaleY and scaleZ and scale3D -------------------- ! -->
-                    <section class="col-12 p-0 mt-4">
-                        <div class="scales-propertie-sec">
-                            <div class="scale-propertie-box w-100 d-flex justify-content-between">
-                                <span>scale propertie</span>
-                                <span class="scales-propertie-arrow-down"><i class="bi bi-caret-down"></i></span>
-                            </div>
-                            <div class="scales-propertie-menu">
-                                <ul class="list-unstyled p-0 m-0">
-                                    <li class="scales-propertie-menu-item active">
-                                        scaleX
-                                    </li>
-                                    <li class="scales-propertie-menu-item">
-                                        scaleY
-                                    </li>
-                                    <li class="scales-propertie-menu-item">
-                                        scaleZ
-                                    </li>
-                                    <li class="scales-propertie-menu-item">
-                                        scale3D
-                                    </li>
-                                </ul>
-                            </div>
+                    <!-- ! ------------------------------- scaleY -------------------------------- ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <!-- ! --------------------------- scaleY and plus --------------------------- ! -->
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="scaleY-text">scaleY</span>
+                            <span class="scaleY-icon scaleY-plus-icon"><i class="bi bi-plus-square"></i></span>
                         </div>
+                        <!-- ! -------------------------- scaleX and scaleY -------------------------- ! -->
+                        <div class="scale-x-y-box"></div>
                     </section>
                     <!-- ! --------------------------- properties box ---------------------------- ! -->
-                    <section class="col-12 property-box d-flex p-0 mt-4">
+                    <section class="col-12 property-box d-flex p-0 mt-3">
                         <!-- ! -------------------------- properties scaleX -------------------------- ! -->
                         <div class="properties-scaleX-box col-12">
                             <div class="col-12 d-flex justify-content-between">
@@ -126,32 +111,6 @@
                             </div>
                             <h6 class="valdiation-inputs-elem scaleY-validation-elem mt-3 mb-0 text-white"></h6>
                         </div>
-                        <!-- ! -------------------------- properties scaleZ -------------------------- ! -->
-                        <div class="properties-scaleZ-box col-12">
-                            <div class="col-12 d-flex justify-content-between">
-                                <!-- ! ---------------------------- scaleZ input ----------------------------- ! -->
-                                <div class="input-group border-bottom">
-                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
-                                        <i class="bi bi-zoom-in"></i>
-                                    </span>
-                                    <input type="text" class="form-control scaleZ-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleZ">
-                                </div>
-                            </div>
-                            <h6 class="valdiation-inputs-elem scaleZ-validation-elem mt-3 mb-0 text-white"></h6>
-                        </div>
-                        <!-- ! ------------------------- properties scale3D -------------------------- ! -->
-                        <div class="properties-scale3D-box col-12">
-                            <div class="col-12 d-flex justify-content-between">
-                                <!-- ! ---------------------------- scale3D input ---------------------------- ! -->
-                                <div class="input-group border-bottom">
-                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
-                                        <i class="bi bi-zoom-in"></i>
-                                    </span>
-                                    <input type="text" class="form-control scale3D-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scale3D">
-                                </div>
-                            </div>
-                            <h6 class="valdiation-inputs-elem scale3D-validation-elem mt-3 mb-0 text-white"></h6>
-                        </div>
                     </section>
                 </main>
                 <!-- ! ---------------------------- footer pannel ---------------------------- ! -->
@@ -169,5 +128,6 @@
     </div>
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
+    <script src="public/content/js/scaleX-tool.js"></script>
 </body>
 </html>
