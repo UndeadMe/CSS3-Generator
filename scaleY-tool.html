@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Css Generator - translateX</title>
+    <title>Css Generator - scaleY</title>
 
     <!-- ! ------------------------------ fav icon ------------------------------- ! -->
     <link rel="icon" href="public/content/img/css-img/css.png" sizes="any">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="node_modules/@simonwep/pickr/dist/themes/classic.min.css">
-    <link rel="stylesheet" href="public/content/css/translateX-tool.css">
+    <link rel="stylesheet" href="public/content/css/scaleY-tool.css">
 </head>
 <body>
     <!-- ! ------------------------------- sidebar ------------------------------- ! -->
@@ -45,10 +45,7 @@
                 <!-- ! ---------------------------- resizable box ---------------------------- ! -->
                 <div class="resizable">
                     <div class="resizers">
-                        <div class='resizer top-left'></div>
-                        <div class='resizer top-right'></div>
-                        <div class='resizer bottom-left'></div>
-                        <div class='resizer bottom-right'></div>
+
                     </div>
                 </div>
             </div>
@@ -73,43 +70,43 @@
                             <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
                         </div>
                     </section>
-                    <!-- ! ----------------------------- translateY ------------------------------ ! -->
+                    <!-- ! ------------------------------- scaleX -------------------------------- ! -->
                     <section class="col-12 p-0 mt-3">
-                        <!-- ! ------------------------- translateY and plus ------------------------- ! -->
+                        <!-- ! --------------------------- scaleX and plus --------------------------- ! -->
                         <div class="d-flex align-items-center justify-content-between">
-                            <span class="translateY-text">translateY</span>
-                            <span class="translateY-icon translateY-plus-icon"><i class="bi bi-plus-square"></i></span>
+                            <span class="scaleX-text">scaleX</span>
+                            <span class="scaleX-icon scaleX-plus-icon"><i class="bi bi-plus-square"></i></span>
                         </div>
-                        <!-- ! -------------------- translateX and translateY box -------------------- ! -->
-                        <div class="translate-x-y-box"></div>
+                        <!-- ! -------------------------- scaleX and scaleY -------------------------- ! -->
+                        <div class="scale-x-y-box"></div>
                     </section>
                     <!-- ! --------------------------- properties box ---------------------------- ! -->
                     <section class="col-12 property-box d-flex p-0 mt-3">
-                        <!-- ! ------------------------ properties translateX ------------------------ ! -->
-                        <div class="properties-translateX-box col-12">
+                        <!-- ! -------------------------- properties scaleY -------------------------- ! -->
+                        <div class="properties-scaleY-box col-12">
                             <div class="col-12 d-flex justify-content-between">
-                                <!-- ! -------------------------- translateX input --------------------------- ! -->
+                                <!-- ! ---------------------------- scaleY input ----------------------------- ! -->
                                 <div class="input-group border-bottom">
                                     <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
-                                        <i class="bi bi-arrow-left-right"></i>
+                                        <i class="bi bi-zoom-in"></i>
                                     </span>
-                                    <input type="text" class="form-control translateX-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="translateX">
+                                    <input type="text" class="form-control scaleY-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleY">
                                 </div>
                             </div>
-                            <h6 class="valdiation-inputs-elem translateX-validation-elem mt-3 mb-0 text-white"></h6>
+                            <h6 class="valdiation-inputs-elem scaleY-validation-elem mt-3 mb-0 text-white"></h6>
                         </div>
-                        <!-- ! ------------------------ properties translateY ------------------------ ! -->
-                        <div class="properties-translateY-box col-12">
+                        <!-- ! -------------------------- properties scaleX -------------------------- ! -->
+                        <div class="properties-scaleX-box col-12">
                             <div class="col-12 d-flex justify-content-between">
-                                <!-- ! -------------------------- translateY input --------------------------- ! -->
+                                <!-- ! ---------------------------- scaleX input ----------------------------- ! -->
                                 <div class="input-group border-bottom">
                                     <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
-                                        <i class="bi bi-arrow-down-up"></i>
+                                        <i class="bi bi-zoom-in"></i>
                                     </span>
-                                    <input type="text" class="form-control translateY-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="translateY">
+                                    <input type="text" class="form-control scaleX-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleX">
                                 </div>
                             </div>
-                            <h6 class="valdiation-inputs-elem translateY-validation-elem mt-3 mb-0 text-white"></h6>
+                            <h6 class="valdiation-inputs-elem scaleX-validation-elem mt-3 mb-0 text-white"></h6>
                         </div>
                     </section>
                 </main>
@@ -128,7 +125,6 @@
     </div>
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
-    <script type="module" src="public/content/js/translateX-tool.js"></script>
-    <script type="module" src="public/content/js/resizer.js"></script>
+    <script src="public/content/js/scaleY-tool.js"></script>
 </body>
 </html>

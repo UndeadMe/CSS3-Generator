@@ -257,7 +257,7 @@ const checkInputs = (e) => {
             createDH_box(typeBox)
             uploadShadowDataInDom(true)
             activeAllInputs(true)
-            typeEffectIcon.innerHTML = '<i class="bi bi-x-square"></i>'
+            typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
             if (typeBox === "defaultBox") {
                 propertiesNoHoverBox.style.marginLeft = 0
                 addStyleToResizable(false)
@@ -419,7 +419,7 @@ typeEffectIcon.addEventListener("click", () => {
             } else {
                 Shadow.isHover = true
                 createDH_box("defaultBox")
-                typeEffectIcon.innerHTML = '<i class="bi bi-x-square"></i>'
+                typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
             }
         } else 
             alert("Please enter the information correctly")
