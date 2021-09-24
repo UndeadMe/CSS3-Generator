@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Generator - ScaleX</title>
+
+    <!-- ! ------------------------------ fav icon ------------------------------- ! -->
+    <link rel="icon" href="public/content/img/css-img/css.png" sizes="any">
+
+    <!-- ! -------------------------------- links -------------------------------- ! -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="node_modules/@simonwep/pickr/dist/themes/classic.min.css">
+    <link rel="stylesheet" href="public/content/css/scaleX-tool.css">
+</head>
+<body>
+    <!-- ! ------------------------------- sidebar ------------------------------- ! -->
+    <aside class="sidebar d-flex flex-column align-items-center">
+        <!-- ! ---------------------------- sidebar dots ----------------------------- ! -->
+        <div class="sidebar-dots-box">
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+        </div>
+        <!-- ! ---------------------------- sidebar icons ---------------------------- ! -->
+        <div class="sidebar-icons-box">
+            <ul class="list-unstyled p-0 m-0 w-100">
+                <li class="sidebar-icon-item">
+                    <a href="home.html" class="sidebar-icon-link">
+                        <i class="bi bi-house"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- ! -------------------------------- wrap --------------------------------- ! -->
+    <div class="wrap">
+        <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
+        <div class="wrap-left-box">
+            <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
+            <div class="resizable-container">
+                <!-- ! ---------------------------- resizable box ---------------------------- ! -->
+                <div class="resizable">
+                    <div class="resizers">
+                        <div class='resizer top-left'></div>
+                        <div class='resizer top-right'></div>
+                        <div class='resizer bottom-left'></div>
+                        <div class='resizer bottom-right'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ! --------------------------- wrap right box ---------------------------- ! -->
+        <div class="wrap-right-box">
+            <div class="pannel p-3">
+                <!-- ! ---------------------------- header pannel ---------------------------- ! -->
+                <header class="header-pannel d-flex justify-content-between align-items-center">
+                    <h3 class="header-pannel-heading p-0 m-0">pannel</h3>
+                    <span class="header-pannel-heading-icon">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+                </header>
+                <!-- ! ----------------------------- main pannel ----------------------------- ! -->
+                <main>
+                    <!-- ! ---------------------- element class name input ----------------------- ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <h6 class="text-white text-capitalize mb-2">please complete the field below. You are allowed to enter up to 30 letters</h6>
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text element-class-name-text-icon border-0 bg-transparent p-0"><i class="bi bi-cursor-text"></i></span>
+                            <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
+                        </div>
+                    </section>
+                    <!-- ! -------------------- scaleY and scaleZ and scale3D -------------------- ! -->
+                    <section class="col-12 p-0 mt-4">
+                        <div class="scales-propertie-sec">
+                            <div class="scale-propertie-box w-100 d-flex justify-content-between">
+                                <span>scale propertie</span>
+                                <span class="scales-propertie-arrow-down"><i class="bi bi-caret-down"></i></span>
+                            </div>
+                            <div class="scales-propertie-menu">
+                                <ul class="list-unstyled p-0 m-0">
+                                    <li class="scales-propertie-menu-item active">
+                                        scaleX
+                                    </li>
+                                    <li class="scales-propertie-menu-item">
+                                        scaleY
+                                    </li>
+                                    <li class="scales-propertie-menu-item">
+                                        scaleZ
+                                    </li>
+                                    <li class="scales-propertie-menu-item">
+                                        scale3D
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- ! --------------------------- properties box ---------------------------- ! -->
+                    <section class="col-12 property-box d-flex p-0 mt-4">
+                        <!-- ! -------------------------- properties scaleX -------------------------- ! -->
+                        <div class="properties-scaleX-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! ---------------------------- scaleX input ----------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </span>
+                                    <input type="text" class="form-control scaleX-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleX">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem scaleX-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                        <!-- ! -------------------------- properties scaleY -------------------------- ! -->
+                        <div class="properties-scaleY-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! ---------------------------- scaleY input ----------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </span>
+                                    <input type="text" class="form-control scaleY-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleY">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem scaleY-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                        <!-- ! -------------------------- properties scaleZ -------------------------- ! -->
+                        <div class="properties-scaleZ-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! ---------------------------- scaleZ input ----------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </span>
+                                    <input type="text" class="form-control scaleZ-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scaleZ">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem scaleZ-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                        <!-- ! ------------------------- properties scale3D -------------------------- ! -->
+                        <div class="properties-scale3D-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! ---------------------------- scale3D input ---------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </span>
+                                    <input type="text" class="form-control scale3D-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="scale3D">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem scale3D-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                    </section>
+                </main>
+                <!-- ! ---------------------------- footer pannel ---------------------------- ! -->
+                <footer class="mt-3">
+                    <button class="css-code-btn text-capitalize border-0 shadow-lg">css code</button>
+                </footer>
+                <!-- ! ---------------------------- generate-box ----------------------------- ! -->
+                <div class="generate-wrap-box">
+                    <div class="generate-box">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ! ------------------------------- scripts ------------------------------- ! -->
+</body>
+</html>
