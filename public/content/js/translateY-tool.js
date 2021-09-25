@@ -1,4 +1,9 @@
 import { makeResizableElem } from "./resizer.js"
+import * as functions from "./functions.js";
+
+makeResizableElem(".resizable")
+functions.disableAllInputs(true , ["translateX-inp"] , ["translateY-inp"])
+functions.disableAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
 
 //? get elements
 const elemClassNameInp = document.querySelector(".element-class-name-input")
@@ -30,8 +35,6 @@ let Translate = {
     }
 }
 
-makeResizableElem(".resizable")
-
 const checkElemClassNameInput = (e) => {
     let regexCode = /^[a-zA-Z" "]{1,30}$/g
     let regexResult = regexCode.test(e.target.value)
@@ -44,57 +47,34 @@ const checkElemClassNameInput = (e) => {
         if (Translate.initTranslateX) {
             translateXPlusIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
             if (Translate.nowTranslate === "translateY") {
-                activeAllInputs(false)
-                uploadTranslateDomInInputs(false)
+                functions.activeAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
+                functions.uploadDataInInputs(false, ["translateX-inp"], ["translateY-inp"], Translate.box.translateY)
                 checkValidateInput(translateY_inp.value , false)
                 append_TX_TY_Box("translateY")
             } else {
-                activeAllInputs(true)
-                uploadTranslateDomInInputs(true)
+                functions.activeAllInputs(true, ["translateX-inp"] , ["translateY-inp"])
+                functions.uploadDataInInputs(true, ["translateX-inp"], ["translateY-inp"], Translate.box.translateX)
                 checkValidateInput(translateX_inp.value , true)
                 append_TX_TY_Box("translateX")
             }
         } else {
-            activeAllInputs(false)
-            uploadTranslateDomInInputs(false)
+            functions.activeAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
+            functions.uploadDataInInputs(false, ["translateX-inp"], ["translateY-inp"], Translate.box.translateY)
             checkValidateInput(translateY_inp.value , false)
         }
 
     } else {
         Translate.isInit = false
-        disableAllInputs(false)
-        removeTranslateDataFromInputs(false)
+        functions.disableAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
+        functions.removeDataFromInputs(false , ["translateX-inp"] , ["translateY-inp"])
         removeStyleFromResizable(false)
-        disableAllInputs(true)
-        removeTranslateDataFromInputs(true)
+        functions.disableAllInputs(true, ["translateX-inp"] , ["translateY-inp"])
+        functions.removeDataFromInputs(true , ["translateX-inp"] , ["translateY-inp"])
         removeStyleFromResizable(true)
         e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
         wrapTranslateBoxs.innerText = ""
         translateXPlusIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
     }
-}
-
-//? disable all inputs 
-const disableAllInputs = (initTranslateX) => {
-    initTranslateX ? translateX_inp.disabled = true : translateY_inp.disabled = true
-}
-
-disableAllInputs(true)
-disableAllInputs(false)
-
-//? active all inputs
-const activeAllInputs = (initTranslateX) => {
-    initTranslateX ? translateX_inp.disabled = false : translateY_inp.disabled = false
-}
-
-//? upload translate data in inputs
-const uploadTranslateDomInInputs = (initTranslateX) => {
-    initTranslateX ? translateX_inp.value = Translate.box.translateX : translateY_inp.value = Translate.box.translateY
-}
-
-//? remove translate data from inputs
-const removeTranslateDataFromInputs = (initTranslateX) => {
-    initTranslateX ? translateX_inp.value = "" : translateY_inp.value = ""
 }
 
 //? check translateX and translateY validation
@@ -163,8 +143,8 @@ const append_TX_TY_Box = (typeOfTranslate = "translateY") => {
 
             wrapTranslateBoxs.innerText = ""
 
-            const TY_Box = createTY_Box(activeTranslateY)
-            const TX_Box = createTX_Box(activeTranslateX)
+            const TY_Box = functions.createDataBox(activeTranslateY, "translateY-box", "translateY", switchToTranslateBox)
+            const TX_Box = functions.createDataBox(activeTranslateX, "translateX-box", "translateX", switchToTranslateBox)
 
             wrapTranslateBoxs.append(TY_Box,TX_Box)
 
@@ -172,26 +152,6 @@ const append_TX_TY_Box = (typeOfTranslate = "translateY") => {
             alert("please enter the information correctly")
     } else 
         alert("please complete the fields")
-}
-
-//? create translateY box
-const createTY_Box = (isActive = false) => {
-    const TY_Box = document.createElement("div")
-    TY_Box.className = "translateY-box"
-    isActive ? TY_Box.classList.add("active") : TY_Box.classList.remove("active")
-    TY_Box.innerHTML = "translateY"
-    TY_Box.addEventListener("click" , () => switchToTranslateBox(TY_Box.innerHTML))
-    return TY_Box
-}
-
-//? create translateX box
-const createTX_Box = (isActive = false) => {
-    const TX_Box = document.createElement("div")
-    TX_Box.className = "translateX-box"
-    isActive ? TX_Box.classList.add("active") : TX_Box.classList.remove("active")
-    TX_Box.innerHTML = "translateX"
-    TX_Box.addEventListener("click" , () => switchToTranslateBox(TX_Box.innerHTML))
-    return TX_Box
 }
 
 //? switch to translate boxes
@@ -211,8 +171,8 @@ const switchToTranslateBox = (nameBox) => {
         
                 Translate.nowTranslate = "translateY"
                 
-                uploadTranslateDomInInputs(false)
-                activeAllInputs(false)
+                functions.uploadDataInInputs(false, ["translateX-inp"], ["translateY-inp"], Translate.box.translateY)
+                functions.activeAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
             } else 
                 alert("you need to enter the information correctly")
         } else {
@@ -226,8 +186,8 @@ const switchToTranslateBox = (nameBox) => {
         
                 Translate.nowTranslate = "translateX"
         
-                uploadTranslateDomInInputs(Translate.initTranslateX)
-                activeAllInputs(Translate.initTranslateX)
+                functions.uploadDataInInputs(Translate.initTranslateX, ["translateX-inp"], ["translateY-inp"], Translate.box.translateX)
+                functions.activeAllInputs(Translate.initTranslateX, ["translateX-inp"] , ["translateY-inp"])
             } else 
                 alert("you need to enter the information correctly")
         }
@@ -266,8 +226,8 @@ translateXPlusIcon.addEventListener("click", () => {
                 propertiesTranslateX.style.transform = "translateX(318px)"
             }
     
-            uploadTranslateDomInInputs(false)
-            activeAllInputs(false)
+            functions.uploadDataInInputs(false, ["translateX-inp"], ["translateY-inp"], Translate.box.translateY)
+            functions.activeAllInputs(false, ["translateX-inp"] , ["translateY-inp"])
             checkValidateInput(translateY_inp.value , false)
 
             Translate.nowTranslate = "translateY"

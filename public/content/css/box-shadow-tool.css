@@ -198,7 +198,6 @@ body {
     background: var(--prety-blue);
     width: 250px;
     height: 250px;
-    border-radius: 0;
     position: relative;
     border-radius: 50px;
     border: 1px solid var(--light-border);

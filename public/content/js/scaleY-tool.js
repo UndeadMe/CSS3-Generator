@@ -1,3 +1,8 @@
+import * as functions from "./functions.js"
+
+functions.disableAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
+functions.disableAllInputs(true, ["scaleX-inp"], ["scaleY-inp"])
+
 //? get elements
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const scaleY_inp = document.querySelector(".scaleY-inp")
@@ -41,57 +46,34 @@ const checkElemClassNameInput = (e) => {
         if (Scale.initScaleX) {
             scaleXPlusIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
             if (Scale.nowScale === "scaleY") {
-                activeAllInputs(false)
-                uploadScaleDomInInputs(false)
+                functions.activeAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
+                functions.uploadDataInInputs(false, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleY)
                 checkValidateInput(scaleY_inp.value , false)
                 append_SX_SY_Box("scaleY")
             } else {
-                activeAllInputs(true)
-                uploadScaleDomInInputs(true)
+                functions.activeAllInputs(true, ["scaleX-inp"], ["scaleY-inp"])
+                functions.uploadDataInInputs(true, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleX)
                 checkValidateInput(scaleX_inp.value , true)
                 append_SX_SY_Box("scaleX")
             }
         } else {
-            activeAllInputs(false)
-            uploadScaleDomInInputs(false)
+            functions.activeAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
+            functions.uploadDataInInputs(false, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleY)
             checkValidateInput(scaleY_inp.value , false)
         }
 
     } else {
         Scale.isInit = false
-        disableAllInputs(false)
-        removeScaleDataFromInputs(false)
+        functions.disableAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
+        functions.removeDataFromInputs(false, ["scaleX-inp"], ["scaleY-inp"])
         removeStyleFromResizable(false)
-        disableAllInputs(true)
-        removeScaleDataFromInputs(true)
+        functions.disableAllInputs(true, ["scaleX-inp"], ["scaleY-inp"])
+        functions.removeDataFromInputs(true, ["scaleX-inp"], ["scaleY-inp"])
         removeStyleFromResizable(true)
         e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
         wrapScaleBoxs.innerText = ""
         scaleXPlusIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
     }
-}
-
-//? disable all inputs 
-const disableAllInputs = (initScaleX) => {
-    initScaleX ? scaleX_inp.disabled = true : scaleY_inp.disabled = true
-}
-
-disableAllInputs(true)
-disableAllInputs(false)
-
-//? active all inputs
-const activeAllInputs = (initScaleX) => {
-    initScaleX ? scaleX_inp.disabled = false : scaleY_inp.disabled = false
-}
-
-//? upload scale data in inputs
-const uploadScaleDomInInputs = (initScaleX) => {
-    initScaleX ? scaleX_inp.value = Scale.box.scaleX : scaleY_inp.value = Scale.box.scaleY
-}
-
-//? remove scale data from inputs
-const removeScaleDataFromInputs = (initScaleX) => {
-    initScaleX ? scaleX_inp.value = "" : scaleY_inp.value = ""
 }
 
 //? check scaleX and scaleY validation
@@ -160,8 +142,8 @@ const append_SX_SY_Box = (typeOfScale = "scaleY") => {
 
             wrapScaleBoxs.innerText = ""
 
-            const SY_Box = createSY_Box(activeScaleY)
-            const SX_Box = createSX_Box(activeScaleX)
+            const SY_Box = functions.createDataBox(activeScaleY, "scaleY-box", "scaleY", switchToScaleBox)
+            const SX_Box = functions.createDataBox(activeScaleX, "scaleX-box", "scaleX", switchToScaleBox)
 
             wrapScaleBoxs.append(SY_Box,SX_Box)
 
@@ -169,26 +151,6 @@ const append_SX_SY_Box = (typeOfScale = "scaleY") => {
             alert("please enter the information correctly")
     } else 
         alert("please complete the fields")
-}
-
-//? create scaleY box
-const createSY_Box = (isActive = false) => {
-    const SY_Box = document.createElement("div")
-    SY_Box.className = "scaleY-box"
-    isActive ? SY_Box.classList.add("active") : SY_Box.classList.remove("active")
-    SY_Box.innerHTML = "scaleY"
-    SY_Box.addEventListener("click" , () => switchToScaleBox(SY_Box.innerHTML))
-    return SY_Box
-}
-
-//? create scaleX box
-const createSX_Box = (isActive = false) => {
-    const SX_Box = document.createElement("div")
-    SX_Box.className = "scaleX-box"
-    isActive ? SX_Box.classList.add("active") : SX_Box.classList.remove("active")
-    SX_Box.innerHTML = "scaleX"
-    SX_Box.addEventListener("click" , () => switchToScaleBox(SX_Box.innerHTML))
-    return SX_Box
 }
 
 //? switch to scale boxes
@@ -208,8 +170,8 @@ const switchToScaleBox = (nameBox) => {
         
                 Scale.nowScale = "scaleY"
                 
-                uploadScaleDomInInputs(false)
-                activeAllInputs(false)
+                functions.uploadDataInInputs(false, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleY)
+                functions.activeAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
             } else 
                 alert("you need to enter the information correctly")
         } else {
@@ -223,8 +185,8 @@ const switchToScaleBox = (nameBox) => {
         
                 Scale.nowScale = "scaleX"
         
-                uploadScaleDomInInputs(Scale.initScaleX)
-                activeAllInputs(Scale.initScaleX)
+                functions.uploadDataInInputs(Scale.initScaleX, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleX)
+                functions.activeAllInputs(Scale.initScaleX, ["scaleX-inp"], ["scaleY-inp"])
             } else {
                 alert("you need to enter the information correctly")
             }
@@ -263,8 +225,8 @@ scaleXPlusIcon.addEventListener("click", () => {
                 propertiesScaleX.style.transform = "translateX(318px)"
             }
     
-            uploadScaleDomInInputs(false)
-            activeAllInputs(false)
+            functions.uploadDataInInputs(false, ["scaleX-inp"], ["scaleY-inp"], Scale.box.scaleY)
+            functions.activeAllInputs(false, ["scaleX-inp"], ["scaleY-inp"])
             checkValidateInput(scaleY_inp.value , false)
 
             Scale.nowScale = "scaleY"
