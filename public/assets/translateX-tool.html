@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Generator - translateX</title>
+
+    <!-- ! ------------------------------ fav icon ------------------------------- ! -->
+    <link rel="icon" href="/public/content/img/css-img/css.png" sizes="any">
+
+    <!-- ! -------------------------------- links -------------------------------- ! -->
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/public/content/css/tools/translateX-tool.css">
+</head>
+<body>
+    <!-- ! ------------------------------- sidebar ------------------------------- ! -->
+    <aside class="sidebar d-flex flex-column align-items-center">
+        <!-- ! ---------------------------- sidebar dots ----------------------------- ! -->
+        <div class="sidebar-dots-box">
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+        </div>
+        <!-- ! ---------------------------- sidebar icons ---------------------------- ! -->
+        <div class="sidebar-icons-box">
+            <ul class="list-unstyled p-0 m-0 w-100">
+                <li class="sidebar-icon-item">
+                    <a href="/home.html" class="sidebar-icon-link">
+                        <i class="bi bi-house"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- ! -------------------------------- wrap --------------------------------- ! -->
+    <div class="wrap">
+        <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
+        <div class="wrap-left-box">
+            <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
+            <div class="resizable-container">
+                <!-- ! ---------------------------- resizable box ---------------------------- ! -->
+                <div class="resizable">
+                    <div class="resizers">
+                        <div class='resizer top-left'></div>
+                        <div class='resizer top-right'></div>
+                        <div class='resizer bottom-left'></div>
+                        <div class='resizer bottom-right'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ! --------------------------- wrap right box ---------------------------- ! -->
+        <div class="wrap-right-box">
+            <div class="pannel p-3">
+                <!-- ! ---------------------------- header pannel ---------------------------- ! -->
+                <header class="header-pannel d-flex justify-content-between align-items-center">
+                    <h3 class="header-pannel-heading p-0 m-0">pannel</h3>
+                    <span class="header-pannel-heading-icon">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+                </header>
+                <!-- ! ----------------------------- main pannel ----------------------------- ! -->
+                <main>
+                    <!-- ! ---------------------- element class name input ----------------------- ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <h6 class="text-white text-capitalize mb-2">please complete the field below. You are allowed to enter up to 30 letters</h6>
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text element-class-name-text-icon border-0 bg-transparent p-0"><i class="bi bi-cursor-text"></i></span>
+                            <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
+                        </div>
+                    </section>
+                    <!-- ! ----------------------------- translateY ------------------------------ ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <!-- ! ------------------------- translateY and plus ------------------------- ! -->
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="translateY-text">translateY</span>
+                            <span class="translateY-icon translateY-plus-icon"><i class="bi bi-plus-square"></i></span>
+                        </div>
+                        <!-- ! -------------------- translateX and translateY box -------------------- ! -->
+                        <div class="translate-x-y-box"></div>
+                    </section>
+                    <!-- ! --------------------------- properties box ---------------------------- ! -->
+                    <section class="col-12 property-box d-flex p-0 mt-3">
+                        <!-- ! ------------------------ properties translateX ------------------------ ! -->
+                        <div class="properties-translateX-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! -------------------------- translateX input --------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-arrow-left-right"></i>
+                                    </span>
+                                    <input type="text" class="form-control translateX-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="translateX">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem translateX-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                        <!-- ! ------------------------ properties translateY ------------------------ ! -->
+                        <div class="properties-translateY-box col-12">
+                            <div class="col-12 d-flex justify-content-between">
+                                <!-- ! -------------------------- translateY input --------------------------- ! -->
+                                <div class="input-group border-bottom">
+                                    <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                        <i class="bi bi-arrow-down-up"></i>
+                                    </span>
+                                    <input type="text" class="form-control translateY-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="translateY">
+                                </div>
+                            </div>
+                            <h6 class="valdiation-inputs-elem translateY-validation-elem mt-3 mb-0 text-white"></h6>
+                        </div>
+                    </section>
+                </main>
+                <!-- ! ---------------------------- footer pannel ---------------------------- ! -->
+                <footer class="mt-3">
+                    <button class="css-code-btn text-capitalize border-0 shadow-lg">css code</button>
+                </footer>
+                <!-- ! ---------------------------- generate-box ----------------------------- ! -->
+                <div class="generate-wrap-box">
+                    <div class="generate-box">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ! ------------------------------- scripts ------------------------------- ! -->
+    <script type="module" src="/public/content/js/tools/translateX-tool.js"></script>
+    <script type="module" src="/public/content/js/modules/resizer.js"></script>
+    <script type="module" src="/public/content/js/modules/functions.js"></script>
+</body>
+</html>

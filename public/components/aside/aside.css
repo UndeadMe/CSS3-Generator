@@ -1,4 +1,4 @@
-@import url(../custom/custom.css);
+@import url(/public/components/custom/custom.css);
 .sidebar {
     position: fixed;
     top: 0;
