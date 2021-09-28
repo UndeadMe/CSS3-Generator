@@ -17,15 +17,16 @@ const checkInit = (e) => {
     
     if (regexResult) {
         Blur.isInit = true
-        e.target.parentElement.previousElementSibling.innerHTML = ""
+        Blur.elemClass = e.target.value.split(" ").join("-")
         uploadBlurDataInInputs()
         activeAllinputs()
         checkValidateInputs(blurInp.value)
+        e.target.parentElement.previousElementSibling.innerHTML = ""
     } else {
         Blur.isInit = false
-        e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
         removeBlurDataFromInputs()
         disableAllInputs()
+        e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
     }
 }
 
@@ -62,7 +63,7 @@ const checkValidateInputs = (value) => {
         addStyleToImage()
     } else {
         Blur.blurValidate = false
-        validationBlurElem.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"
+        validationBlurElem.innerHTML = "Please select a positive number from 0 to 100"
     }
     
 }
