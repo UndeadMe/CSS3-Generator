@@ -6,7 +6,7 @@ const previewImage = document.querySelector(".preview-image-box img")
 let Blur = {
     elemClass: null,
     isInit: false,
-    blur : 1,
+    blur : 3,
     blurValidate : true
 }
 
@@ -31,25 +31,22 @@ const checkInit = (e) => {
 }
 
 //? disable allInputs
-const disableAllInputs = () => {
+const disableAllInputs = () =>
     blurInp.disabled = true
-}
+
 disableAllInputs()
 
 //? active all inputs
-const activeAllinputs = () => {
+const activeAllinputs = () =>
     blurInp.disabled = false
-}
 
 //? upload blur data in inputs
-const uploadBlurDataInInputs = () => {
+const uploadBlurDataInInputs = () =>
     blurInp.value = Blur.blur
-}
 
 //? remove blur data from inputs
-const removeBlurDataFromInputs = () => {
+const removeBlurDataFromInputs = () =>
     blurInp.value = ""
-}
 
 //? check validation
 const checkValidateInputs = (value) => {
@@ -69,9 +66,10 @@ const checkValidateInputs = (value) => {
 }
 
 //? add style to image
-const addStyleToImage = () => {
+const addStyleToImage = () => 
     previewImage.style.filter = `blur(${Blur.blur}px)`
-}
+
+addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 blurInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))

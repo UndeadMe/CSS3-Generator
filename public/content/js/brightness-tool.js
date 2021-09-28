@@ -6,7 +6,7 @@ const previewImage = document.querySelector(".preview-image-box img")
 let Brightness = {
     elemClass: null,
     isInit: false,
-    brightness : 1,
+    brightness : 2,
     brightnessValidate : true
 }
 
@@ -68,6 +68,8 @@ const checkValidateInputs = (value) => {
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `brightness(${Brightness.brightness})`
+
+addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 brightnessInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))

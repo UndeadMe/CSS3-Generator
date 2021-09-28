@@ -27,7 +27,6 @@
 .preview-image-box img {
     width: 812.51px;
     height: 100%;
-    filter: blur(3px);
 }
 .preview-border {
     position: absolute;
