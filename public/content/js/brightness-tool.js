@@ -30,7 +30,7 @@ const checkInit = (e) => {
     }
 }
 
-//? disable allInputs
+//? disable all inputs
 const disableAllInputs = () => 
     brightnessInp.disabled = true
 
@@ -40,11 +40,11 @@ disableAllInputs()
 const activeAllinputs = () =>
     brightnessInp.disabled = false
 
-//? upload blur data in inputs
+//? upload brightness data in inputs
 const uploadBrightnessDataInInputs = () =>
     brightnessInp.value = Brightness.brightness
 
-//? remove blur data from inputs
+//? remove brightness data from inputs
 const removeBrightnessDataFromInputs = () => 
     brightnessInp.value = ""
 
