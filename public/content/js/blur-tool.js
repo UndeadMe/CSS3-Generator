@@ -50,7 +50,7 @@ const removeBlurDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
+    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
     const regexResult = regexCode.test(value)
 
     if (regexResult) {
