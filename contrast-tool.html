@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Generator - contrast</title>
+
+    <!-- ! ------------------------------ fav icon ------------------------------- ! -->
+    <link rel="icon" href="public/content/img/css-img/css.png" sizes="any">
+
+    <!-- ! -------------------------------- links -------------------------------- ! -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="public/content/css/contrast-tool.css">
+</head>
+<body>
+    <!-- ! ------------------------------- sidebar ------------------------------- ! -->
+    <aside class="sidebar d-flex flex-column align-items-center">
+        <!-- ! ---------------------------- sidebar dots ----------------------------- ! -->
+        <div class="sidebar-dots-box">
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+        </div>
+        <!-- ! ---------------------------- sidebar icons ---------------------------- ! -->
+        <div class="sidebar-icons-box">
+            <ul class="list-unstyled p-0 m-0 w-100">
+                <li class="sidebar-icon-item">
+                    <a href="home.html" class="sidebar-icon-link">
+                        <i class="bi bi-house"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- ! -------------------------------- wrap --------------------------------- ! -->
+    <div class="wrap">
+        <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
+        <div class="wrap-left-box">
+            <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
+            <div class="img-preview-container">
+                <div class="image-preview">
+                    <!-- ! ------------------------------ image box ------------------------------ ! -->
+                    <div class="main-image">
+                        <img src="public/content/img/wallpaper/main-image.jpg" alt="main-image">
+                    </div>
+                    <!-- ! -------------------------- preview image box -------------------------- ! -->
+                    <div class="preview-image-box">
+                        <div class="preview-border"></div>
+                        <img src="public/content/img/wallpaper/main-image.jpg" alt="filter-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ! --------------------------- wrap right box ---------------------------- ! -->
+        <div class="wrap-right-box">
+            <div class="pannel p-3">
+                <!-- ! ---------------------------- header pannel ---------------------------- ! -->
+                <header class="header-pannel d-flex justify-content-between align-items-center">
+                    <h3 class="header-pannel-heading p-0 m-0">pannel</h3>
+                    <span class="header-pannel-heading-icon">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+                </header>
+                <!-- ! ----------------------------- main pannel ----------------------------- ! -->
+                <main>
+                    <!-- ! ---------------------- element class name input ----------------------- ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <h6 class="text-white text-capitalize mb-2">please complete the field below. You are allowed to enter up to 30 letters</h6>
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text element-class-name-text-icon border-0 bg-transparent p-0"><i class="bi bi-cursor-text"></i></span>
+                            <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
+                        </div>
+                    </section>
+                    <!-- ! --------------------------- properties box ---------------------------- ! -->
+                    <section class="col-12 property-box p-0 mt-4">
+                        <!-- ! ---------------------------- contrast inp ----------------------------- ! -->
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                <i class="bi bi-lightbulb"></i>
+                            </span>
+                            <input type="text" class="form-control contrast-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="contrast">
+                        </div>
+                        <h6 class="valdiation-inputs-elem contrast-validation-elem mt-3 mb-0 text-white"></h6>
+                    </section>
+                </main>
+                <!-- ! ---------------------------- footer pannel ---------------------------- ! -->
+                <footer class="mt-5">
+                    <button class="css-code-btn text-capitalize border-0 shadow-lg">css code</button>
+                </footer>
+                <!-- ! ---------------------------- generate-box ----------------------------- ! -->
+                <div class="generate-wrap-box">
+                    <div class="generate-box">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ! ------------------------------- scripts ------------------------------- ! -->
+    <script src="public/content/js/image-preview.js"></script>
+</body>
+</html>
