@@ -6,7 +6,7 @@ body {
     display: flex;
 }
 /* ! -------------------------------- triangle -------------------------------- ! */
-.trianlge {
+.triangle {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@ body {
     height: 80%;
     z-index: -1;
 }
-.trianlge img {
+.triangle img {
     width: 100%;
     height: 100%;
 }
@@ -207,29 +207,29 @@ body {
     }
 }
 @media screen and (min-width : 1400px) {
-    .trianlge {
+    .triangle {
         width: 80%;
         height: 100%;
     }
 }
 @media screen and (min-width : 1460px) {
-    .trianlge {
+    .triangle {
         width: 70%;
         height: 100%;
     }
 }
 @media screen and (max-width : 1200px) {
-    .trianlge {
+    .triangle {
         width: 70%;
     }
 }
 @media screen and (max-width : 992px) {
-    .trianlge {
+    .triangle {
         width: 80%;
     }
 }
 @media screen and (max-width : 575px) {
-    .trianlge {
+    .triangle {
         height: 50%;
     }
 }
