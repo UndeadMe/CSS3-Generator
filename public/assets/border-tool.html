@@ -88,22 +88,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6 class="valdiation-inputs-elem mt-3 mb-0"></h6>
+                            <h6 class="valdiation-inputs-elem mt-3 text-white mb-0"></h6>
                             <!-- ! ------------------------------ style box ------------------------------ ! -->
                             <div class="col-12 mt-4">
                                 <div class="style-container">
 
                                     <div class="style-box d-flex justify-content-between shadow">
-                                        <span>solid</span>
-                                        <span><i class="bi bi-caret-down"></i></span>
+                                        <span>none</span>
+                                        <span class="style-box-flash"><i class="bi bi-caret-down"></i></span>
                                     </div>
 
                                     <div class="style-menu-box">
                                         <ul class="list-unstyled p-0 m-0">
-                                            <li class="style-menu-item-box">test</li>
-                                            <li class="style-menu-item-box">test</li>
-                                            <li class="style-menu-item-box">test</li>
-                                            <li class="style-menu-item-box">test</li>
+                                            <li class="style-menu-item-box active">none</li>
+                                            <li class="style-menu-item-box">hidden</li>
+                                            <li class="style-menu-item-box">dotted</li>
+                                            <li class="style-menu-item-box">dashed</li>
+                                            <li class="style-menu-item-box">solid</li>
+                                            <li class="style-menu-item-box">double</li>
+                                            <li class="style-menu-item-box">groove</li>
+                                            <li class="style-menu-item-box">ridge</li>
+                                            <li class="style-menu-item-box">inset</li>
+                                            <li class="style-menu-item-box">outset</li>
                                         </ul>
                                     </div>
 
@@ -113,7 +119,7 @@
                             <div class="col-12 p-0 m-0">
                                 <div class="color-picker-box d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <button class="color-picker-no-hover"></button>
+                                        <button class="color-picker"></button>
                                         <span class="ms-3 choose-color-picker-text">Fill</span>
                                     </div>
                                 </div>
@@ -137,6 +143,7 @@
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
     <script src="/node_modules/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script type="module" src="/public/content/js/tools/border-tool.js"></script>
     <script type="module" src="/public/content/js/modules/pickr.js"></script>
     <script type="module" src="/public/content/js/modules/resizer.js"></script>
 </body>
