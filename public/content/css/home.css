@@ -112,9 +112,8 @@ body {
     grid-template-columns: repeat(auto-fit,240px);
     grid-template-rows: auto;
     grid-row-gap: 20px;
-    display: flex;
+    grid-column-gap: 50px;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 .tools-row-title {
     color: var(--minimal-white);
@@ -181,6 +180,22 @@ body {
 @media screen and ( max-width : 1400px ) {
     .tools-row-box {
         width: 100%;
+    }
+    .tools-row {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+@media screen and ( max-width : 1200px ) {
+    .tools-row {
+        grid-column-gap: 10px;
+        justify-content: flex-start;
+    }
+}
+@media screen and ( max-width : 992px ) {
+    .tools-row {
+        grid-column-gap: 0;
+        justify-content: space-between;
     }
 }
 @media screen and ( max-width : 768px ) {
