@@ -53,12 +53,14 @@ const checkInit = (e) => {
 //? disable all inputs
 const disableAllInputs = () => {
     widthInp.disabled = true
+    colorPickr.disabled = true
 }
 disableAllInputs()
 
 //? active all inputs
 const activeAllinputs = () => {
     widthInp.disabled = false
+    colorPickr.disabled = false
 }
 
 //? upload contrast data in inputs
