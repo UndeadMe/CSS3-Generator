@@ -97,7 +97,7 @@ body {
 /* ! ------------------------------- media query ------------------------------ ! */
 @media screen and ( max-width : 904px ) {
     body {
-        height: 100vh;
+        height: auto !important;
     }
     .wrap {
         flex-direction: column !important;
@@ -127,13 +127,13 @@ body {
     }
 }
 @media screen and ( max-width : 408px ) {
-    body {
-        height: 100vh !important;
-    }
     .wrap-left-box {
         padding: 5%;
     }
     .comming-soon-text {
         font-size: 2rem;
+    }
+    .validation-text {
+        font-size: 1rem;
     }
 }
