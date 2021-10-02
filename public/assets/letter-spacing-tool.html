@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Generator - SkewX</title>
+
+    <!-- ! ------------------------------ fav icon ------------------------------- ! -->
+    <link rel="icon" href="/public/content/img/css-img/css.png" sizes="any">
+
+    <!-- ! -------------------------------- links -------------------------------- ! -->
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/public/content/css/tools/letter-spacing-tool.css">
+</head>
+<body>
+    <!-- ! ------------------------------- sidebar ------------------------------- ! -->
+    <aside class="sidebar d-flex flex-column align-items-center">
+        <!-- ! ---------------------------- sidebar dots ----------------------------- ! -->
+        <div class="sidebar-dots-box">
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+            <div class="sidebar-dot"></div>
+        </div>
+        <!-- ! ---------------------------- sidebar icons ---------------------------- ! -->
+        <div class="sidebar-icons-box">
+            <ul class="list-unstyled p-0 m-0 w-100">
+                <li class="sidebar-icon-item">
+                    <a href="/home.html" class="sidebar-icon-link">
+                        <i class="bi bi-house"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- ! -------------------------------- wrap --------------------------------- ! -->
+    <div class="wrap">
+        <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
+        <div class="wrap-left-box">
+            <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
+            <div class="resizable-container">
+                <h1 class="text">
+                    CSS3 generator
+                </h1>
+            </div>
+        </div>
+        <!-- ! --------------------------- wrap right box ---------------------------- ! -->
+        <div class="wrap-right-box">
+            <div class="pannel p-3">
+                <!-- ! ---------------------------- header pannel ---------------------------- ! -->
+                <header class="header-pannel d-flex justify-content-between align-items-center">
+                    <h3 class="header-pannel-heading p-0 m-0">pannel</h3>
+                    <span class="header-pannel-heading-icon">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+                </header>
+                <!-- ! ----------------------------- main pannel ----------------------------- ! -->
+                <main>
+                    <!-- ! ---------------------- element class name input ----------------------- ! -->
+                    <section class="col-12 p-0 mt-3">
+                        <h6 class="text-white text-capitalize mb-2">please complete the field below. You are allowed to enter up to 30 letters</h6>
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text element-class-name-text-icon border-0 bg-transparent p-0"><i class="bi bi-cursor-text"></i></span>
+                            <input class="form-control element-class-name-input bg-transparent shadow-none border-0" type="text" placeholder="type element class name">
+                        </div>
+                    </section>
+                    <!-- ! --------------------------- properties box ---------------------------- ! -->
+                    <section class="col-12 property-box p-0 mt-4">
+                        <!-- ! ------------------------- letter spacing inp -------------------------- ! -->
+                        <h5 class="text-white mb-3 pt-1 text-capitalize">Calculated based on pixel</h4>
+                        <div class="input-group border-bottom">
+                            <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
+                                <svg class="w-64 h-64" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12v-5.5a2.5 2.5 0 0 1 5 0v5.5m0 -4h-5"></path>
+                                    <path d="M13 4l3 8l3 -8"></path>
+                                    <path d="M5 18h14"></path>
+                                    <path d="M17 20l2 -2l-2 -2"></path>
+                                    <path d="M7 16l-2 2l2 2"></path>
+                                </svg>
+                            </span>
+                            <input type="text" class="form-control letter-spacing-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="letter spacing">
+                        </div>
+                        <h6 class="valdiation-inputs-elem letter-spacing-validation-elem mt-3 mb-0 text-white"></h6>
+                    </section>
+                </main>
+                <!-- ! ---------------------------- footer pannel ---------------------------- ! -->
+                <footer class="mt-4">
+                    <button class="css-code-btn text-capitalize border-0 shadow-lg">css code</button>
+                </footer>
+                <!-- ! ---------------------------- generate-box ----------------------------- ! -->
+                <div class="generate-wrap-box">
+                    <div class="generate-box">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ! ------------------------------- scripts ------------------------------- ! -->
+    <script src="/public/content/js/tools/letter-spacing-tool.js"></script>
+</body>
+</html>
