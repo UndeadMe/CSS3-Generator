@@ -1,0 +1,141 @@
+@import url(/public/components/aside/aside.css);
+/* ! ---------------------------------- body ---------------------------------- ! */
+body {
+    background : var(--home-gradient) ;
+    position: relative;
+    display: flex;
+    overflow-x: hidden;
+    height: 100vh;
+}
+/* ! ---------------------------------- wrap ---------------------------------- ! */
+.wrap {
+    display: flex;
+    width: 100%;
+}
+.wrap-left-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 100px;
+}
+.wrap-right-box {
+    width: 500px;
+}
+/* ! --------------------------------- pannel --------------------------------- wrap right box ! */
+.pannel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--sidebar-gradient);
+    border-left: 1px solid var(--light-border);
+    overflow: hidden;
+    z-index: 9999;
+}
+.pannel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 530px;
+    background-image: url(/public/content/img/pannel/pannel_back/pannel_back.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/* ! ------------------------------ pannel header ----------------------------- ! */
+.header-pannel-heading {
+    font-weight: bolder;
+    text-transform: capitalize;
+    color: var(--white);
+    font-size: 25px;
+}
+.header-pannel-heading-icon {
+    color: var(--white);
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+/* ! ------------------------ element class name input ------------------------ ! */
+.element-class-name-input {
+    color: var(--white) !important;
+}
+.element-class-name-input::placeholder {
+    color: var(--gray) !important;
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+.element-class-name-text-icon {
+    color: var(--white);
+}
+/* ! ----------------------------- properties box ----------------------------- ! */
+.properties-input {
+    color: var(--white) !important;
+}
+.properties-input::placeholder {
+    color: var(--gray) !important;
+    text-transform: capitalize;
+}
+/* ! ------------------------------ footer pannel ----------------------------- ! */
+.css-code-btn {
+    width: 100%;
+    border-radius: 5px;
+    background-color: var(--prety-blue);
+    color: var(--white);
+    padding: 10px 0;
+    font-size: 17px;
+}
+/* ! ------------------------------ generate box ------------------------------ ! */
+.generate-wrap-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+.generate-wrap-box.active {
+    visibility: visible;
+}
+.generate-wrap-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--one-c-dark);
+    opacity: 0.5;
+}
+.generate-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    background: var(--one-c-dark);
+    z-index: 10;
+    transition: 0.5s;
+}
+.generate-wrap-box.active .generate-box {
+    height: 73%;
+}
+/* ! --------------------------- resizable container -------------------------- ! wrap left box */
+.text-container {
+    width: 50%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.text {
+    font-size: 2rem ;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--white);
+    line-height: 70px;
+}
