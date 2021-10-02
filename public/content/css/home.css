@@ -130,7 +130,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: none;
     border-radius: 8px;
     padding: 15px 0;
     background-color : var(--matte-black) ;
@@ -175,6 +174,49 @@ body {
 }
 .tool-box-button span {
     margin-right: 12px;
+}
+/* ! ---------------------- tools comming soon upgrad box --------------------- ! */
+.tools-comming-soon-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 15px 20px;
+    background-color : var(--matte-black) ;
+    border: 1px groove var(--tool-border) ;
+    color: var(--white) !important;
+    position: relative;
+    overflow: hidden;
+    font-size: 20px;
+    box-shadow:  0 4px 10px var(--tool-shadow);
+    transition: transform .3s , border .5s ease-in;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+.tools-comming-soon-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 7px;
+    background: var(--matte-black);
+    filter: brightness(70%);
+}
+.tools-comming-soon-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 7px;
+    background-color: var(--tool-progress);
+    z-index: 1;
+    transition: .5s ease-in;
+}
+.tools-comming-soon-button:hover::after {
+    width: 100%;
 }
 /* ! ------------------------------- media query ------------------------------ ! */
 @media screen and ( max-width : 1400px ) {
