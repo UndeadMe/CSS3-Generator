@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Css Generator - Text Align</title>
+    <title>Css Generator - Text Transform</title>
 
     <!-- ! ------------------------------ fav icon ------------------------------- ! -->
     <link rel="icon" href="/public/content/img/css-img/css.png" sizes="any">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/public/content/css/tools/text-align-tool.css">
+    <link rel="stylesheet" href="/public/content/css/tools/text-transform-tool.css">
 </head>
 <body>
     <!-- ! ------------------------------- sidebar ------------------------------- ! -->
@@ -41,13 +41,8 @@
         <div class="wrap-left-box">
             <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
             <div class="text-container">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="arrow arrow-align-left"><i class="bi bi-arrow-left-square-fill"></i></span>
-                    <h4 class="text-capitalize align-title">change the parent direction</h4>
-                    <span class="arrow arrow-align-right"><i class="bi bi-arrow-right-square"></i></span>
-                </div>
-                <h1 class="text" style="direction: ltr;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nam provident, recusandae minus optio nobis.
+                <h1 class="text">
+                    lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 </h1>
             </div>
         </div>
@@ -73,24 +68,19 @@
                     </section>
                     <!-- ! --------------------------- properties box ---------------------------- ! -->
                     <section class="col-12 property-box p-0 mt-4">
-                        <div class="align-container">
-
-                            <button class="align-box d-flex justify-content-between shadow">
-                                <span>center</span>
-                                <span class="align-box-flash"><i class="bi bi-caret-down"></i></span>
+                        <div class="transform-container">
+                            <button class="transform-box d-flex justify-content-between shadow">
+                                <span>none</span>
+                                <span class="transform-box-flash"><i class="bi bi-caret-down"></i></span>
                             </button>
-
-                            <div class="align-menu-box">
+                            <div class="transform-menu-box">
                                 <ul class="list-unstyled p-0 m-0">
-                                    <li class="align-menu-item-box active">center</li>
-                                    <li class="align-menu-item-box">end</li>
-                                    <li class="align-menu-item-box">justify</li>
-                                    <li class="align-menu-item-box">left</li>
-                                    <li class="align-menu-item-box">right</li>
-                                    <li class="align-menu-item-box">start</li>
+                                    <li class="transform-menu-item-box active">none</li>
+                                    <li class="transform-menu-item-box">lowercase</li>
+                                    <li class="transform-menu-item-box">capitalize</li>
+                                    <li class="transform-menu-item-box">uppercase</li>
                                 </ul>
                             </div>
-
                         </div>
                     </section>
                 </main>
@@ -109,6 +99,6 @@
     </div>
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
-    <script src="/public/content/js/tools/text-align-tool.js"></script>
+    <script src="/public/content/js/tools/text-transform-tool.js"></script>
 </body>
 </html>
