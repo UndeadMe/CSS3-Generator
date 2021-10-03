@@ -164,6 +164,7 @@ body {
 /* ! ------------------------------ footer pannel ----------------------------- ! */
 .css-code-btn {
     width: 100%;
+    margin-top: 50px;
     border-radius: 5px;
     background-color: var(--prety-blue);
     color: var(--white);
