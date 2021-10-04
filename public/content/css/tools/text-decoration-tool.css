@@ -116,7 +116,7 @@ body {
     background: var(--dark-blue);
 }
 .decoration-box.active ~ .decoration-menu-box {
-    transform: translateY(50px);
+    transform: translateY(85px);
     visibility: visible;
     opacity: 1;
 }
@@ -220,5 +220,5 @@ body {
     color: var(--white);
     text-transform: capitalize;
     text-align: center;
-    /* text-decoration: solid underline 1px red; */
+    /* text-decoration: 1px solid underline red; */
 }

@@ -75,17 +75,17 @@
                             <span class="input-group-text bg-transparent border-0 text-white p-0 properties-icon">
                                 <i class="bi bi-border-width"></i>
                             </span>
-                            <input type="text" class="form-control font-size-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="thickness">
+                            <input type="text" class="form-control decoration-inp bg-transparent border-0 shadow-none properties-input pt-0" placeholder="thickness">
                         </div>
-                        <h6 class="valdiation-inputs-elem font-size-validation-elem mt-3 mb-0 text-white"></h6>
+                        <h6 class="valdiation-inputs-elem decoration-validation-elem my-3 text-white"></h6>
                         <!-- ! -------------------------- decoration style --------------------------- ! -->
                         <div class="decoration-container">
                             <h5 class="properties-title">decoration style</h5>
-                            <button class="decoration-box d-flex justify-content-between shadow">
+                            <button class="decoration-box d-flex justify-content-between shadow" data-decoration="style">
                                 <span>none</span>
                                 <span class="decoration-box-flash"><i class="bi bi-caret-down"></i></span>
                             </button>
-                            <div class="decoration-menu-box">
+                            <div class="decoration-menu-box" style="z-index: 99999;">
                                 <ul class="list-unstyled p-0 m-0">
                                     <li class="decoration-menu-item-box active">none</li>
                                     <li class="decoration-menu-item-box">dashed</li>
@@ -99,11 +99,11 @@
                         <!-- ! --------------------------- decoration line --------------------------- ! -->
                         <div class="decoration-container mt-3">
                             <h5 class="properties-title">decoration line</h5>
-                            <button class="decoration-box d-flex justify-content-between shadow">
+                            <button class="decoration-box d-flex justify-content-between shadow" data-decoration="line">
                                 <span>none</span>
                                 <span class="decoration-box-flash"><i class="bi bi-caret-down"></i></span>
                             </button>
-                            <div class="decoration-menu-box">
+                            <div class="decoration-menu-box h-auto">
                                 <ul class="list-unstyled p-0 m-0">
                                     <li class="decoration-menu-item-box active">none</li>
                                     <li class="decoration-menu-item-box">line-through</li>
@@ -140,6 +140,7 @@
     </div>
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
+    <script type="module" src="/public/content/js/tools/text-decoration-tool.js"></script>
     <script src="/node_modules/@simonwep/pickr/dist/pickr.min.js"></script>
     <script type="module" src="/public/content/js/modules/pickr.js"></script>
 </body>
