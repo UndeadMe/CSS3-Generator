@@ -3,14 +3,14 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
-const weightBox = document.querySelector(".weight-box")
-const weightMenuItems = document.querySelectorAll(".weight-menu-item-box")
+const whiteSpaceBox = document.querySelector(".white-space-box")
+const whiteSpaceMenuItems = document.querySelectorAll(".white-space-menu-item-box")
 
-//? Align object
-let Weight = {
+//? white space obj
+let White_Space = {
     elemClass: null,
     isInit: false,
-    weight: "normal",
+    white_space: "normal"
 }
 
 const checkElemClassNameInput = (e) => {
@@ -18,53 +18,50 @@ const checkElemClassNameInput = (e) => {
     let regexResult = regexCode.test(e.target.value)
 
     if (regexResult) {
-        Weight.isInit = true
-        Weight.elemClass = e.target.value.split(" ").join("-")
+        White_Space.isInit = true
+        White_Space.elemClass = e.target.value.split(" ").join("-")
         e.target.parentElement.previousElementSibling.innerHTML = ""
 
         addStyleToText()
     } else {
-        Weight.isInit = false
+        White_Space.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
     }
 }
 
 //? add style to color box
 const addStyleToText = () => 
-    text.style.fontWeight = `${Weight.weight}`
+    text.style.whiteSpace = `${White_Space.white_space}`
 
 //? open generate pannel
 const openGeneratePannel = () => {
-    if (Stroke.isInit) {
-        if (Stroke.strokeValidation) 
-            generateWrapBox.classList.add('active')
-        else 
-            alert("please complete the fields correctly")
+    if (White_Space.isInit) {
+        generateWrapBox.classList.add('active')
     } else
         alert("please complete the fields above")
 }
 
 //? check init
 const checkInit = () => {
-    return Weight.isInit ? true : false
+    return White_Space.isInit ? true : false
 }
 
 //? active align box
 const activeAlignBox = () => 
-    weightBox.classList.contains("active") ? weightBox.classList.remove("active") : weightBox.classList.add("active")
+    whiteSpaceBox.classList.contains("active") ? whiteSpaceBox.classList.remove("active") : whiteSpaceBox.classList.add("active")
 
 
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
-elemClassNameInp.addEventListener("focus", () => weightBox.classList.remove("active"))
+elemClassNameInp.addEventListener("focus", () => whiteSpaceBox.classList.remove("active"))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
-weightBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
+whiteSpaceBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
 
-weightMenuItems.forEach(menuItem => {
+whiteSpaceMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
-        weightMenuItems.forEach(allMenuItems => {
+        whiteSpaceMenuItems.forEach(allMenuItems => {
             if (allMenuItems.innerText === menuItem.innerText) {
                 allMenuItems.classList.add('active')
-                Weight.weight = allMenuItems.innerText.toLowerCase()
+                White_Space.white_space = allMenuItems.innerText.toLowerCase()
                 addStyleToText()
             } else
                 allMenuItems.classList.remove("active")
