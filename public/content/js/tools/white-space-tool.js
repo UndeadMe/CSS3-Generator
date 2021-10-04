@@ -61,6 +61,7 @@ whiteSpaceMenuItems.forEach(menuItem => {
         whiteSpaceMenuItems.forEach(allMenuItems => {
             if (allMenuItems.innerText === menuItem.innerText) {
                 allMenuItems.classList.add('active')
+                whiteSpaceBox.children[0].innerText = allMenuItems.innerText
                 White_Space.white_space = allMenuItems.innerText.toLowerCase()
                 addStyleToText()
             } else

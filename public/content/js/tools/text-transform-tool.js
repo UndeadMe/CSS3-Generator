@@ -61,6 +61,7 @@ transformMenuItems.forEach(menuItem => {
         transformMenuItems.forEach(allMenuItems => {
             if (allMenuItems.innerText === menuItem.innerText) {
                 allMenuItems.classList.add('active')
+                transformBox.children[0].innerText = allMenuItems.innerText
                 Transform.transform = allMenuItems.innerText.toLowerCase()
                 addStyleToText()
             } else

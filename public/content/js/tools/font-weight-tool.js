@@ -64,6 +64,7 @@ weightMenuItems.forEach(menuItem => {
         weightMenuItems.forEach(allMenuItems => {
             if (allMenuItems.innerText === menuItem.innerText) {
                 allMenuItems.classList.add('active')
+                weightBox.children[0].innerText = allMenuItems.innerText
                 Weight.weight = allMenuItems.innerText.toLowerCase()
                 addStyleToText()
             } else

@@ -3,16 +3,16 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
-const alignBox = document.querySelector(".align-box")
+const overflowBox = document.querySelector(".overflow-box")
 const arrowRight = document.querySelector(".arrow-align-right")
 const arrowLeft = document.querySelector(".arrow-align-left")
-const alignMenuItems = document.querySelectorAll(".align-menu-item-box")
+const overflowMenuItems = document.querySelectorAll(".overflow-menu-item-box")
 
-//? Align object
-let Align = {
+//? Overflow obj
+let Overflow = {
     elemClass: null,
     isInit: false,
-    align: "center",
+    overflow: "center",
     direction: "ltr"
 }
 
@@ -21,28 +21,32 @@ const checkElemClassNameInput = (e) => {
     let regexResult = regexCode.test(e.target.value)
 
     if (regexResult) {
-        Align.isInit = true
-        Align.elemClass = e.target.value.split(" ").join("-")
+        Overflow.isInit = true
+        Overflow.elemClass = e.target.value.split(" ").join("-")
         e.target.parentElement.previousElementSibling.innerHTML = ""
-
-        addStyleToText()
     } else {
-        Align.isInit = false
+        Overflow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "Please complete the field below. You are allowed to enter up to 30 letters"
     }
 }
 
 //? add style to color box
-const addStyleToText = () => 
-    text.style.textAlign = `${Align.align}`
+const addStyleToText = () => {
+    if (Overflow.overflow !== "without style") {
+        text.style.overflow = "hidden"
+        text.style.whiteSpace = "nowrap"
+        text.style.textOverflow = `${Overflow.overflow}`
+    } else {
+        text.style.overflow = ""
+        text.style.whiteSpace = ""
+        text.style.textOverflow = ""
+    }
+}
 
 //? open generate pannel
 const openGeneratePannel = () => {
-    if (Stroke.isInit) {
-        if (Stroke.strokeValidation) 
-            generateWrapBox.classList.add('active')
-        else 
-            alert("please complete the fields correctly")
+    if (Overflow.isInit) {
+        generateWrapBox.classList.add('active')
     } else
         alert("please complete the fields above")
 }
@@ -50,12 +54,12 @@ const openGeneratePannel = () => {
 //? init arrow
 const initArrow = (right = true) => {
     if (right) {
-        Align.direction = "rtl"
+        Overflow.direction = "rtl"
         arrowRight.innerHTML = '<i class="bi bi-arrow-right-square-fill"></i>'
         arrowLeft.innerHTML = '<i class="bi bi-arrow-left-square"></i>'
         text.style.direction = "rtl"
     } else {
-        Align.direction = "ltr"
+        Overflow.direction = "ltr"
         arrowLeft.innerHTML = '<i class="bi bi-arrow-left-square-fill"></i>'
         arrowRight.innerHTML = '<i class="bi bi-arrow-right-square"></i>'
         text.style.direction = "ltr"
@@ -64,28 +68,28 @@ const initArrow = (right = true) => {
 
 //? check init
 const checkInit = () => {
-    return Align.isInit ? true : false
+    return Overflow.isInit ? true : false
 }
 
 //? active align box
-const activeAlignBox = () => 
-    alignBox.classList.contains("active") ? alignBox.classList.remove("active") : alignBox.classList.add("active")
+const activeOverflowBox = () => 
+   overflowBox.classList.contains("active") ?overflowBox.classList.remove("active") :overflowBox.classList.add("active")
 
 
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
-elemClassNameInp.addEventListener("focus", () => alignBox.classList.remove("active"))
+elemClassNameInp.addEventListener("focus", () => overflowBox.classList.remove("active"))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
-alignBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
+overflowBox.addEventListener("click", () => checkInit() ? activeOverflowBox() : alert("please complete the fields correctly"))
 arrowRight.addEventListener("click",() => checkInit() ? initArrow() : alert("please complete the fields correctly"))
 arrowLeft.addEventListener("click", () => checkInit() ? initArrow(false) : alert("please complete the fields correctly"))
 
-alignMenuItems.forEach(menuItem => {
+overflowMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
-        alignMenuItems.forEach(allMenuItems => {
+        overflowMenuItems.forEach(allMenuItems => {
             if (allMenuItems.innerText === menuItem.innerText) {
                 allMenuItems.classList.add('active')
-                alignBox.children[0].innerText = allMenuItems.innerText
-                Align.align = allMenuItems.innerText.toLowerCase()
+                overflowBox.children[0].innerText = allMenuItems.innerText
+                Overflow.overflow = allMenuItems.innerText.toLowerCase()
                 addStyleToText()
             } else
                 allMenuItems.classList.remove("active")
