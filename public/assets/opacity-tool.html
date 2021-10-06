@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/public/components/filter-style/filter-style.css">
+    <link rel="stylesheet" href="/node_modules/@simonwep/pickr/dist/themes/classic.min.css">
+    <link rel="stylesheet" href="/public/content/css/tools/border-tool.css">
 </head>
 <body>
     <!-- ! ------------------------------- sidebar ------------------------------- ! -->
@@ -40,16 +41,14 @@
         <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
         <div class="wrap-left-box">
             <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
-            <div class="img-preview-container">
-                <div class="image-preview">
-                    <!-- ! ------------------------------ image box ------------------------------ ! -->
-                    <div class="main-image">
-                        <img src="/public/content/img/wallpaper/main-image.jpg" alt="main-image">
-                    </div>
-                    <!-- ! -------------------------- preview image box -------------------------- ! -->
-                    <div class="preview-image-box">
-                        <div class="preview-border"></div>
-                        <img src="/public/content/img/wallpaper/main-image.jpg" alt="filter-image">
+            <div class="resizable-container">
+                <!-- ! ---------------------------- resizable box ---------------------------- ! -->
+                <div class="resizable">
+                    <div class="resizers">
+                        <div class='resizer top-left'></div>
+                        <div class='resizer top-right'></div>
+                        <div class='resizer bottom-left'></div>
+                        <div class='resizer bottom-right'></div>
                     </div>
                 </div>
             </div>
@@ -101,7 +100,9 @@
     </div>
 
     <!-- ! ------------------------------- scripts ------------------------------- ! -->
-    <script src="/public/content/js/tools/opacity-tool.js"></script>
-    <script src="/public/content/js/modules/image-preview.js"></script>
+    <script src="/node_modules/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script type="module" src="/public/content/js/tools/opacity-tool.js"></script>
+    <script type="module" src="/public/content/js/modules/pickr.js"></script>
+    <script type="module" src="/public/content/js/modules/resizer.js"></script>
 </body>
 </html>

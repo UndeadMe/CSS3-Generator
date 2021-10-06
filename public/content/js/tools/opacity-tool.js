@@ -1,7 +1,12 @@
+import { makeResizableElem } from "./../modules/resizer.js"
+import { createPickr } from "./../modules/pickr.js"
+
+makeResizableElem(".resizable")
+
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const opacityInp = document.querySelector(".opacity-inp")
 const validationOpacityElem = document.querySelector(".opacity-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const resizableBox = document.querySelector(".resizable")
 
 let Opacity = {
     elemClass: null,
@@ -57,7 +62,7 @@ const checkValidateInputs = (value) => {
         Opacity.opacityValidate = true
         Opacity.opacity = Number(value)
         validationOpacityElem.innerHTML = ""
-        addStyleToImage()
+        addStyleToResizable()
     } else {
         Opacity.opacityValidate = false
         validationOpacityElem.innerHTML = "Please select a positive from 0 to 1"
@@ -66,10 +71,10 @@ const checkValidateInputs = (value) => {
 }
 
 //? add style to image
-const addStyleToImage = () =>
-    previewImage.style.filter = `opacity(${Opacity.opacity})` // FIXME
+const addStyleToResizable = () =>
+    resizableBox.style.filter = `opacity(${Opacity.opacity})` // FIXME
 
-addStyleToImage()
+addStyleToResizable()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 opacityInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
