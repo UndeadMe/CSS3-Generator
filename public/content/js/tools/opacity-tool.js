@@ -72,7 +72,7 @@ const checkValidateInputs = (value) => {
 
 //? add style to image
 const addStyleToResizable = () =>
-    resizableBox.style.filter = `opacity(${Opacity.opacity})` // FIXME
+    resizableBox.style.filter = `opacity(${Opacity.opacity})`
 
 addStyleToResizable()
 
