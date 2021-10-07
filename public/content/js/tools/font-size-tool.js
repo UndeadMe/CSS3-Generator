@@ -10,7 +10,7 @@ const fontSizeValidation = document.querySelector(".font-size-validation-elem")
 let Font_Size = {
     elemClass: null,
     isInit: false,
-    size: 70,
+    size: 50,
     fontSizeValidation: true
 }
 
@@ -85,7 +85,7 @@ const checkValidateInputs = (value) => {
         addStyleToText()
     } else {
         Font_Size.fontSizeValidation = false
-        fontSizeValidation.innerHTML = "Please select a positive number from 0 to 100"
+        fontSizeValidation.innerHTML = "Please select a positive number from 0 to 70"
     }
     
 }

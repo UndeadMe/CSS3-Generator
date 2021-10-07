@@ -31,8 +31,3 @@ pannelIcon.addEventListener("click", () => {
 })
 headerPannelIcon.addEventListener("click", closePannel)
 pannelFlashBox.addEventListener("click", openPannel)
-wrap.addEventListener("click", (e) => {
-    if (e.target.classList.contains("wrap")) {
-        closePannel()
-    }
-})
