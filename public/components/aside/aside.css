@@ -9,8 +9,6 @@
     box-shadow: 0 0 5px var(--dark-black);
     z-index: 9999;
     overflow: hidden;
-    transform-origin: left;
-    transition: 0.4s;
 }
 .sidebar::before {
     content: '';
@@ -69,4 +67,102 @@
 .sidebar-icon-link {
     font-size: 1.5rem;
     color: var(--minimal-white) !important;
+}
+/* ! ------------------------- sidebar-icons-down-box ------------------------- ! */
+.sidebar-icons-down-box {
+    position: absolute ;
+    bottom: 20px ;
+    left: 0 ;
+    display: flex ;
+    flex-direction: column;
+    align-items: center;
+}
+.change-theme-btn {
+    position: relative;
+    outline: none;
+    border: none;
+    width: 70px;
+    background: var(--dark-black);
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid var(--light-border);
+    border-radius: 50px;
+}
+.change-theme-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 27px;
+    height: 27px;
+    background: linear-gradient(45deg, var(--prety-blue), var(--dark-blue));
+    border-radius: 100%;
+    z-index: 2;
+}
+.moon-theme {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
+    color: var(--d-white);
+}
+.sun-theme {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    z-index: 0;
+    color: var(--d-white);
+}
+/* ! ------------------------------- meida query ------------------------------ ! */
+@media screen and ( max-width : 1070px ) {
+    .sidebar-icon-item:nth-child(3) {
+        display: block !important;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+@media screen and ( max-width : 767px ) {
+    .sidebar {
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 80px;
+        flex-direction: row !important;
+        justify-content: start;
+    }
+    .sidebar::before {
+        animation: none;
+        display: none;
+    }
+    .sidebar-icons-box {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 0;
+    }
+    .sidebar-icons-box ul:nth-child(1) {
+        display: flex;
+    }
+    .sidebar-icons-box ul:nth-child(1) .sidebar-icon-item {
+        margin-top: 0 ;
+    }
+    .sidebar-icons-box ul:nth-child(1) .sidebar-icon-item:not(:last-child) {
+        margin-left: 20px;
+    }
+    .sidebar-icon-item:nth-child(3) {
+        margin-left: 20px;
+    }
+    .sidebar-dots-box {
+        display: none;
+    }
+    .sidebar-icons-down-box {
+        position: static ;
+        flex-direction: row ;
+        justify-content: end;
+    }
+    .change-theme-btn {
+        margin: 0 20px;
+    }
 }
