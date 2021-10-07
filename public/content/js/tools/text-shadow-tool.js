@@ -2,7 +2,7 @@ import { createPickr } from "./../modules/pickr.js";
 
 //? get element form dom
 const colorPicker = document.querySelector(".color-picker")
-const generatorTxt = document.querySelector(".generator-text")
+const text = document.querySelector(".text")
 const elemClassName = document.querySelector(".element-class-name-input")
 const horizentalInp = document.querySelector(".horizental-inp")
 const verticalInp = document.querySelector(".vertical-inp")
@@ -105,7 +105,7 @@ const addStyleToGenerateTxt = () => {
     let shadowStyle = []
     shadowStyle = []
     
-    generatorTxt.style.textShadow = ""
+    text.style.textShadow = ""
     
     Shadow.style.forEach(shadowOption => {
         shadowStyle.push({
@@ -126,10 +126,10 @@ const addStyleToGenerateTxt = () => {
                 shadow += ","
             }
         })
-        generatorTxt.style.textShadow = shadow
+        text.style.textShadow = shadow
     } else {
         shadowStyle.forEach(shadowOption => {
-            generatorTxt.style.textShadow = `${shadowOption.horizental} ${shadowOption.vertical} ${shadowOption.blur} ${shadowOption.shadowColor}`
+            text.style.textShadow = `${shadowOption.horizental} ${shadowOption.vertical} ${shadowOption.blur} ${shadowOption.shadowColor}`
         })
     }
 }
@@ -163,7 +163,7 @@ const checkInputs = e => {
         //? put this msg in msg box
         e.target.parentElement.previousElementSibling.innerHTML = "please complete the field below. You are allowed to enter up to 30 letters"
 
-        generatorTxt.style.textShadow = ""
+        text.style.textShadow = ""
 
         //? disable all inputs
         disableAllInputs()

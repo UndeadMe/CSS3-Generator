@@ -33,15 +33,46 @@
                         <i class="bi bi-house"></i>
                     </a>
                 </li>
+                <li class="sidebar-icon-item">
+                    <a href="https://github.com/Banana021s/css-generator" target="_blank" class="sidebar-icon-link">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </li>
+                <li class="sidebar-icon-item d-none">
+                    <span class="sidebar-icon-link">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+                </li>
+            </ul>
+            <ul class="sidebar-icons-down-box list-unstyled p-0 m-0 w-100">
+                <li class="sidebar-icon-item-down">
+                    <a href="" class="sidebar-icon-link">
+                        <i class="bi bi-question-circle"></i>
+                    </a>
+                </li>
+                <li class="sidebar-icon-item-down">
+                    <button class="change-theme-btn">
+                        <span class="moon-theme">
+                            <i class="bi bi-moon"></i>
+                        </span>
+                        <span class="sun-theme">
+                            <i class="bi bi-sun"></i>
+                        </span>
+                    </button>
+                </li>
             </ul>
         </div>
     </aside>
+    <!-- ! ---------------------------- pannel flash ----------------------------- ! -->
+    <div class="pannel-flash-box">
+        <span><i class="bi bi-box-arrow-left"></i></span>
+    </div>
     <!-- ! -------------------------------- wrap --------------------------------- ! -->
     <div class="wrap">
         <!-- ! ---------------------------- wrap left box ---------------------------- ! -->
         <div class="wrap-left-box">
             <!-- ! ------------------------- resizable contaienr ------------------------- ! -->
-            <div class="resizable-container">
+            <div class="text-container">
                 <!-- ! ------------------------------ shadow vh ------------------------------ ! -->
                 <div class="shadow-vh">
                     <div class="vh-tool vh-top-right"></div>
@@ -50,7 +81,7 @@
                     <div class="vh-tool vh-bottom-left"></div>
                 </div>
                 <!-- ! --------------------------- generator text ---------------------------- ! -->
-                <h1 class="generator-text">generator</h1>
+                <h1 class="text">generator</h1>
             </div>
         </div>
         <!-- ! --------------------------- wrap right box ---------------------------- ! -->
@@ -158,5 +189,6 @@
     <script src="/node_modules/@simonwep/pickr/dist/pickr.min.js"></script>
     <script type="module" src="/public/content/js/tools/text-shadow-tool.js"></script>
     <script type="module" src="/public/content/js/modules/pickr.js"></script>
+    <script src="/public/content/js/modules/responsive-pannel.js"></script>
 </body>
 </html>
