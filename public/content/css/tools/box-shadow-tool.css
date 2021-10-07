@@ -193,6 +193,7 @@ body {
     border-radius: 5px;
     background-color: var(--prety-blue);
     color: var(--white);
+    border: 1px solid var(--dark-black) ;
     padding: 10px 0;
     font-size: 17px;
 }

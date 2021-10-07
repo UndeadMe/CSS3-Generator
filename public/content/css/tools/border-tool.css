@@ -213,8 +213,7 @@ body {
     border-radius: 5px;
     background-color: var(--prety-blue);
     color: var(--white);
-    box-shadow:  5px 5px 10px #1b1b23,
-             -5px -5px 10px #21212b;
+    border: 1px solid var(--dark-black) ;
     padding: 10px 0;
     font-size: 17px;
 }
