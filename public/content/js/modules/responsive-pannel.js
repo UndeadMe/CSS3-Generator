@@ -14,7 +14,7 @@ const openPannel = () => {
     wrapRightBox.classList.add('active')
     wrap.classList.add("active")
     pannelIcon.innerHTML = `<span class="sidebar-icon-link"><i class="bi bi-box-arrow-in-right"></i></span>`
-    wrapRightBox.style.width = "350px"
+    screen.availWidth > 1070 ? wrapRightBox.style.width = "500px" : wrapRightBox.style.width = "350px"
 }
 
 //? close pannel
