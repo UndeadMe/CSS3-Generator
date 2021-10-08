@@ -85,7 +85,7 @@ const checkValidateInputs = (value) => {
         addStyleToText()
     } else {
         letter_spacing.letterSpacingValidation = false
-        letterSpacingValidation.innerHTML = "Please select a positive number from 0 to 100"
+        letterSpacingValidation.innerHTML = "Please select a positive number from 0 to 20"
     }
     
 }
