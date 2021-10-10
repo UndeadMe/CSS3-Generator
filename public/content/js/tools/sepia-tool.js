@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const sepiaInp = document.querySelector(".sepia-inp")
 const validationSepiaElem = document.querySelector(".sepia-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Sepia = {
     elemClass: null,
