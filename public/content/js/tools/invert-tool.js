@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const invertInp = document.querySelector(".invert-inp")
 const validationInvertElem = document.querySelector(".invert-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Invert = {
     elemClass: null,
