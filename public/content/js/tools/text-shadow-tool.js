@@ -135,7 +135,7 @@ const addStyleToGenerateTxt = () => {
 }
 
 //? check inputs 
-const checkInputs = e => {
+const checkInit = e => {
     let regexCode = /^[a-zA-Z]{1,30}$/g
     let regexResult = regexCode.test(e.target.value)
     
@@ -521,7 +521,7 @@ const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex) => {
     }
 }
 
-elemClassName.addEventListener("keyup", checkInputs)
+elemClassName.addEventListener("keyup", checkInit)
 
 horizentalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, "horizental", Shadow.nowShadow))
 verticalInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, "vertical", Shadow.nowShadow))

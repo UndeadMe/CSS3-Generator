@@ -187,6 +187,42 @@ body {
     color: var(--minimal-white);
     font-size: 18px;
 }
+/* ! ------------------------------ shadow option ----------------------------- ! */
+.shadow-option-sec {
+    margin-top: 40px;
+}
+.shadow-option-title-box {
+    color: var(--white);
+    border-bottom: 1px solid var(--gray);
+}
+.shadow-option-plus-btn , .shadow-option-minus-btn {
+    cursor: pointer;
+}
+.shadow-option-title-box h5 {
+    margin-bottom: 10px;
+}
+.shadow-option-ul {
+    height: 150px;
+    overflow-y: auto;
+}
+.shadow-option {
+    background-color: var(--light-border);
+    color: var(--white);
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 3px;
+    transition: 0.4s;
+}
+.shadow-option.active {
+    background-color: var(--dark-blue);
+}
+.shadow-option:not(.shadow-option.active) {
+    cursor: pointer;
+}
+.new-shadow-option {
+    display: flex;
+    justify-content: space-between;
+}
 /* ! ------------------------------ footer pannel ----------------------------- ! */
 .css-code-btn {
     width: 100%;
