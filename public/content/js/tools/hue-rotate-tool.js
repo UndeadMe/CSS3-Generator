@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const hueRotateInp = document.querySelector(".hue-rotate-inp")
 const validationHueRotateElem = document.querySelector(".hue-rotate-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let HueRotate = {
     elemClass: null,
