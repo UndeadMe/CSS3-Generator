@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const contrastInp = document.querySelector(".contrast-inp")
 const validationContrastElem = document.querySelector(".contrast-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Contrast = {
     elemClass: null,
