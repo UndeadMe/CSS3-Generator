@@ -190,6 +190,8 @@ body {
 /* ! ------------------------------ shadow option ----------------------------- ! */
 .shadow-option-sec {
     margin-top: 40px;
+    width: 318px;
+    overflow-x: hidden;
 }
 .shadow-option-title-box {
     color: var(--white);
