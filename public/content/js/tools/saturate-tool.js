@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const saturateInp = document.querySelector(".saturate-inp")
 const validationSaturateElem = document.querySelector(".saturate-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Saturate = {
     elemClass: null,
