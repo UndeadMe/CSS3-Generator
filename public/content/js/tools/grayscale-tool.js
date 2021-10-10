@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const grayscaleInp = document.querySelector(".grayscale-inp")
 const validationGrayscaleElem = document.querySelector(".grayscale-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Grayscale = {
     elemClass: null,
