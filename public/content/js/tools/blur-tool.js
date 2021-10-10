@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const blurInp = document.querySelector(".blur-inp")
 const validationBlurElem = document.querySelector(".blur-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Blur = {
     elemClass: null,

@@ -1,7 +1,7 @@
 const elemClassNameInp = document.querySelector(".element-class-name-input")
 const brightnessInp = document.querySelector(".brightness-inp")
 const validationBrightnessElem = document.querySelector(".brightness-validation-elem")
-const previewImage = document.querySelector(".preview-image-box img")
+const previewImage = document.querySelector(".img-left")
 
 let Brightness = {
     elemClass: null,
