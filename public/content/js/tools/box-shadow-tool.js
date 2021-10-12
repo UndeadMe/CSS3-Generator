@@ -313,9 +313,9 @@ const checkInputs = (value, isHover, inputName) => {
 }
 
 //? this function create new shadow option and shadow option object and append new shadow option
-const shadowOptionNoHover = () => {
+const shadowOpNoHover = () => {
     if (Shadow.isInit) {
-        const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, false)[1]
+        const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
             
             //? increase the shaodw no hover name
@@ -674,6 +674,7 @@ const createDH_box = (nameBox) => {
 }
 
 elementClassNameInp.addEventListener("keyup", checkInit)
+
 horizentalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "horizental"))
 verticalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "vertical"))
 blurInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "blur"))
@@ -681,8 +682,10 @@ speardInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "s
 
 horizentalHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "horizental"))
 verticalHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "vertical"))
+blurHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "blur"))
+speardHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "speard"))
 
-shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOptionBoxNoHover)
+shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOpNoHover)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
 
 typeEffectIcon.addEventListener("click", () => {
