@@ -19,6 +19,9 @@ const noHoverValidationInputs = document.querySelector(".valdiation-inputs-elem"
 const shadowOptionNoHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
 const shadowOptionHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
 const shadowOptionDefault = document.querySelector(".shadow-option-default")
+const typeEffectIcon = document.querySelector(".type-effect-icon")
+const propertiesBoxNoHover = document.querySelector(".properies-box-no-hover")
+const propertiesBoxHover = document.querySelector(".properies-box-hover")
 
 //? shadow object
 let Shadow = {
@@ -59,7 +62,7 @@ let Shadow = {
                 speardValidate: true,
             },
         ],
-        hoverStyle: [
+        hoverValidation: [
             {
                 shadowName: "shadow-1",
                 horizentalValidate: true,
@@ -149,7 +152,13 @@ const uploadShadowDataInInputs = (isHover, shadowOptionIndex) => {
 //? find shadow option index
 const findShadowOptionIndex = (shadowObjName , isHover) => {
     if (isHover) {
-
+        let shadowStyleObj = Shadow.box.hoverStyle.find(shadowOption => {
+            return shadowOption.shadowName === shadowObjName
+        })
+        let shadowValidateObj = Shadow.Validation.hoverValidation.find(shadowOption => {
+            return shadowOption.shadowName === shadowObjName
+        })
+        return [ shadowStyleObj, shadowValidateObj ]
     } else {
         let shadowStyleObj = Shadow.box.noHoverStyle.find(shadowOption => {
             return shadowOption.shadowName === shadowObjName
@@ -546,3 +555,39 @@ blurInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "blu
 speardInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "speard"))
 shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOptionNoHover)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
+
+let typeBox = null
+
+typeEffectIcon.addEventListener("click", () => {
+    if (Shadow.isInit) {
+        let shadowValidateObj = undefined
+        let shadowStyleObj = undefined
+
+        if (Shadow.isHover) {
+            shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
+            shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
+        } else {
+            shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
+            shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0]
+        }
+
+        if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
+            if (Shadow.isHover) {
+                typeBox = "defaultBox"
+                Shadow.isHover = false
+                propertiesBoxNoHover.style.marginLeft = 0
+                typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
+                uploadShadowDataInInputs(false, shadowStyleObj)
+                activeInputs(false)
+                // addStyleToResizable(false) FIXME
+                // removeDH_box()
+            } else {
+                Shadow.isHover = true
+                // createDH_box("defaultBox") FIXME
+                typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
+            }
+        } else 
+            alert("Please enter the information correctly")
+    } else 
+        alert("Please fill in the field above")
+})
