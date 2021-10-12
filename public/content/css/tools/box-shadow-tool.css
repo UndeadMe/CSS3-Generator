@@ -193,6 +193,9 @@ body {
     width: 318px;
     overflow-x: hidden;
 }
+.shadow-option-no-hover {
+    transition: 0.4s;
+}
 .shadow-option-title-box {
     color: var(--white);
     border-bottom: 1px solid var(--gray);

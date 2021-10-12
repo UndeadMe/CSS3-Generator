@@ -22,6 +22,8 @@ const shadowOptionDefault = document.querySelector(".shadow-option-default")
 const typeEffectIcon = document.querySelector(".type-effect-icon")
 const propertiesBoxNoHover = document.querySelector(".properies-box-no-hover")
 const propertiesBoxHover = document.querySelector(".properies-box-hover")
+const typeEffectBox = document.querySelector(".type-effect-box")
+const shadowOptionBoxNoHover = document.querySelector(".shadow-option-no-hover")
 
 //? shadow object
 let Shadow = {
@@ -548,12 +550,76 @@ const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex, isHover
     }
 }
 
+//? create default and hover box
+const createDH_box = (nameBox) => {
+    typeEffectBox.innerText = ""
+
+    const defaultBox = document.createElement("div")
+    defaultBox.className = "d-flex align-items-center default-box-type"
+    defaultBox.innerHTML = "default"
+
+    const hoverBox = document.createElement("div")
+    hoverBox.className = "d-flex align-items-center hover-box-type"
+    hoverBox.innerHTML = "hover"
+
+    if (nameBox === "defaultBox") {
+        defaultBox.classList.add("active")
+    } else if (nameBox === "hoverBox") {
+        hoverBox.classList.add("active")
+    } else {
+        defaultBox.classList.add("active")
+    }
+
+    defaultBox.addEventListener("click", () => {
+        const validateObject = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
+        if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
+            if (typeBox !== "defaultBox") {
+                // disableAllVhTool() FIXME
+            }
+            typeBox = "defaultBox"
+            hoverBox.classList.remove("active")
+            defaultBox.classList.add("active")
+            propertiesBoxNoHover.style.marginLeft = "0"
+            shadowOptionBoxNoHover.style.marginLeft = "0"
+            // removeShadowDataFromDom(true)
+            removeShadowDataFromInputs(true)
+            uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
+            disableAllInputs(true)
+            activeInputs(false)
+            // addStyleToResizable(false) FIXME
+        } else 
+            alert("Enter the information correctly")
+    })
+
+    hoverBox.addEventListener("click", () => {
+        const validateObject = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
+        if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
+            if (typeBox !== "hoverBox") {
+                // disableAllVhTool() FIXME
+            }
+            typeBox = "hoverBox"
+            hoverBox.classList.add("active")
+            defaultBox.classList.remove("active")
+            propertiesBoxNoHover.style.marginLeft = "-318px"
+            shadowOptionBoxNoHover.style.marginLeft = "-318px"
+            uploadShadowDataInInputs(true, findShadowOptionIndex(Shadow.nowShadowHover, true)[0])
+            removeShadowDataFromInputs(false)
+            disableAllInputs(false)
+            activeInputs(true)
+            // addStyleToResizable(true) FIXME
+        } else 
+            alert("Enter the information correctly")
+    })
+
+    typeEffectBox.append(defaultBox, hoverBox)
+}
+
 elementClassNameInp.addEventListener("keyup", checkInit)
 horizentalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "horizental"))
 verticalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "vertical"))
 blurInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "blur"))
 speardInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "speard"))
-shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOptionNoHover)
+shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOptionBoxNoHover)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
 
 let typeBox = null
@@ -580,10 +646,10 @@ typeEffectIcon.addEventListener("click", () => {
                 uploadShadowDataInInputs(false, shadowStyleObj)
                 activeInputs(false)
                 // addStyleToResizable(false) FIXME
-                // removeDH_box()
+                // removeDH_box() FIXME
             } else {
                 Shadow.isHover = true
-                // createDH_box("defaultBox") FIXME
+                createDH_box("defaultBox")
                 typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
             }
         } else 
