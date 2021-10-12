@@ -82,6 +82,8 @@ const checkInit = (e) => {
     
     if (regexResult) {
         Shadow.isInit = true
+        //? put class name in shadow elem class
+        Shadow.elemClass = `.${e.target.value.split(" ").join("-")}`
         activeInputs(false)
         uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover,false)[0])
         e.target.parentElement.previousElementSibling.innerHTML = ""
@@ -314,15 +316,15 @@ const generateRandomColor = () => {
 }
 
 //? create new shadow option and put them in wrap
-const createNewShadowOption = (wrapNewShadowOption, shaodwNumber, isHover) => {
+const createNewShadowOption = (wrapNewShadowOption, shadowNumber, isHover) => {
     const wrap = document.querySelector(wrapNewShadowOption)
 
     //? create new shadow option
     const newShadowOption = document.createElement("li")
     newShadowOption.className = "shadow-option new-shadow-option"
-    newShadowOption.setAttribute("data-id", `shadow-${shaodwNumber}`)
+    newShadowOption.setAttribute("data-id", `shadow-${shadowNumber}`)
     isHover ? newShadowOption.classList.add("hover") : newShadowOption.classList.add("no-hover")
-    newShadowOption.innerHTML = `shadow ${shaodwNumber}`
+    newShadowOption.innerHTML = `shadow ${shadowNumber}`
     
     //? create shadow minus btn
     const newShadowOptionMinusBtn = document.createElement("span")
@@ -334,6 +336,11 @@ const createNewShadowOption = (wrapNewShadowOption, shaodwNumber, isHover) => {
 
     //? switch to other shadow options/boxes
     newShadowOption.addEventListener("click", () => switchToShadowOption(newShadowOption.dataset.id, isHover))
+
+    newShadowOptionMinusBtn.addEventListener("click", (e) => {
+        e.stopPropagation()
+        minusShadowOption(newShadowOption.dataset.id, isHover)
+    })
 
     wrap.appendChild(newShadowOption)
 }
@@ -401,6 +408,135 @@ const createNewPickr = (buttonClass, color, isHover) => {
         
         // addStyleToGenerateTxt() FIXME
     })
+}
+
+//? minus shadow option
+const minusShadowOption = (shadowId , isHover) => {
+    if (Shadow.isInit) {
+        let shadowValidateObj = undefined
+        isHover ? shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, isHover)[1] : shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover, isHover)[1]
+        if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
+            //? delete style and validate object in Shadow style and validate
+            deleteStyleAndValidateObj(shadowId, isHover)
+            
+            //? get wrap and empty that
+            let wrap = undefined
+            let shadowStyle = undefined
+            let nowShadowName = undefined
+
+            if (isHover) {
+                wrap = document.querySelector(".shadow-option-hover-wrap")
+                shadowStyle = Shadow.box.hoverStyle
+                nowShadowName = Shadow.nowShadowHover
+            } else {
+                wrap = document.querySelector(".shadow-option-noHover-wrap")
+                shadowStyle = Shadow.box.noHoverStyle
+                nowShadowName = Shadow.nowShadowNoHover
+            }
+            
+            wrap.innerText = ""
+
+            Shadow.box.noHoverStyle.forEach((shadowOption, shadowIndex) => {
+                if (shadowIndex !== 0) {
+                    let shadowNumber = shadowOption.shadowName.split("-")[1]
+                    createNewShadowOption("." + wrap.className, shadowNumber, isHover)
+                }
+            })
+            
+            let isNowShadowFind = shadowStyle.findIndex(shadowOption => {
+                return shadowOption.shadowName === nowShadowName
+            })
+
+            if (isNowShadowFind !== -1) {
+                uploadShadowDataInInputs(isHover, findShadowOptionIndex(nowShadowName, isHover)[0])
+                activeShadowOption(nowShadowName, isHover)
+                // addStyleToGenerateTxt() FIXME
+            } else {
+                let shadowText = nowShadowName.split("-")[0]
+                let shadowNumber = Number(nowShadowName.split("-")[1])
+                
+                if (isHover) {
+                    Shadow.nowShadowHover = `${shadowText}-${shadowNumber-1}`
+                    activeShadowOption(Shadow.nowShadowHover)
+                    createNewPickr(".color-picker-hover", findShadowOptionIndex(Shadow.nowShadowHover, true)[0].shadowColor)
+                    colorPickerNoHover.style.background = findShadowOptionIndex(Shadow.nowShadowHover, true)[0].shadowColor
+                } else {
+                    Shadow.nowShadowNoHover = `${shadowText}-${shadowNumber-1}`
+                    activeShadowOption(Shadow.nowShadowNoHover)
+                    createNewPickr(".color-picker-no-hover", findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0].shadowColor)
+                    colorPickerNoHover.style.background = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0].shadowColor
+                }
+
+                uploadShadowDataInInputs(isHover, findShadowOptionIndex(`${shadowText}-${shadowNumber-1}`, isHover)[0])
+                // addStyleToGenerateTxt() FIXME
+            }
+
+            // disableAllVhTool() FIXME
+        } else 
+            alert("You need to enter the information correctly after then you can delete you shadow option")
+    } else
+        alert("please complete the fields")
+}
+
+//? delete style and validate obj in Shadow obj
+const deleteStyleAndValidateObj = (shadowId, isHover) => {
+    let shadowStyleIndex = undefined
+    let shadowValidateIndex = undefined
+    
+    if (isHover) {
+        shadowStyleIndex = Shadow.box.hoverStyle.findIndex(shadowOption => {
+            return shadowOption.shadowName === shadowId
+        })
+        shadowValidateIndex = Shadow.Validation.hoverStyle.findIndex(shadowOption => {
+            return shadowOption.shadowName === shadowId
+        })
+        //? delete them
+        Shadow.box.hoverStyle.splice(shadowStyleIndex, 1)
+        Shadow.Validation.hoverStyle.splice(shadowValidateIndex, 1)
+        reduceShadowId(shadowStyleIndex, shadowValidateIndex, isHover)
+    } else {
+        shadowStyleIndex = Shadow.box.noHoverStyle.findIndex(shadowOption => {
+            return shadowOption.shadowName === shadowId
+        })
+        shadowValidateIndex = Shadow.Validation.noHoverValidation.findIndex(shadowOption => {
+            return shadowOption.shadowName === shadowId
+        })
+        //? delete them
+        Shadow.box.noHoverStyle.splice(shadowStyleIndex, 1)
+        Shadow.Validation.noHoverValidation.splice(shadowValidateIndex, 1)
+        reduceShadowId(shadowStyleIndex, shadowValidateIndex, isHover)
+    }
+}
+
+//? reduce shaodw id
+const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex, isHover) => {
+    //? reduce shadow style shadow name
+    let shadowStyle = undefined
+    let shadowValidate = undefined
+
+    if (isHover) {
+        shadowStyle = Shadow.box.hoverStyle
+        shadowValidate = Shadow.Validation.hoverStyle
+    } else {
+        shadowStyle = Shadow.box.noHoverStyle
+        shadowValidate = Shadow.Validation.noHoverValidation
+    }
+    
+    for(let shadowIndex = shadowStyleBeginIndex ; shadowIndex < shadowStyle.length ; shadowIndex++) {        
+        if (shadowStyle[shadowIndex]) {
+            let shadowText = shadowStyle[shadowIndex].shadowName.split("-")[0]
+            let shadowNumber = Number(shadowStyle[shadowIndex].shadowName.split("-")[1])
+            shadowStyle[shadowIndex].shadowName = `${shadowText}-${shadowNumber - 1}`
+        }
+    }
+    //? reduce shadow validation shadow name
+    for(let shadowIndex = shadowValidateBeginIndex ; shadowIndex < shadowValidate.length ; shadowIndex++) {
+        if (shadowValidate[shadowIndex]) {
+            let shadowText = shadowValidate[shadowIndex].shadowName.split("-")[0]
+            let shadowNumber = Number(shadowValidate[shadowIndex].shadowName.split("-")[1])
+            shadowValidate[shadowIndex].shadowName = `${shadowText}-${shadowNumber - 1}`
+        }
+    }
 }
 
 elementClassNameInp.addEventListener("keyup", checkInit)
