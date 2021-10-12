@@ -16,12 +16,12 @@ const speardHoverInp = document.querySelector(".speard-hover-inp")
 const colorPickerNoHover = document.querySelector(".color-picker-no-hover")
 const colorPickerHover = document.querySelector(".color-picker-hover")
 const noHoverValidationInputs = document.querySelector(".valdiation-inputs-elem")
+const hoverValidationInputs = document.querySelector(".valdiation-inputs-hover-elem")
 const shadowOptionNoHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
 const shadowOptionHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
 const shadowOptionDefault = document.querySelector(".shadow-option-default")
 const typeEffectIcon = document.querySelector(".type-effect-icon")
 const propertiesBoxNoHover = document.querySelector(".properies-box-no-hover")
-const propertiesBoxHover = document.querySelector(".properies-box-hover")
 const typeEffectBox = document.querySelector(".type-effect-box")
 const shadowOptionBoxNoHover = document.querySelector(".shadow-option-no-hover")
 
@@ -190,7 +190,65 @@ const removeShadowDataFromInputs = (isHover) => {
 //? check inputs
 const checkInputs = (value, isHover, inputName) => {
     if (isHover) {
-        
+        const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover,true)[1]
+        let shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
+        if (inputName === "horizental" || inputName === "vertical") {
+            const regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
+            const regexResult = regexCode.test(value)
+            
+            //? if user type correct number
+            if (regexResult) {
+                if (inputName === "horizental") {
+                    shadowValidateObj.horizentalValidate = true
+                    shadowStyleObj.horizental = value
+                } else {
+                    shadowValidateObj.verticalValidate = true
+                    shadowStyleObj.vertical = value
+                }
+
+                if (!shadowValidateObj.verticalValidate)
+                    hoverValidationInputs.innerHTML = "please complete the vertical field correctlly"
+                else if (!shadowValidateObj.horizentalValidate)
+                    hoverValidationInputs.innerHTML = "please complete the horizental field correctlly"
+                else if (!shadowValidateObj.blurValidate)
+                    hoverValidationInputs.innerHTML = "please complete the blur field correctlly"
+                else if (!shadowValidateObj.speardValidate)
+                    hoverValidationInputs.innerHTML = "please complete the speard field correctlly"
+                else
+                    hoverValidationInputs.innerHTML = ""
+                
+            } else {
+                //? false input validation
+                inputName === "horizental" ? shadowValidateObj.horizentalValidate = false : shadowValidateObj.verticalValidate = false
+                //? put warning in validation element
+                hoverValidationInputs.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"   
+            }
+        } else {
+            const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g
+            const regexResult = regexCode.test(value)
+            
+            //? if user type correct number
+            if (regexResult) {
+                inputName === "blur" ? shadowValidateObj.blurValidate = true : shadowValidateObj.speardValidate = true
+
+                if (!shadowValidateObj.blurValidate)
+                    hoverValidationInputs.innerHTML = "please complete the blur field correctlly"
+                else if (!shadowValidateObj.speardValidate)
+                    hoverValidationInputs.innerHTML = "please complete the speard field correctlly"
+                else if (!shadowValidateObj.horizentalValidate) 
+                    hoverValidationInputs.innerHTML = "please complete the horizental field correctlly"
+                else if (!shadowValidateObj.verticalValidate)
+                    hoverValidationInputs.innerHTML = "please complete the vertical field correctlly"
+                else
+                    hoverValidationInputs.innerHTML = ""
+                
+            } else {
+                //? false input validation
+                inputName === "blur" ? shadowValidateObj.blurValidate = false : shadowValidateObj.speardValidate = false
+                //? put warning in validation element
+                hoverValidationInputs.innerHTML = "Please select positive number from 0 to 100"
+            }
+        }
     } else {
         const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover,false)[1]
         let shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0]
@@ -550,6 +608,8 @@ const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex, isHover
     }
 }
 
+let typeBox = null
+
 //? create default and hover box
 const createDH_box = (nameBox) => {
     typeEffectBox.innerText = ""
@@ -581,7 +641,6 @@ const createDH_box = (nameBox) => {
             defaultBox.classList.add("active")
             propertiesBoxNoHover.style.marginLeft = "0"
             shadowOptionBoxNoHover.style.marginLeft = "0"
-            // removeShadowDataFromDom(true)
             removeShadowDataFromInputs(true)
             uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
             disableAllInputs(true)
@@ -619,10 +678,12 @@ horizentalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false
 verticalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "vertical"))
 blurInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "blur"))
 speardInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "speard"))
+
+horizentalHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "horizental"))
+verticalHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "vertical"))
+
 shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOptionBoxNoHover)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
-
-let typeBox = null
 
 typeEffectIcon.addEventListener("click", () => {
     if (Shadow.isInit) {
