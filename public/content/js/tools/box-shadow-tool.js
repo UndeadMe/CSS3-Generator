@@ -25,6 +25,7 @@ const typeEffectIcon = document.querySelector(".type-effect-icon")
 const propertiesBoxNoHover = document.querySelector(".properies-box-no-hover")
 const typeEffectBox = document.querySelector(".type-effect-box")
 const shadowOptionBoxNoHover = document.querySelector(".shadow-option-no-hover")
+const vhTools = document.querySelectorAll(".vh-tool")
 
 //? shadow object
 let Shadow = {
@@ -122,7 +123,7 @@ const checkInit = (e) => {
     } else {
         Shadow.isInit = false
         e.target.parentElement.previousElementSibling.innerHTML = "please complete the field below. You are allowed to enter up to 30 letters"
-
+        disableAllVhTool()
         if (Shadow.isHover) {
             typeEffectBox.innerText = ""
             typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
@@ -237,6 +238,7 @@ const checkInputs = (value, isHover, inputName) => {
         const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover,true)[1]
         let shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
         if (inputName === "horizental" || inputName === "vertical") {
+            disableAllVhTool()
             const regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
             const regexResult = regexCode.test(value)
             
@@ -268,6 +270,7 @@ const checkInputs = (value, isHover, inputName) => {
                 hoverValidationInputs.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"   
             }
         } else {
+            disableAllVhTool()
             const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g
             const regexResult = regexCode.test(value)
             
@@ -303,6 +306,7 @@ const checkInputs = (value, isHover, inputName) => {
         const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover,false)[1]
         let shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0]
         if (inputName === "horizental" || inputName === "vertical") {
+            disableAllVhTool()
             const regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
             const regexResult = regexCode.test(value)
             
@@ -334,6 +338,7 @@ const checkInputs = (value, isHover, inputName) => {
                 noHoverValidationInputs.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"   
             }
         } else {
+            disableAllVhTool()
             const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g
             const regexResult = regexCode.test(value)
             
@@ -373,6 +378,7 @@ const shadowOpNoHover = () => {
     if (Shadow.isInit) {
         const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
+            disableAllVhTool()
             
             //? increase the shaodw no hover name
             Shadow.nowShadowNoHover = inCreaseTheNowShadow(Shadow.nowShadowNoHover)
@@ -407,7 +413,7 @@ const shadowOpHover = () => {
     if (Shadow.isInit) {
         const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
         if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
-            
+            disableAllVhTool()
             //? increase the shaodw hover name
             Shadow.nowShadowHover = inCreaseTheNowShadow(Shadow.nowShadowHover)
 
@@ -541,7 +547,7 @@ const switchToShadowOption = (switchShadowId, isHover) => {
                     colorPickerNoHover.style.background = findShadowOptionIndex(switchShadowId, false)[0].shadowColor
                 }
 
-                // disableAllVhTool() FIXME
+                disableAllVhTool()
             } else 
                 alert("You need to enter the information correctly")
         }
@@ -632,7 +638,7 @@ const minusShadowOption = (shadowId , isHover) => {
                 // addStyleToGenerateTxt() FIXME
             }
 
-            // disableAllVhTool() FIXME
+            disableAllVhTool()
         } else 
             alert("You need to enter the information correctly after then you can delete you shadow option")
     } else
@@ -726,7 +732,7 @@ const createDH_box = (nameBox) => {
         const validateObject = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
             if (typeBox !== "defaultBox") {
-                // disableAllVhTool() FIXME
+                disableAllVhTool()
                 typeBox = "defaultBox"
                 hoverBox.classList.remove("active")
                 defaultBox.classList.add("active")
@@ -746,7 +752,7 @@ const createDH_box = (nameBox) => {
         const validateObject = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
             if (typeBox !== "hoverBox") {
-                // disableAllVhTool() FIXME
+                disableAllVhTool()
                 typeBox = "hoverBox"
                 hoverBox.classList.add("active")
                 defaultBox.classList.remove("active")
@@ -778,6 +784,132 @@ const deleteHoverTypeEffect = () => {
     Shadow.Validation.hoverValidation.splice(1, Shadow.Validation.hoverValidation.length)
 }
 
+//? disable all vh tools function
+const disableAllVhTool = () => { vhTools.forEach(tool => tool.classList.remove("active")) }
+
+//? active vh tool
+const activeVhTool = (vhTool) => 
+    vhTools.forEach(allVhtools => allVhtools.className.includes(vhTool.className) ? allVhtools.classList.add("active") : allVhtools.classList.remove("active"))
+
+//? vh tools 
+vhTools.forEach(vhTool => {
+    vhTool.addEventListener('click', (e) => {
+        if (Shadow.isInit) {
+            let shadowHoverObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
+            let validateHoverObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
+            
+            let validateNoHoverObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
+            let shadowNoHoverObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0]
+            
+            if (Shadow.isHover) {
+                if (typeBox === "defaultBox") {
+                    if (validateNoHoverObj.horizentalValidate && validateNoHoverObj.verticalValidate && validateNoHoverObj.blurValidate && validateNoHoverObj.speardValidate) {
+                        if (e.target.className.includes("top-right")) {
+                            
+                            shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                            if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                            uploadShadowDataInInputs(false, shadowNoHoverObj)
+                            // addStyleToResizable(false) FIXME
+
+                        } else if (e.target.className.includes("top-left")) {
+
+                            if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                            if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                            uploadShadowDataInInputs(false, shadowNoHoverObj)
+                            // addStyleToResizable(false) FIXME
+                            
+                        } else if (e.target.className.includes("bottom-right")) {
+
+                            shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                            shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                            uploadShadowDataInInputs(false)
+                            // addStyleToResizable(false) FIXME
+                            
+                        } else {
+    
+                            if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                            shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                            uploadShadowDataInInputs(false)
+                            // addStyleToResizable(false) FIXME
+    
+                        }
+                        activeVhTool(e.target)
+                    } else 
+                        alert("Please enter the information correctly")
+                } else {
+                    if (validateHoverObj.horizentalValidate && validateHoverObj.verticalValidate && validateHoverObj.blurValidate && validateHoverObj.speardValidate) {
+                        if (e.target.className.includes("top-right")) {
+                            shadowHoverObj.horizental = Math.abs(shadowHoverObj.horizental)
+                            if (shadowHoverObj.vertical > 0) { shadowHoverObj.vertical = -shadowHoverObj.vertical }
+                            uploadShadowDataInInputs(true, shadowHoverObj)
+                            // addStyleToResizable(true) FIXME
+    
+                        } else if (e.target.className.includes("top-left")) {
+    
+                            if (shadowHoverObj.horizental > 0) { shadowHoverObj.horizental = -shadowHoverObj.horizental }
+                            if (shadowHoverObj.vertical > 0) { shadowHoverObj.vertical = -shadowHoverObj.vertical }
+                            uploadShadowDataInInputs(true, shadowHoverObj)
+                            // addStyleToResizable(true) FIXME
+                            
+                        } else if (e.target.className.includes("bottom-right")) {
+    
+                            shadowHoverObj.horizental = Math.abs(shadowHoverObj.horizental)
+                            shadowHoverObj.vertical = Math.abs(shadowHoverObj.vertical)
+                            uploadShadowDataInInputs(true, shadowHoverObj)
+                            // addStyleToResizable(true) FIXME
+                            
+                        } else {
+    
+                            if (shadowHoverObj.horizental > 0) { shadowHoverObj.horizental = -shadowHoverObj.horizental }
+                            shadowHoverObj.vertical = Math.abs(shadowHoverObj.vertical)
+                            uploadShadowDataInInputs(true, shadowHoverObj)
+                            // addStyleToResizable(true) FIXME
+    
+                        }
+                        activeVhTool(e.target)
+                    } else 
+                        alert("Please enter the information correctly")
+                }
+            } else {
+                if (validateNoHoverObj.horizentalValidate && validateNoHoverObj.verticalValidate && validateNoHoverObj.blurValidate && validateNoHoverObj.speardValidate) {
+                    if (e.target.className.includes("top-right")) {
+                        
+                        shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                        if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                        uploadShadowDataInInputs(false, shadowNoHoverObj)
+                        // addStyleToResizable(false) FIXME
+
+                    } else if (e.target.className.includes("top-left")) {
+                        
+                        if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                        if (shadowNoHoverObj.vertical > 0) { shadowNoHoverObj.vertical = -shadowNoHoverObj.vertical }
+                        uploadShadowDataInInputs(false, shadowNoHoverObj)
+                        // addStyleToResizable(false) FIXME
+
+                    } else if (e.target.className.includes("bottom-right")) {
+
+                        shadowNoHoverObj.horizental = Math.abs(shadowNoHoverObj.horizental)
+                        shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                        uploadShadowDataInInputs(false, shadowNoHoverObj)
+                        // addStyleToResizable(false) FIXME
+                        
+                    } else {
+
+                        if (shadowNoHoverObj.horizental > 0) { shadowNoHoverObj.horizental = -shadowNoHoverObj.horizental }
+                        shadowNoHoverObj.vertical = Math.abs(shadowNoHoverObj.vertical)
+                        uploadShadowDataInInputs(false, shadowNoHoverObj)
+                        // addStyleToResizable(false) FIXME
+
+                    }
+                    activeVhTool(e.target)
+                } else 
+                    alert("Please enter the information correctly")
+            }
+        } else 
+            alert("please fill out the fields")
+    })
+})
+
 elementClassNameInp.addEventListener("keyup", checkInit)
 
 horizentalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "horizental"))
@@ -808,6 +940,8 @@ typeEffectIcon.addEventListener("click", () => {
             shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
             shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
         }
+        
+        disableAllVhTool()
 
         if (Shadow.isHover) {
             uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
