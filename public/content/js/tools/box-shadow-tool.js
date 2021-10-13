@@ -18,8 +18,9 @@ const colorPickerHover = document.querySelector(".color-picker-hover")
 const noHoverValidationInputs = document.querySelector(".valdiation-inputs-elem")
 const hoverValidationInputs = document.querySelector(".valdiation-inputs-hover-elem")
 const shadowOptionNoHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
-const shadowOptionHoverPlusBtn = document.querySelector(".shadow-option-plus-noHover-btn")
-const shadowOptionDefault = document.querySelector(".shadow-option-default")
+const shadowOptionHoverPlusBtn = document.querySelector(".shadow-option-plus-hover-btn")
+const shadowOptionDefault = document.querySelector(".shadow-option-default.no-hover")
+const shadowOptionDefaultHover = document.querySelector(".shadow-option-default.hover")
 const typeEffectIcon = document.querySelector(".type-effect-icon")
 const propertiesBoxNoHover = document.querySelector(".properies-box-no-hover")
 const typeEffectBox = document.querySelector(".type-effect-box")
@@ -77,8 +78,8 @@ let Shadow = {
 }
 
 //? pickr
-createPickr(".color-picker-no-hover", Shadow.box.noHoverStyle[0].shadowColor)
-createPickr(".color-picker-hover", Shadow.box.hoverStyle[0].shadowColor)
+// createPickr(".color-picker-no-hover", Shadow.box.noHoverStyle[0].shadowColor)
+// createPickr(".color-picker-hover", Shadow.box.hoverStyle[0].shadowColor)
 
 //? check initiall
 const checkInit = (e) => {
@@ -89,14 +90,56 @@ const checkInit = (e) => {
         Shadow.isInit = true
         //? put class name in shadow elem class
         Shadow.elemClass = `.${e.target.value.split(" ").join("-")}`
-        activeInputs(false)
-        uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover,false)[0])
         e.target.parentElement.previousElementSibling.innerHTML = ""
+        
+        if (Shadow.isHover) {
+            createDH_box(typeBox)
+            typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
+            if (typeBox === "hoverBox") {
+                activeInputs(true)
+                uploadShadowDataInInputs(true, findShadowOptionIndex(Shadow.nowShadowHover,true)[0])
+                checkInputs(horizentalHoverInp.value, true, "horizental")
+                checkInputs(verticalHoverInp.value, true, "vertical")
+                checkInputs(blurHoverInp.value, true, "blur")
+                checkInputs(speardHoverInp.value, true, "speard")
+            } else {
+                activeInputs(false)
+                uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover,false)[0])
+                checkInputs(horizentalInp.value, false, "horizental")
+                checkInputs(verticalInp.value, false, "vertical")
+                checkInputs(blurInp.value, false, "blur")
+                checkInputs(speardInp.value, false, "speard")
+            }
+        } else {
+            activeInputs(false)
+            uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover,false)[0])
+            checkInputs(horizentalInp.value, false, "horizental")
+            checkInputs(verticalInp.value, false, "vertical")
+            checkInputs(blurInp.value, false, "blur")
+            checkInputs(speardInp.value, false, "speard")
+        }
+        
     } else {
         Shadow.isInit = false
-        disableAllInputs(false)
-        removeShadowDataFromInputs(false)
         e.target.parentElement.previousElementSibling.innerHTML = "please complete the field below. You are allowed to enter up to 30 letters"
+
+        if (Shadow.isHover) {
+            typeEffectBox.innerText = ""
+            typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
+            if (typeBox === "hoverBox") {
+                removeShadowDataFromInputs(true)
+                disableAllInputs(true)
+                hoverValidationInputs.innerHTML = ""
+            } else {
+                removeShadowDataFromInputs(false)
+                disableAllInputs(false)
+                noHoverValidationInputs.innerHTML = ""
+            }
+        } else {
+            disableAllInputs(false)
+            removeShadowDataFromInputs(false)
+            noHoverValidationInputs.innerHTML = ""
+        }
     }
 }
 
@@ -124,6 +167,7 @@ const disableAllInputs = (isHover) => {
         verticalHoverInp.disabled = true
         blurHoverInp.disabled = true
         speardHoverInp.disabled = true
+        colorPickerHover.disabled = true
     } else {
         horizentalInp.disabled = true
         verticalInp.disabled = true
@@ -229,7 +273,13 @@ const checkInputs = (value, isHover, inputName) => {
             
             //? if user type correct number
             if (regexResult) {
-                inputName === "blur" ? shadowValidateObj.blurValidate = true : shadowValidateObj.speardValidate = true
+                if (inputName === "blur") {
+                    shadowValidateObj.blurValidate = true
+                    shadowStyleObj.blur = value
+                } else {
+                    shadowValidateObj.speardValidate = true
+                    shadowStyleObj.speard = value
+                }
 
                 if (!shadowValidateObj.blurValidate)
                     hoverValidationInputs.innerHTML = "please complete the blur field correctlly"
@@ -289,7 +339,13 @@ const checkInputs = (value, isHover, inputName) => {
             
             //? if user type correct number
             if (regexResult) {
-                inputName === "blur" ? shadowValidateObj.blurValidate = true : shadowValidateObj.speardValidate = true
+                if (inputName === "blur") {
+                    shadowValidateObj.blurValidate = true
+                    shadowStyleObj.blur = value
+                } else {
+                    shadowValidateObj.speardValidate = true
+                    shadowStyleObj.speard = value
+                }
 
                 if (!shadowValidateObj.blurValidate)
                     noHoverValidationInputs.innerHTML = "please complete the blur field correctlly"
@@ -339,9 +395,43 @@ const shadowOpNoHover = () => {
             activeShadowOption(Shadow.nowShadowNoHover, false)
 
             colorPickerNoHover.style.background = newStyleObj.shadowColor
+
+        } else 
+            alert("please complete the fields correctly")
+    } else 
+        alert("please complete the fields")
+}
+
+//? this function create new shadow option and shadow option object and append new shadow option for hover type effect
+const shadowOpHover = () => {
+    if (Shadow.isInit) {
+        const shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
+        if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
+            
+            //? increase the shaodw hover name
+            Shadow.nowShadowHover = inCreaseTheNowShadow(Shadow.nowShadowHover)
+
+            //? create new style object
+            const newStyleObj = createNewStyleObj(Shadow.nowShadowHover)
+            const newValidateObj = createNewValidateObj(Shadow.nowShadowHover)
+
+            //? and put them in Shadow object
+            Shadow.box.hoverStyle.push(newStyleObj)
+            Shadow.Validation.hoverValidation.push(newValidateObj)
+
+            //? get shadow option hover wrap
+            createNewShadowOption(".shadow-option-hover-wrap", Shadow.box.hoverStyle.length, true)
+
+            //? upload new shadow option data in inputs
+            uploadShadowDataInInputs(true, newStyleObj)
+
+            //? active new shadow option (hover)
+            activeShadowOption(Shadow.nowShadowHover, true)
+
+            colorPickerHover.style.background = newStyleObj.shadowColor
             
             //? create new color picker
-            createNewPickr(".color-picker-no-hover", newStyleObj.shadowColor)
+            createNewPickr(".color-picker-hover", newStyleObj.shadowColor, true)
 
         } else 
             alert("please complete the fields correctly")
@@ -442,7 +532,7 @@ const switchToShadowOption = (switchShadowId, isHover) => {
     
                 uploadShadowDataInInputs(isHover, findShadowOptionIndex(switchShadowId, isHover)[0])
                 activeShadowOption(switchShadowId, isHover)
-    
+                
                 if (isHover) {
                     createNewPickr(".color-picker-hover", findShadowOptionIndex(switchShadowId, true)[0].shadowColor, isHover)
                     colorPickerHover.style.background = findShadowOptionIndex(switchShadowId, true)[0].shadowColor
@@ -450,7 +540,7 @@ const switchToShadowOption = (switchShadowId, isHover) => {
                     createNewPickr(".color-picker-no-hover", findShadowOptionIndex(switchShadowId, false)[0].shadowColor, isHover)
                     colorPickerNoHover.style.background = findShadowOptionIndex(switchShadowId, false)[0].shadowColor
                 }
-    
+
                 // disableAllVhTool() FIXME
             } else 
                 alert("You need to enter the information correctly")
@@ -474,10 +564,12 @@ const createNewPickr = (buttonClass, color, isHover) => {
         }
         
         shadowOption.shadowColor = shadowColor
-        
         // addStyleToGenerateTxt() FIXME
     })
 }
+
+createNewPickr(".color-picker-no-hover", Shadow.box.noHoverStyle[0].shadowColor, false)
+createNewPickr(".color-picker-hover", Shadow.box.hoverStyle[0].shadowColor, true)
 
 //? minus shadow option
 const minusShadowOption = (shadowId , isHover) => {
@@ -556,12 +648,12 @@ const deleteStyleAndValidateObj = (shadowId, isHover) => {
         shadowStyleIndex = Shadow.box.hoverStyle.findIndex(shadowOption => {
             return shadowOption.shadowName === shadowId
         })
-        shadowValidateIndex = Shadow.Validation.hoverStyle.findIndex(shadowOption => {
+        shadowValidateIndex = Shadow.Validation.hoverValidation.findIndex(shadowOption => {
             return shadowOption.shadowName === shadowId
         })
         //? delete them
         Shadow.box.hoverStyle.splice(shadowStyleIndex, 1)
-        Shadow.Validation.hoverStyle.splice(shadowValidateIndex, 1)
+        Shadow.Validation.hoverValidation.splice(shadowValidateIndex, 1)
         reduceShadowId(shadowStyleIndex, shadowValidateIndex, isHover)
     } else {
         shadowStyleIndex = Shadow.box.noHoverStyle.findIndex(shadowOption => {
@@ -585,7 +677,7 @@ const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex, isHover
 
     if (isHover) {
         shadowStyle = Shadow.box.hoverStyle
-        shadowValidate = Shadow.Validation.hoverStyle
+        shadowValidate = Shadow.Validation.hoverValidation
     } else {
         shadowStyle = Shadow.box.noHoverStyle
         shadowValidate = Shadow.Validation.noHoverValidation
@@ -608,7 +700,7 @@ const reduceShadowId = (shadowStyleBeginIndex, shadowValidateBeginIndex, isHover
     }
 }
 
-let typeBox = null
+let typeBox = "defaultBox"
 
 //? create default and hover box
 const createDH_box = (nameBox) => {
@@ -635,16 +727,16 @@ const createDH_box = (nameBox) => {
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
             if (typeBox !== "defaultBox") {
                 // disableAllVhTool() FIXME
+                typeBox = "defaultBox"
+                hoverBox.classList.remove("active")
+                defaultBox.classList.add("active")
+                propertiesBoxNoHover.style.marginLeft = "0"
+                shadowOptionBoxNoHover.style.marginLeft = "0"
+                removeShadowDataFromInputs(true)
+                uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
+                disableAllInputs(true)
+                activeInputs(false)
             }
-            typeBox = "defaultBox"
-            hoverBox.classList.remove("active")
-            defaultBox.classList.add("active")
-            propertiesBoxNoHover.style.marginLeft = "0"
-            shadowOptionBoxNoHover.style.marginLeft = "0"
-            removeShadowDataFromInputs(true)
-            uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
-            disableAllInputs(true)
-            activeInputs(false)
             // addStyleToResizable(false) FIXME
         } else 
             alert("Enter the information correctly")
@@ -655,22 +747,35 @@ const createDH_box = (nameBox) => {
         if (validateObject.horizentalValidate && validateObject.verticalValidate && validateObject.blurValidate && validateObject.speardValidate) {
             if (typeBox !== "hoverBox") {
                 // disableAllVhTool() FIXME
+                typeBox = "hoverBox"
+                hoverBox.classList.add("active")
+                defaultBox.classList.remove("active")
+                propertiesBoxNoHover.style.marginLeft = "-318px"
+                shadowOptionBoxNoHover.style.marginLeft = "-318px"
+                uploadShadowDataInInputs(true, findShadowOptionIndex(Shadow.nowShadowHover, true)[0])
+                removeShadowDataFromInputs(false)
+                disableAllInputs(false)
+                activeInputs(true)
             }
-            typeBox = "hoverBox"
-            hoverBox.classList.add("active")
-            defaultBox.classList.remove("active")
-            propertiesBoxNoHover.style.marginLeft = "-318px"
-            shadowOptionBoxNoHover.style.marginLeft = "-318px"
-            uploadShadowDataInInputs(true, findShadowOptionIndex(Shadow.nowShadowHover, true)[0])
-            removeShadowDataFromInputs(false)
-            disableAllInputs(false)
-            activeInputs(true)
             // addStyleToResizable(true) FIXME
         } else 
             alert("Enter the information correctly")
     })
 
     typeEffectBox.append(defaultBox, hoverBox)
+}
+
+//?delete hover type effect
+const deleteHoverTypeEffect = () => {
+    Shadow.isHover = false
+    typeBox = "defaultBox"
+    typeEffectBox.innerText = ""
+    typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
+    propertiesBoxNoHover.style.marginLeft = "0"
+    shadowOptionBoxNoHover.style.marginLeft = "0"
+    document.querySelector(".shadow-option-hover-wrap").innerText = ""
+    Shadow.box.hoverStyle.splice(1, Shadow.box.hoverStyle.length)
+    Shadow.Validation.hoverValidation.splice(1, Shadow.Validation.hoverValidation.length)
 }
 
 elementClassNameInp.addEventListener("keyup", checkInit)
@@ -686,38 +791,39 @@ blurHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, 
 speardHoverInp.addEventListener("keyup", (e) => checkInputs(e.target.value, true, "speard"))
 
 shadowOptionNoHoverPlusBtn.addEventListener("click", shadowOpNoHover)
+shadowOptionHoverPlusBtn.addEventListener("click", shadowOpHover)
+
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
+shadowOptionDefaultHover.addEventListener("click", () => switchToShadowOption(shadowOptionDefaultHover.dataset.id, true))
 
 typeEffectIcon.addEventListener("click", () => {
     if (Shadow.isInit) {
         let shadowValidateObj = undefined
         let shadowStyleObj = undefined
 
-        if (Shadow.isHover) {
-            shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
-            shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
-        } else {
+        if (typeBox === "defaultBox") {
             shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[1]
             shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0]
+        } else {
+            shadowValidateObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[1]
+            shadowStyleObj = findShadowOptionIndex(Shadow.nowShadowHover, true)[0]
         }
 
-        if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
-            if (Shadow.isHover) {
-                typeBox = "defaultBox"
-                Shadow.isHover = false
-                propertiesBoxNoHover.style.marginLeft = 0
-                typeEffectIcon.innerHTML = '<i class="bi bi-plus-square"></i>'
-                uploadShadowDataInInputs(false, shadowStyleObj)
-                activeInputs(false)
-                // addStyleToResizable(false) FIXME
-                // removeDH_box() FIXME
-            } else {
+        if (Shadow.isHover) {
+            uploadShadowDataInInputs(false, findShadowOptionIndex(Shadow.nowShadowNoHover, false)[0])
+            activeInputs(false)
+            deleteHoverTypeEffect()
+            // addStyleToResizable(false) FIXME
+            // removeDH_box() FIXME
+        } else {
+            if (shadowValidateObj.horizentalValidate && shadowValidateObj.verticalValidate && shadowValidateObj.blurValidate && shadowValidateObj.speardValidate) {
                 Shadow.isHover = true
                 createDH_box("defaultBox")
                 typeEffectIcon.innerHTML = '<i class="bi bi-dash-square"></i>'
+            } else {
+                alert("Please enter the information correctly")
             }
-        } else 
-            alert("Please enter the information correctly")
+        }
     } else 
         alert("Please fill in the field above")
 })
