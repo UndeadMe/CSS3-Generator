@@ -576,7 +576,7 @@ const createNewPickr = (buttonClass, color, isHover) => {
         }
         
         shadowOption.shadowColor = shadowColor
-        addStyleToResizable()
+        addStyleToResizable(isHover)
     })
 }
 
