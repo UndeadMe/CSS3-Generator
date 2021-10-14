@@ -12,6 +12,10 @@ const styleBox = document.querySelector(".style-box")
 const styleMenuItemBox = document.querySelectorAll(".style-menu-item-box")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let Border = {
     elemClass: null,
@@ -137,15 +141,33 @@ const checkValidateInputs = (value) => {
     
 }
 
+let text = undefined
 //? check all inputs and other elements validation is true and then open generate pannel
 const openGeneratePannel = () => {
     if (Border.isInit) {
         if (Border.widthValidate) {
             generateWrapBox.classList.add("active")
+            text = `.${Border.elemClass} { border: ${Border.border.width}px ${Border.border.style} ${Border.border.color} }`
+            
+            codePennel.innerHTML = `.${Border.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; border: ${Border.border.width}px ${Border.border.style} ${Border.border.style} <br>
+            }`
+            
         } else 
             alert("Enter the information correctly")
     } else
         alert("Please enter the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = text
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? add style to image
@@ -159,3 +181,5 @@ styleBox.addEventListener("click", openStyleBox)
 elemClassNameInp.addEventListener("keyup", checkInit)
 widthInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
