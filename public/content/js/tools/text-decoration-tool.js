@@ -10,6 +10,10 @@ const decorationValidation = document.querySelector(".decoration-validation-elem
 const picker = document.querySelector(".color-picker")
 const decorationBoxes = document.querySelectorAll(".decoration-box")
 const decorationMenuItems = document.querySelectorAll(".decoration-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Decoration object
 let Decoration = {
@@ -67,7 +71,6 @@ disableAllInputs()
 //? add style to Font Size box
 const addStyleToText = () => {
     let decorationObj = Decoration.text
-    console.log(decorationObj)
     text.style.textDecoration = `${decorationObj.thickness}px 
                                 ${decorationObj.decorationStyle} 
                                 ${decorationObj.decorationLine} 
@@ -78,16 +81,37 @@ const addStyleToText = () => {
 const uploadDataInInputs = () => 
     decorationInp.value = Decoration.text.thickness
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Decoration.isInit) {
         if (Decoration.thicknessValidation) {
             generateWrapBox.classList.add('active')
+            StyleText = `.${Decoration.elemClass} { text-decoration: ${Decoration.text.decorationLine} ${Decoration.text.decorationStyle} ${Decoration.text.thickness}px ${Decoration.text.color}; }`
+            codePennel.innerHTML = `.${Decoration.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp;text-decoration: <br> 
+                &nbsp;&nbsp;&nbsp;${Decoration.text.decorationLine}
+                ${Decoration.text.decorationStyle}
+                ${Decoration.text.thickness}px
+                ${Decoration.text.color}; <br>
+            }`
         } else 
             alert("please complete the filds correctly")
     } else
         alert("please complete the fields above")
 }
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
+
 
 //? check validation
 const checkValidateInputs = (value) => {
@@ -140,6 +164,9 @@ elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 decorationInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
 decorationMenuItems.forEach(decorationMenuItem => decorationMenuItem.addEventListener("click", () => decoration(decorationMenuItem)))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
+
 decorationBoxes.forEach(decorationBox => {
     decorationBox.addEventListener("click", () => {
         if (Decoration.isInit) {
