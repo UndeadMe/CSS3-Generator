@@ -9,6 +9,10 @@ const validationOpacityElem = document.querySelector(".opacity-validation-elem")
 const resizableBox = document.querySelector(".resizable")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
 
 let Opacity = {
     elemClass: null,
@@ -73,11 +77,30 @@ const checkValidateInputs = (value) => {
 }
 
 //? check all inputs and other elements validation is true and then open generate pannel
+let text = undefined
 const openGeneratePannel = () => {
     if (Opacity.isInit) {
         generateWrapBox.classList.add("active")
+        
+        text = `.${Opacity.elemClass} {opacity: ${Opacity.opacity}}`
+
+        codePennel.innerHTML = `.${Opacity.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; opacity: ${Opacity.opacity} <br>
+        }`
+        
     } else
         alert("Please enter the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = text
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? add style to image
@@ -89,3 +112,5 @@ addStyleToResizable()
 elemClassNameInp.addEventListener("keyup", checkInit)
 opacityInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
