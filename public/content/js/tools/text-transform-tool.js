@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const transformBox = document.querySelector(".transform-box")
 const transformMenuItems = document.querySelectorAll(".transform-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Transform object
 let Transform = {
@@ -37,9 +41,25 @@ const addStyleToText = () =>
 const openGeneratePannel = () => {
     if (Transform.isInit) {
         generateWrapBox.classList.add("active")
+        StyleText = `.${Transform.elemClass} { text-transform: ${Transform.transform}; }`
+        codePennel.innerHTML = `.${Transform.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; text-transform: ${Transform.transform}; <br>
+        }`
     } else
         alert("please complete the field above")
 }
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
+
 
 //? check init
 const checkInit = () => {
@@ -55,6 +75,8 @@ elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 elemClassNameInp.addEventListener("focus", () => transformBox.classList.remove("active"))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 transformBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 transformMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
