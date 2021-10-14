@@ -1,6 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
 :root {
     --dark-black : #0C0910;
     --matte-black : #171717 ;
@@ -35,7 +33,7 @@
     --tool-shadow : rgba(0, 0, 0, 0.6);
 }
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 * {
     user-select: none;
