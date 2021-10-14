@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const fontSizeInp = document.querySelector('.font-size-inp')
 const fontSizeValidation = document.querySelector(".font-size-validation-elem")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Font Size object
 let Font_Size = {
@@ -62,15 +66,31 @@ const addStyleToText = () =>
 const removeStyleFromText = () =>
     text.style.fontSize = 4
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Font_Size.isInit) {
         if (Font_Size.fontSizeValidation) {
             generateWrapBox.classList.add('active')
+            StyleText = `.${Font_Size.elemClass} { font-size: ${Font_Size.size}px }`
+            codePennel.innerHTML = `.${Font_Size.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; font-size: ${Font_Size.size}px <br>
+            }`
         } else 
             alert("please complete the filds correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check validation
@@ -93,3 +113,5 @@ const checkValidateInputs = (value) => {
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 fontSizeInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
