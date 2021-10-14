@@ -13,6 +13,10 @@ const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 const shadowOptionPlusBtn = document.querySelector(".shadow-option-plus-btn")
 const shadowOptionDefault = document.querySelector(".shadow-option-default")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? shadow object
 let Shadow = {
@@ -116,22 +120,16 @@ const addStyleToGenerateTxt = () => {
         })
     })
 
-    if (shadowStyle.length !== 1) {
-        let shadow = ""
-        shadowStyle.forEach((shadowOption, shadowOptionIndex) => {
-            for(let optionItem in shadowOption) {
-                shadow += shadowOption[optionItem] + " "
-            }
-            if (shadowOptionIndex !== shadowStyle.length - 1) {
-                shadow += ","
-            }
-        })
-        text.style.textShadow = shadow
-    } else {
-        shadowStyle.forEach(shadowOption => {
-            text.style.textShadow = `${shadowOption.horizental} ${shadowOption.vertical} ${shadowOption.blur} ${shadowOption.shadowColor}`
-        })
-    }
+    StyleText = ""
+    shadowStyle.forEach((shadowOption, shadowOptionIndex) => {
+        for(let optionItem in shadowOption) {
+            StyleText += shadowOption[optionItem] + " "
+        }
+        if (shadowOptionIndex !== shadowStyle.length - 1) {
+            StyleText += ","
+        }
+    })
+    text.style.textShadow = StyleText
 }
 
 //? check inputs 
@@ -280,16 +278,44 @@ vhTools.forEach(vhTool => {
     })
 })
 
+let StyleText = ""
 //? check all inputs and other elements validation is true 
 const openGeneratePannel = () => {
     if (Shadow.isInit) {
-        let validateObj = Shadow.Validation // FIXME
-        if (validateObj.horizentalValidate && validateObj.verticalValidate && validateObj.blurValidate) {
+        let checked = Shadow.Validation.every(item => {
+            return item.horizentalValidate && item.verticalValidate && item.blurValidate
+        })
+
+        if (checked) {
             generateWrapBox.classList.add("active")
-        } else 
+            addStyleToGenerateTxt()
+            
+            let shadowOptionStyleText = ""
+            
+            StyleText.split(",").forEach((item , index) => {
+                shadowOptionStyleText += "&nbsp;&nbsp;&nbsp;" + item
+                if (index !== StyleText.split(",").length - 1)
+                    shadowOptionStyleText += ", "
+            })
+
+            codePennel.innerHTML = `${Shadow.elemClass} { <br>
+               ${shadowOptionStyleText} <br>
+            }`
+        } else
             alert("Enter the information correctly")
     } else
         alert("Please enter the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = `${Shadow.elemClass} { ${StyleText} }`
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? create new shadow option and switch to this option 
@@ -531,3 +557,6 @@ shadowOptionPlusBtn.addEventListener("click", appendNewShadowOption)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id))
 
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
