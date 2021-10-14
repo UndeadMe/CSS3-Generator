@@ -6,7 +6,10 @@ const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const colorPicker = document.querySelector(".color-picker")
-
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let pickr = createPickr(".color-picker", "#FFFFFF")
 pickr.on('change', (color) => {
@@ -70,13 +73,31 @@ const addStyleToText = () =>
 const removeStyleFromText = () =>
     text.style.color = ""
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Color.isInit) {
         generateWrapBox.classList.add('active')
+        StyleText = `.${Color.elemClass} { color: ${Color.color} }`
+        codePennel.innerHTML = `.${Color.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; color: ${Color.color} <br>
+        }`
     } else
         alert("please complete the fields above")
 }
 
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
+
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
