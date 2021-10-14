@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const letterSpacingInp = document.querySelector('.letter-spacing-inp')
 const letterSpacingValidation = document.querySelector(".letter-spacing-validation-elem")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? letter spacing object
 let letter_spacing = {
@@ -62,15 +66,31 @@ const addStyleToText = () =>
 const removeStyleFromText = () =>
     text.style.letterSpacing = 3
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (letter_spacing.isInit) {
         if (letter_spacing.letterSpacingValidation) {
             generateWrapBox.classList.add('active')
+            StyleText = `.${letter_spacing.elemClass} { letter-spacing: ${letter_spacing.space}px }`
+            codePennel.innerHTML = `.${letter_spacing.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; letter-spacing: ${letter_spacing.space}px <br>
+            }`
         } else 
             alert("please complete the filds correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check validation
@@ -93,3 +113,5 @@ const checkValidateInputs = (value) => {
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 letterSpacingInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
