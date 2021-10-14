@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const weightBox = document.querySelector(".weight-box")
 const weightMenuItems = document.querySelectorAll(".weight-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Align object
 let Weight = {
@@ -33,12 +37,28 @@ const checkElemClassNameInput = (e) => {
 const addStyleToText = () => 
     text.style.fontWeight = `${Weight.weight}`
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Weight.isInit) {
         generateWrapBox.classList.add('active')
+        StyleText = `.${Weight.elemClass} { font-weight: ${Weight.weight} }`
+        codePennel.innerHTML = `.${Weight.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; font-weight: ${Weight.weight} <br>
+        }`
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check init
@@ -55,6 +75,8 @@ elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 elemClassNameInp.addEventListener("focus", () => weightBox.classList.remove("active"))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 weightBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 weightMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
