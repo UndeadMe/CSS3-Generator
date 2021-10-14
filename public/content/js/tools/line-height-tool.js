@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const lineHeightInp = document.querySelector('.line-height-inp')
 const lineHeightValidation = document.querySelector(".line-height-validation-elem")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? line height object
 let Line_Height = {
@@ -62,15 +66,31 @@ const addStyleToText = () =>
 const removeStyleFromText = () =>
     text.style.lineHeight = 3
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Line_Height.isInit) {
         if (Line_Height.lineHeightValidation) {
             generateWrapBox.classList.add('active')
+            StyleText = `.${Line_Height.elemClass} { line-height: ${Line_Height.height}px; }`
+            codePennel.innerHTML = `.${Line_Height.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; line-height: ${Line_Height.height}px; <br>
+            }`
         } else 
             alert("please complete the filds correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check validation
@@ -93,3 +113,5 @@ const checkValidateInputs = (value) => {
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 lineHeightInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
