@@ -42,9 +42,9 @@ let StyleText = undefined
 const openGeneratePannel = () => {
     if (Weight.isInit) {
         generateWrapBox.classList.add('active')
-        StyleText = `.${Weight.elemClass} { font-weight: ${Weight.weight} }`
+        StyleText = `.${Weight.elemClass} { font-weight: ${Weight.weight}; }`
         codePennel.innerHTML = `.${Weight.elemClass} { <br>
-            &nbsp;&nbsp;&nbsp; font-weight: ${Weight.weight} <br>
+            &nbsp;&nbsp;&nbsp; font-weight: ${Weight.weight}; <br>
         }`
     } else
         alert("please complete the fields above")

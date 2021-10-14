@@ -72,9 +72,9 @@ const openGeneratePannel = () => {
     if (letter_spacing.isInit) {
         if (letter_spacing.letterSpacingValidation) {
             generateWrapBox.classList.add('active')
-            StyleText = `.${letter_spacing.elemClass} { letter-spacing: ${letter_spacing.space}px }`
+            StyleText = `.${letter_spacing.elemClass} { letter-spacing: ${letter_spacing.space}px; }`
             codePennel.innerHTML = `.${letter_spacing.elemClass} { <br>
-                &nbsp;&nbsp;&nbsp; letter-spacing: ${letter_spacing.space}px <br>
+                &nbsp;&nbsp;&nbsp; letter-spacing: ${letter_spacing.space}px; <br>
             }`
         } else 
             alert("please complete the filds correctly")

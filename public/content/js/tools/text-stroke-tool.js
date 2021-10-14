@@ -94,9 +94,9 @@ const openGeneratePannel = () => {
     if (Stroke.isInit) {
         if (Stroke.strokeValidation) {
             generateWrapBox.classList.add('active')
-            StyleText = `.${Stroke.elemClass} { -webkit-text-stroke: ${Stroke.text.stroke}px ${Stroke.text.color} }`
+            StyleText = `.${Stroke.elemClass} { -webkit-text-stroke: ${Stroke.text.stroke}px ${Stroke.text.color}; }`
             codePennel.innerHTML = `.${Stroke.elemClass} { <br>
-                &nbsp;&nbsp; -webkit-text-stroke: ${Stroke.text.stroke}px &nbsp;&nbsp;&nbsp; ${Stroke.text.color} <br>
+                &nbsp;&nbsp; -webkit-text-stroke: ${Stroke.text.stroke}px &nbsp;&nbsp;&nbsp; ${Stroke.text.color}; <br>
             }`
         }
         else 

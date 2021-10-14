@@ -7,6 +7,10 @@ const alignBox = document.querySelector(".align-box")
 const arrowRight = document.querySelector(".arrow-align-right")
 const arrowLeft = document.querySelector(".arrow-align-left")
 const alignMenuItems = document.querySelectorAll(".align-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Align object
 let Align = {
@@ -36,12 +40,29 @@ const checkElemClassNameInput = (e) => {
 const addStyleToText = () => 
     text.style.textAlign = `${Align.align}`
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Align.isInit) {
         generateWrapBox.classList.add('active')
+        StyleText = `.${Align.elemClass} { direction: ${Align.direction}; text-align: ${Align.align}; }`
+        codePennel.innerHTML = `.${Align.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; direction: ${Align.direction}; <br> 
+            &nbsp;&nbsp;&nbsp; text-align: ${Align.align}; <br>
+        }`
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? init arrow
@@ -75,6 +96,8 @@ cssCodeBtn.addEventListener("click", openGeneratePannel)
 alignBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
 arrowRight.addEventListener("click",() => checkInit() ? initArrow() : alert("please complete the fields correctly"))
 arrowLeft.addEventListener("click", () => checkInit() ? initArrow(false) : alert("please complete the fields correctly"))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 alignMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {

@@ -78,9 +78,9 @@ let StyleText = undefined
 const openGeneratePannel = () => {
     if (Color.isInit) {
         generateWrapBox.classList.add('active')
-        StyleText = `.${Color.elemClass} { color: ${Color.color} }`
+        StyleText = `.${Color.elemClass} { color: ${Color.color}; }`
         codePennel.innerHTML = `.${Color.elemClass} { <br>
-            &nbsp;&nbsp;&nbsp; color: ${Color.color} <br>
+            &nbsp;&nbsp;&nbsp; color: ${Color.color}; <br>
         }`
     } else
         alert("please complete the fields above")

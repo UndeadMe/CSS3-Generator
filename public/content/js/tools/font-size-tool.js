@@ -72,9 +72,9 @@ const openGeneratePannel = () => {
     if (Font_Size.isInit) {
         if (Font_Size.fontSizeValidation) {
             generateWrapBox.classList.add('active')
-            StyleText = `.${Font_Size.elemClass} { font-size: ${Font_Size.size}px }`
+            StyleText = `.${Font_Size.elemClass} { font-size: ${Font_Size.size}px; }`
             codePennel.innerHTML = `.${Font_Size.elemClass} { <br>
-                &nbsp;&nbsp;&nbsp; font-size: ${Font_Size.size}px <br>
+                &nbsp;&nbsp;&nbsp; font-size: ${Font_Size.size}px; <br>
             }`
         } else 
             alert("please complete the filds correctly")

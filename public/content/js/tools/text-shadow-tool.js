@@ -299,7 +299,7 @@ const openGeneratePannel = () => {
             })
 
             codePennel.innerHTML = `${Shadow.elemClass} { <br>
-               ${shadowOptionStyleText} <br>
+                &nbsp;&nbsp;&nbsp;box-shadow: <br> ${shadowOptionStyleText} ; <br>
             }`
         } else
             alert("Enter the information correctly")
