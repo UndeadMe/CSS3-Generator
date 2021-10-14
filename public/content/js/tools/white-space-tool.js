@@ -5,6 +5,10 @@ const generateWrapBox = document.querySelector(".generate-wrap-box")
 const text = document.querySelector(".text")
 const whiteSpaceBox = document.querySelector(".white-space-box")
 const whiteSpaceMenuItems = document.querySelectorAll(".white-space-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? white space obj
 let White_Space = {
@@ -37,8 +41,23 @@ const addStyleToText = () =>
 const openGeneratePannel = () => {
     if (White_Space.isInit) {
         generateWrapBox.classList.add('active')
+        StyleText = `.${White_Space.elemClass} { white-space: ${White_Space.white_space}; }`
+        codePennel.innerHTML = `.${White_Space.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; white-space: ${White_Space.white_space}; <br>
+        }`
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check init
@@ -55,6 +74,8 @@ elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 elemClassNameInp.addEventListener("focus", () => whiteSpaceBox.classList.remove("active"))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 whiteSpaceBox.addEventListener("click", () => checkInit() ? activeAlignBox() : alert("please complete the fields correctly"))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 whiteSpaceMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
