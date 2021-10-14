@@ -2,6 +2,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const hueRotateInp = document.querySelector(".hue-rotate-inp")
 const validationHueRotateElem = document.querySelector(".hue-rotate-validation-elem")
 const previewImage = document.querySelector(".img-left")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let HueRotate = {
     elemClass: null,
@@ -65,6 +67,17 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (HueRotate.isInit) {
+        if (HueRotate.hueRotateValidate) {
+            generateWrapBox.classList.add("active")
+        } else 
+            alert("please enter the information correctly")
+    } else
+        alert("please complete the fields above")
+}
+
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `hue-rotate(${HueRotate.hueRotate}deg)`
@@ -72,4 +85,5 @@ const addStyleToImage = () =>
 addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
+cssCodeBtn.addEventListener("click", openGeneratePannel)
 hueRotateInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))

@@ -38,11 +38,8 @@ const addStyleToText = () =>
 
 //? open generate pannel
 const openGeneratePannel = () => {
-    if (Stroke.isInit) {
-        if (Stroke.strokeValidation) 
-            generateWrapBox.classList.add('active')
-        else 
-            alert("please complete the fields correctly")
+    if (Align.isInit) {
+        generateWrapBox.classList.add('active')
     } else
         alert("please complete the fields above")
 }

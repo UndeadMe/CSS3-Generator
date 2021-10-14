@@ -2,6 +2,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const invertInp = document.querySelector(".invert-inp")
 const validationInvertElem = document.querySelector(".invert-validation-elem")
 const previewImage = document.querySelector(".img-left")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let Invert = {
     elemClass: null,
@@ -65,6 +67,17 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (Invert.isInit) {
+        if (Invert.invertValidate) {
+            generateWrapBox.classList.add("active")
+        } else 
+            alert("please enter the information correctly")
+    } else
+        alert("please complete the fields above")
+}
+
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `invert(${Invert.invert})`
@@ -72,4 +85,5 @@ const addStyleToImage = () =>
 addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
+cssCodeBtn.addEventListener("click", openGeneratePannel)
 invertInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))

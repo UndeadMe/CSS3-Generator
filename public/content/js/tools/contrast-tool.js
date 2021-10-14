@@ -2,6 +2,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const contrastInp = document.querySelector(".contrast-inp")
 const validationContrastElem = document.querySelector(".contrast-validation-elem")
 const previewImage = document.querySelector(".img-left")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let Contrast = {
     elemClass: null,
@@ -65,6 +67,17 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (Contrast.isInit) {
+        if (Contrast.contrastValidate) {
+            generateWrapBox.classList.add("active")
+        } else 
+            alert("please enter the information correctly")
+    } else
+        alert("please complete the fields above")
+}
+
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `contrast(${Contrast.contrast})`
@@ -73,3 +86,4 @@ addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 contrastInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeBtn.addEventListener("click", openGeneratePannel)

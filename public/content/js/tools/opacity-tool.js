@@ -7,6 +7,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const opacityInp = document.querySelector(".opacity-inp")
 const validationOpacityElem = document.querySelector(".opacity-validation-elem")
 const resizableBox = document.querySelector(".resizable")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let Opacity = {
     elemClass: null,
@@ -70,6 +72,14 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? check all inputs and other elements validation is true and then open generate pannel
+const openGeneratePannel = () => {
+    if (Opacity.isInit) {
+        generateWrapBox.classList.add("active")
+    } else
+        alert("Please enter the fields above")
+}
+
 //? add style to image
 const addStyleToResizable = () =>
     resizableBox.style.filter = `opacity(${Opacity.opacity})`
@@ -78,3 +88,4 @@ addStyleToResizable()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 opacityInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeBtn.addEventListener("click", openGeneratePannel)

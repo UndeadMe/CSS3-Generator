@@ -81,7 +81,7 @@ const uploadDataInInputs = () =>
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Decoration.isInit) {
-        if (Decoration.fontSizeValidation) {
+        if (Decoration.thicknessValidation) {
             generateWrapBox.classList.add('active')
         } else 
             alert("please complete the filds correctly")

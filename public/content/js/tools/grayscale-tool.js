@@ -2,6 +2,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const grayscaleInp = document.querySelector(".grayscale-inp")
 const validationGrayscaleElem = document.querySelector(".grayscale-validation-elem")
 const previewImage = document.querySelector(".img-left")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let Grayscale = {
     elemClass: null,
@@ -65,6 +67,17 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (Grayscale.isInit) {
+        if (Grayscale.grayscaleValidate) {
+            generateWrapBox.classList.add("active")
+        } else 
+            alert("please enter the information correctly")
+    } else
+        alert("please complete the fields above")
+}
+
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `grayscale(${Grayscale.grayscale})`
@@ -73,3 +86,4 @@ addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
 grayscaleInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeBtn.addEventListener("click", openGeneratePannel)

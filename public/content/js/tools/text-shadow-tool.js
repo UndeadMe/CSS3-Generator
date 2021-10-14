@@ -281,7 +281,7 @@ vhTools.forEach(vhTool => {
 })
 
 //? check all inputs and other elements validation is true 
-const checkAllElementIsTrue = () => {
+const openGeneratePannel = () => {
     if (Shadow.isInit) {
         let validateObj = Shadow.Validation // FIXME
         if (validateObj.horizentalValidate && validateObj.verticalValidate && validateObj.blurValidate) {
@@ -530,4 +530,4 @@ blurInp.addEventListener("keyup", (e) => callCheckValidateInput(e.target.value, 
 shadowOptionPlusBtn.addEventListener("click", appendNewShadowOption)
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id))
 
-cssCodeBtn.addEventListener("click", checkAllElementIsTrue)
+cssCodeBtn.addEventListener("click", openGeneratePannel)

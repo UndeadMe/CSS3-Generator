@@ -2,6 +2,8 @@ const elemClassNameInp = document.querySelector(".element-class-name-input")
 const sepiaInp = document.querySelector(".sepia-inp")
 const validationSepiaElem = document.querySelector(".sepia-validation-elem")
 const previewImage = document.querySelector(".img-left")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 let Sepia = {
     elemClass: null,
@@ -65,6 +67,17 @@ const checkValidateInputs = (value) => {
     
 }
 
+//? open generate pannel
+const openGeneratePannel = () => {
+    if (Sepia.isInit) {
+        if (Sepia.sepiaValidate) {
+            generateWrapBox.classList.add("active")
+        } else 
+            alert("please enter the information correctly")
+    } else
+        alert("please complete the fields above")
+}
+
 //? add style to image
 const addStyleToImage = () =>
     previewImage.style.filter = `sepia(${Sepia.sepia})` // FIXME
@@ -72,4 +85,5 @@ const addStyleToImage = () =>
 addStyleToImage()
 
 elemClassNameInp.addEventListener("keyup", checkInit)
+cssCodeBtn.addEventListener("click", openGeneratePannel)
 sepiaInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))

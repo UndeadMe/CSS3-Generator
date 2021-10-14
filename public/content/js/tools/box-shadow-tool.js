@@ -27,6 +27,8 @@ const typeEffectBox = document.querySelector(".type-effect-box")
 const shadowOptionBoxNoHover = document.querySelector(".shadow-option-no-hover")
 const vhTools = document.querySelectorAll(".vh-tool")
 const resizable = document.querySelector(".resizable")
+const cssCodeBtn = document.querySelector(".css-code-btn")
+const generateWrapBox = document.querySelector(".generate-wrap-box")
 
 //? shadow object
 let Shadow = {
@@ -948,6 +950,15 @@ const addStyleToResizable = (isHover) => {
     resizable.style.boxShadow = shadow
 }
 
+
+//? check all inputs and other elements validation is true and then open generate pannel
+const openGeneratePannel = () => {
+    if (Shadow.isInit) {
+        generateWrapBox.classList.add("active")
+    } else
+        alert("Please enter the fields above")
+}
+
 elementClassNameInp.addEventListener("keyup", checkInit)
 
 horizentalInp.addEventListener("keyup", (e) => checkInputs(e.target.value, false, "horizental"))
@@ -965,6 +976,8 @@ shadowOptionHoverPlusBtn.addEventListener("click", shadowOpHover)
 
 shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowOptionDefault.dataset.id, false))
 shadowOptionDefaultHover.addEventListener("click", () => switchToShadowOption(shadowOptionDefaultHover.dataset.id, true))
+
+cssCodeBtn.addEventListener("click", openGeneratePannel)
 
 typeEffectIcon.addEventListener("click", () => {
     if (Shadow.isInit) {
