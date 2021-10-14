@@ -7,6 +7,10 @@ const overflowBox = document.querySelector(".overflow-box")
 const arrowRight = document.querySelector(".arrow-align-right")
 const arrowLeft = document.querySelector(".arrow-align-left")
 const overflowMenuItems = document.querySelectorAll(".overflow-menu-item-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Overflow obj
 let Overflow = {
@@ -47,9 +51,26 @@ const addStyleToText = () => {
 const openGeneratePannel = () => {
     if (Overflow.isInit) {
         generateWrapBox.classList.add('active')
+        StyleText = `.${Overflow.elemClass} { direction: ${Overflow.direction}; text-overflow: ${Overflow.overflow}; }`
+        codePennel.innerHTML = `.${Overflow.elemClass} { <br>
+            &nbsp;&nbsp;&nbsp; direction: ${Overflow.direction}; <br>
+            &nbsp;&nbsp;&nbsp; text-overflow: ${Overflow.overflow}; <br>
+        }`
     } else
         alert("please complete the fields above")
 }
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
+
 
 //? init arrow
 const initArrow = (right = true) => {
@@ -82,6 +103,8 @@ cssCodeBtn.addEventListener("click", openGeneratePannel)
 overflowBox.addEventListener("click", () => checkInit() ? activeOverflowBox() : alert("please complete the fields correctly"))
 arrowRight.addEventListener("click",() => checkInit() ? initArrow() : alert("please complete the fields correctly"))
 arrowLeft.addEventListener("click", () => checkInit() ? initArrow(false) : alert("please complete the fields correctly"))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 overflowMenuItems.forEach(menuItem => {
     menuItem.addEventListener("click", () => {
