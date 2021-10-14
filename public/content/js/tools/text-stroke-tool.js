@@ -8,7 +8,10 @@ const text = document.querySelector(".text")
 const colorPicker = document.querySelector(".color-picker")
 const strokeInp = document.querySelector(".stroke-inp")
 const strokeValidation = document.querySelector(".stroke-validation-elem")
-
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let pickr = createPickr(".color-picker", "#FFFFFF")
 pickr.on('change', (color) => {
@@ -85,15 +88,32 @@ const addStyleToText = () =>
 const removeStyleFromText = () => 
     text.style.webkitTextStroke = ""
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Stroke.isInit) {
-        if (Stroke.strokeValidation) 
+        if (Stroke.strokeValidation) {
             generateWrapBox.classList.add('active')
+            StyleText = `.${Stroke.elemClass} { -webkit-text-stroke: ${Stroke.text.stroke}px ${Stroke.text.color} }`
+            codePennel.innerHTML = `.${Stroke.elemClass} { <br>
+                &nbsp;&nbsp; -webkit-text-stroke: ${Stroke.text.stroke}px &nbsp;&nbsp;&nbsp; ${Stroke.text.color} <br>
+            }`
+        }
         else 
             alert("please complete the fields correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? check validation
@@ -115,3 +135,5 @@ const checkValidateInputs = (value) => {
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 strokeInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
