@@ -16,6 +16,10 @@ const propertiesScaleY = document.querySelector(".properties-scaleY-box")
 const propertiesScaleX = document.querySelector(".properties-scaleX-box")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Scale object
 let Scale = {
@@ -194,14 +198,29 @@ const switchToScaleBox = (nameBox) => {
     }
 }
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Scale.isInit) {
         if (Scale.initScaleX) {
-            
+            if (Scale.validation.scaleX_validate && Scale.validation.scaleY_validate) {
+                generateWrapBox.classList.add("active")
+                StyleText = `.${Scale.elemClass} { transform: scaleY(${Scale.box.scaleY}px) scaleX(${Scale.box.scaleX}px); }`
+                codePennel.innerHTML = `.${Scale.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; scaleY(${Scale.box.scaleY}px)<br>
+                    &nbsp;&nbsp;&nbsp; scaleX(${Scale.box.scaleX}px);<br>
+                }`
+            } else 
+                alert("please enter the information correctly")
         } else {
             if (Scale.validation.scaleY_validate) {
                 generateWrapBox.classList.add("active")
+                StyleText = `.${Scale.elemClass} { transform: scaleY(${Scale.box.scaleY}px); }`
+                codePennel.innerHTML = `.${Scale.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; scaleY(${Scale.box.scaleY}px); <br>
+                }`
             } else 
                 alert("please enter the information correctly")
         }
@@ -209,6 +228,16 @@ const openGeneratePannel = () => {
         alert("please complete the fields above")
 }
 
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
 
 scaleXPlusIcon.addEventListener("click", () => {
     if (Scale.isInit) {
@@ -246,3 +275,5 @@ elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
 scaleY_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, false))
 scaleX_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, true))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
