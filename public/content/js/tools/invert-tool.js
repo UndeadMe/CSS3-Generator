@@ -4,6 +4,10 @@ const validationInvertElem = document.querySelector(".invert-validation-elem")
 const previewImage = document.querySelector(".img-left")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let Invert = {
     elemClass: null,
@@ -72,10 +76,25 @@ const openGeneratePannel = () => {
     if (Invert.isInit) {
         if (Invert.invertValidate) {
             generateWrapBox.classList.add("active")
+            StyleText = `.${Invert.elemClass} { filter: invert(${Invert.invert}); }`
+            codePennel.innerHTML = `.${Invert.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; filter: invert(${Invert.invert}); <br>
+            }`
         } else 
             alert("please enter the information correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? add style to image
@@ -87,3 +106,5 @@ addStyleToImage()
 elemClassNameInp.addEventListener("keyup", checkInit)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 invertInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
