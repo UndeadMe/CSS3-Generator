@@ -150,7 +150,7 @@ const openGeneratePannel = () => {
             text = `.${Border.elemClass} { border: ${Border.border.width}px ${Border.border.style} ${Border.border.color} }`
             
             codePennel.innerHTML = `.${Border.elemClass} { <br>
-                &nbsp;&nbsp;&nbsp; border: ${Border.border.width}px ${Border.border.style} ${Border.border.style} <br>
+                &nbsp;&nbsp;&nbsp; border: ${Border.border.width}px ${Border.border.style} ${Border.border.color} <br>
             }`
             
         } else 
