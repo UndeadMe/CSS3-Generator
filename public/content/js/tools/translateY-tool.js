@@ -18,6 +18,10 @@ const propertiesTranslateY = document.querySelector(".properties-translateY-box"
 const propertiesTranslateX = document.querySelector(".properties-translateX-box")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Translate object
 let Translate = {
@@ -194,14 +198,29 @@ const switchToTranslateBox = (nameBox) => {
     }
 }
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Translate.isInit) {
         if (Translate.initTranslateX) {
-            
+            if (Translate.validation.translateX_validate && Translate.validation.translateY_validate) {
+                generateWrapBox.classList.add("active")
+                StyleText = `.${Translate.elemClass} { transform: translateY(${Translate.box.translateY}px) translateX(${Translate.box.translateX}px); }`
+                codePennel.innerHTML = `.${Translate.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; translateY(${Translate.box.translateY}px)<br>
+                    &nbsp;&nbsp;&nbsp; translateX(${Translate.box.translateX}px);<br>
+                }`
+            } else 
+                alert("please enter the information correctly")
         } else {
             if (Translate.validation.translateY_validate) {
                 generateWrapBox.classList.add("active")
+                StyleText = `.${Translate.elemClass} { transform: translateY(${Translate.box.translateY}px); }`
+                codePennel.innerHTML = `.${Translate.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; translateY(${Translate.box.translateY}px); <br>
+                }`
             } else 
                 alert("please enter the information correctly")
         }
@@ -209,8 +228,23 @@ const openGeneratePannel = () => {
         alert("please complete the fields above")
 }
 
-elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
 
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
+}
+
+elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
+translateY_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, false))
+translateX_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, true))
+cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 translateXPlusIcon.addEventListener("click", () => {
     if (Translate.isInit) {
         if (Translate.initTranslateX) {
@@ -242,7 +276,3 @@ translateXPlusIcon.addEventListener("click", () => {
     } else 
         alert("please complete the fields")
 })
-
-translateY_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, false))
-translateX_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, true))
-cssCodeBtn.addEventListener("click", openGeneratePannel)

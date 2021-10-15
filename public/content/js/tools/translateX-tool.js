@@ -201,16 +201,20 @@ let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Translate.isInit) {
-        generateWrapBox.classList.add("active")
         if (Translate.initTranslateY) {
-            StyleText = `.${Translate.elemClass} { transform: translateX(${Translate.box.translateX}px) translateY(${Translate.box.translateY}px); }`
-            codePennel.innerHTML = `.${Translate.elemClass} { <br>
-                &nbsp;&nbsp;&nbsp; transform: <br>
-                &nbsp;&nbsp;&nbsp; translateX(${Translate.box.translateX}px)<br>
-                &nbsp;&nbsp;&nbsp; translateX(${Translate.box.translateY}px);<br>
-            }`
+            if (Translate.validation.translateX_validate && Translate.validation.translateY_validate) {
+                generateWrapBox.classList.add("active")
+                StyleText = `.${Translate.elemClass} { transform: translateX(${Translate.box.translateX}px) translateY(${Translate.box.translateY}px); }`
+                codePennel.innerHTML = `.${Translate.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; translateX(${Translate.box.translateX}px)<br>
+                    &nbsp;&nbsp;&nbsp; translateX(${Translate.box.translateY}px);<br>
+                }`
+            } else 
+                alert("please enter the information correctly")
         } else {
             if (Translate.validation.translateX_validate) {
+                generateWrapBox.classList.add("active")
                 StyleText = `.${Translate.elemClass} { transform: translateX(${Translate.box.translateX}px); }`
                 codePennel.innerHTML = `.${Translate.elemClass} { <br>
                     &nbsp;&nbsp;&nbsp; transform: <br>
