@@ -71,6 +71,7 @@ const checkValidateInputs = (value) => {
     
 }
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Grayscale.isInit) {

@@ -4,6 +4,10 @@ const validationSaturateElem = document.querySelector(".saturate-validation-elem
 const previewImage = document.querySelector(".img-left")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let Saturate = {
     elemClass: null,
@@ -67,15 +71,31 @@ const checkValidateInputs = (value) => {
     
 }
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Saturate.isInit) {
         if (Saturate.saturateValidate) {
             generateWrapBox.classList.add("active")
+            StyleText = `.${Saturate.elemClass} { filter: saturate(${Saturate.saturate}); }`
+            codePennel.innerHTML = `.${Saturate.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; filter: saturate(${Saturate.saturate}); <br>
+            }`
         } else 
             alert("please enter the information correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? add style to image
@@ -87,3 +107,5 @@ addStyleToImage()
 elemClassNameInp.addEventListener("keyup", checkInit)
 cssCodeBtn.addEventListener("click", openGeneratePannel)
 saturateInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
