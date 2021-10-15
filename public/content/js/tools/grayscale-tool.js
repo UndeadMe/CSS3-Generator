@@ -4,6 +4,10 @@ const validationGrayscaleElem = document.querySelector(".grayscale-validation-el
 const previewImage = document.querySelector(".img-left")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 let Grayscale = {
     elemClass: null,
@@ -12,7 +16,7 @@ let Grayscale = {
     grayscaleValidate : true
 }
 
-//? check contrast init and do validation for elem class name input
+//? check grayscale init and do validation for elem class name input
 const checkInit = (e) => {
     const regexCode = /^[a-zA-Z" "]{1,30}$/g
     const regexResult = regexCode.test(e.target.value)
@@ -42,11 +46,11 @@ disableAllInputs()
 const activeAllinputs = () =>
     grayscaleInp.disabled = false
 
-//? upload contrast data in inputs
+//? upload grayscale data in inputs
 const uploadGrayscaleDataInInputs = () =>
     grayscaleInp.value = Grayscale.grayscale
 
-//? remove contrast data from inputs
+//? remove grayscale data from inputs
 const removeGrayscaleDataFromInputs = () => 
     grayscaleInp.value = ""
 
@@ -72,10 +76,25 @@ const openGeneratePannel = () => {
     if (Grayscale.isInit) {
         if (Grayscale.grayscaleValidate) {
             generateWrapBox.classList.add("active")
+            StyleText = `.${Grayscale.elemClass} { filter: grayscale(${Grayscale.grayscale}); }`
+            codePennel.innerHTML = `.${Grayscale.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; filter: grayscale(${Grayscale.grayscale}); <br>
+            }`
         } else 
             alert("please enter the information correctly")
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 //? add style to image
@@ -87,3 +106,5 @@ addStyleToImage()
 elemClassNameInp.addEventListener("keyup", checkInit)
 grayscaleInp.addEventListener("keyup", (e) => checkValidateInputs(e.target.value))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
