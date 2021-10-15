@@ -77,7 +77,7 @@ const openGeneratePannel = () => {
     if (Blur.isInit) {
         if (Blur.blurValidate) {
             generateWrapBox.classList.add("active")
-            StyleText = `.${Blur.elemClass} {  }`
+            StyleText = `.${Blur.elemClass} { filter: blur(${Blur.blur}px); }`
             codePennel.innerHTML = `.${Blur.elemClass} { <br>
                 &nbsp;&nbsp;&nbsp; filter: blur(${Blur.blur}px); <br>
             }`
