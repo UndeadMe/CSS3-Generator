@@ -209,7 +209,7 @@ const openGeneratePannel = () => {
                 codePennel.innerHTML = `.${Scale.elemClass} { <br>
                     &nbsp;&nbsp;&nbsp; transform: <br>
                     &nbsp;&nbsp;&nbsp; scaleX(${Scale.box.scaleX}px)<br>
-                    &nbsp;&nbsp;&nbsp; scaleX(${Scale.box.scaleY}px);<br>
+                    &nbsp;&nbsp;&nbsp; scaleY(${Scale.box.scaleY}px);<br>
                 }`
             } else 
                 alert("please enter the information correctly")

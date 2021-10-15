@@ -18,6 +18,10 @@ const propertiesSkewX = document.querySelector(".properties-skewX-box")
 const propertiesSkewY = document.querySelector(".properties-skewY-box")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? Skew object
 let Skew = {
@@ -193,19 +197,45 @@ const switchToSkewBox = (nameBox) => {
     }
 }
 
+let StyleText = undefined
 //? open generate pannel
 const openGeneratePannel = () => {
     if (Skew.isInit) {
         if (Skew.initSkewY) {
-            
+            if (Skew.validation.skewX_validate && Skew.validation.skewY_validate) {
+                generateWrapBox.classList.add("active")
+                StyleText = `.${Skew.elemClass} { transform: skewX(${Skew.box.skewX}px) skewY(${Skew.box.skewY}px); }`
+                codePennel.innerHTML = `.${Skew.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; skewX(${Skew.box.skewX}px)<br>
+                    &nbsp;&nbsp;&nbsp; skewY(${Skew.box.skewY}px);<br>
+                }`
+            } else 
+                alert("please enter the information correctly")
         } else {
             if (Skew.validation.skewX_validate) {
                 generateWrapBox.classList.add("active")
+                StyleText = `.${Skew.elemClass} { transform: skewX(${Skew.box.skewX}px); }`
+                codePennel.innerHTML = `.${Skew.elemClass} { <br>
+                    &nbsp;&nbsp;&nbsp; transform: <br>
+                    &nbsp;&nbsp;&nbsp; skewX(${Skew.box.skewX}px); <br>
+                }`
             } else 
                 alert("please enter the information correctly")
         }
     } else
         alert("please complete the fields above")
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    styleInp.value = StyleText
+    navigator.clipboard.writeText(styleInp.value);
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 elemClassNameInp.addEventListener("keyup", checkElemClassNameInput)
@@ -245,3 +275,5 @@ skewYPlusIcon.addEventListener("click", () => {
 skewX_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, false))
 skewY_inp.addEventListener("keyup", (e) => checkValidateInput(e.target.value, true))
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
