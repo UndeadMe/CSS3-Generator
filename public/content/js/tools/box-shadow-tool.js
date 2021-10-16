@@ -29,6 +29,10 @@ const vhTools = document.querySelectorAll(".vh-tool")
 const resizable = document.querySelector(".resizable")
 const cssCodeBtn = document.querySelector(".css-code-btn")
 const generateWrapBox = document.querySelector(".generate-wrap-box")
+const codePennel = document.querySelector(".code-pannel")
+const styleInp = document.querySelector("#styleInp")
+const copyToClipboard = document.querySelector(".clipboard-btn")
+const cssCodeCloseBtn = document.querySelector(".close-generate-pannel-btn")
 
 //? shadow object
 let Shadow = {
@@ -920,15 +924,69 @@ vhTools.forEach(vhTool => {
 
 //? add style to resizable box
 const addStyleToResizable = (isHover) => {
-    let shadowStyleArray = undefined
+    let shadow = undefined
+    isHover ? shadow = getShadowStyleHoverObj() : shadow = getShadowStyleNoHoverObj()
+    resizable.style.boxShadow = shadow
+}
 
-    let shadowStyle = []
-    shadowStyle = []
+let StyleTextNoHover = undefined
+let StyleTextHover = undefined
+//? check all inputs and other elements validation is true and then open generate pannel
+const openGeneratePannel = () => {
+    if (Shadow.isInit) {
+        let checkedHover = Shadow.Validation.hoverValidation.every(item => {
+            return item.horizentalValidate && item.verticalValidate && item.blurValidate && item.speardValidate
+        })
+        
+        let checkedNoHover = Shadow.Validation.noHoverValidation.every(item => {
+            return item.horizentalValidate && item.verticalValidate && item.blurValidate && item.speardValidate
+        })
+        
+        if (checkedNoHover && checkedHover) {
+            generateWrapBox.classList.add("active")
+            
+            StyleTextNoHover = getShadowStyleNoHoverObj()
 
-    isHover ? shadowStyleArray =  Shadow.box.hoverStyle : shadowStyleArray =  Shadow.box.noHoverStyle
+            codePennel.innerHTML = ""
+            
+            let shadowOptionStyleText = ""
+            
+            StyleTextNoHover.split(",").forEach((item , index) => {
+                shadowOptionStyleText += "&nbsp;&nbsp;&nbsp;" + item
+                if (index !== StyleTextNoHover.split(",").length - 1)
+                    shadowOptionStyleText += ", "
+            })
+            codePennel.innerHTML = `${Shadow.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp;box-shadow: <br> ${shadowOptionStyleText} ; <br>
+            }`
+            
+            if (Shadow.isHover) {
+                StyleTextNoHover = getShadowStyleHoverObj()
+                let shadowOptionStyleText = ""
+                StyleTextNoHover.split(",").forEach((item , index) => {
+                    shadowOptionStyleText += "&nbsp;&nbsp;&nbsp;" + item
+                    if (index !== StyleTextNoHover.split(",").length - 1)
+                        shadowOptionStyleText += ", "
+                })
 
-    shadowStyleArray.forEach(shadowOption => {
-        shadowStyle.push({
+                codePennel.innerHTML += `<br> 
+                ${Shadow.elemClass}:hover { <br>
+                    &nbsp;&nbsp;&nbsp;box-shadow: <br> ${shadowOptionStyleText} ; <br>
+                }`
+            }
+            
+        } else 
+            alert("Enter the information correctly")
+
+    } else
+        alert("Please enter the fields above")
+}
+
+//? get shadow style object hover style
+const getShadowStyleNoHoverObj = () => {
+    let ShadowNoHoverStyle = []
+    Shadow.box.noHoverStyle.forEach(shadowOption => {
+        ShadowNoHoverStyle.push({
             horizental : shadowOption.horizental + "px",
             vertical : shadowOption.vertical + "px",
             blur : shadowOption.blur + "px",
@@ -939,24 +997,62 @@ const addStyleToResizable = (isHover) => {
 
     let shadow = ""
 
-    shadowStyle.forEach((shadowOption, shadowOptionIndex) => {
+    ShadowNoHoverStyle.forEach((shadowOption, shadowOptionIndex) => {
         for (let i in shadowOption) {
             shadow += shadowOption[i] + " "
         }
-        if (shadowOptionIndex !== shadowStyle.length - 1)
+        if (shadowOptionIndex !== ShadowNoHoverStyle.length - 1)
             shadow += ", "
     })
-
-    resizable.style.boxShadow = shadow
+    
+    return shadow
 }
 
+//? get shadow style object hover style
+const getShadowStyleHoverObj = () => {
+    let ShadowHoverStyle = []
+    Shadow.box.hoverStyle.forEach(shadowOption => {
+        ShadowHoverStyle.push({
+            horizental : shadowOption.horizental + "px",
+            vertical : shadowOption.vertical + "px",
+            blur : shadowOption.blur + "px",
+            speard : shadowOption.speard + "px",
+            shadowColor : shadowOption.shadowColor,
+        })
+    })
 
-//? check all inputs and other elements validation is true and then open generate pannel
-const openGeneratePannel = () => {
-    if (Shadow.isInit) {
-        generateWrapBox.classList.add("active")
-    } else
-        alert("Please enter the fields above")
+    let shadow = ""
+
+    ShadowHoverStyle.forEach((shadowOption, shadowOptionIndex) => {
+        for (let i in shadowOption) {
+            shadow += shadowOption[i] + " "
+        }
+        if (shadowOptionIndex !== ShadowHoverStyle.length - 1)
+            shadow += ", "
+    })
+    
+    return shadow
+}
+
+//? copy to clipboard
+const copyToClipboardText = () => {
+    let noHoverCopyClipboard = getShadowStyleNoHoverObj()
+    let HoverCopyClipboard = getShadowStyleHoverObj()
+    styleInp.value = ""
+    if (Shadow.isHover) {
+        styleInp.value = ` ${Shadow.elemClass} { box-shadow: ${noHoverCopyClipboard} }`
+        navigator.clipboard.writeText(styleInp.value);
+        styleInp.value += ` ${Shadow.elemClass}:hover { box-shadow: ${HoverCopyClipboard} }`
+        navigator.clipboard.writeText(styleInp.value);
+    } else {
+        styleInp.value = `${Shadow.elemClass} { box-shadow: ${noHoverCopyClipboard} }`
+        navigator.clipboard.writeText(styleInp.value);
+    }
+}
+
+//? close generator pannel
+const closeGeneratePannel = () => {
+    generateWrapBox.classList.remove("active")
 }
 
 elementClassNameInp.addEventListener("keyup", checkInit)
@@ -978,6 +1074,9 @@ shadowOptionDefault.addEventListener("click", () => switchToShadowOption(shadowO
 shadowOptionDefaultHover.addEventListener("click", () => switchToShadowOption(shadowOptionDefaultHover.dataset.id, true))
 
 cssCodeBtn.addEventListener("click", openGeneratePannel)
+
+cssCodeCloseBtn.addEventListener("click", closeGeneratePannel)
+copyToClipboard.addEventListener("click", copyToClipboardText)
 
 typeEffectIcon.addEventListener("click", () => {
     if (Shadow.isInit) {

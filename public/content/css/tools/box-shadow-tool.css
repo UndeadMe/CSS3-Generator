@@ -1,4 +1,13 @@
 @import url(/public/components/aside/aside.css);
+.code-pannel {
+    height: 250px;
+    overflow-y: auto;
+}
+@media screen and (max-height : 440px) {
+    .code-pannel {
+        height: 100px;
+    }
+}
 /* ! ---------------------------------- body ---------------------------------- ! */
 body {
     background : var(--home-gradient) ;
