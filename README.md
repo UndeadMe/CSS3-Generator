@@ -1,8 +1,58 @@
-![Screenshot 2021-09-23 231043](https://user-images.githubusercontent.com/89915857/134572979-6e9d1ff6-6ceb-470e-8c85-01321361f29e.png)
-# css-generator
+# CSS3 Generator
+Css Generator helps you to get acquainted with different types of properties in css. You can use many tools to get css code 😉🧨
 
-- 1 - install node js
+## How to run project
+    Clone this repo 
+    Install NodeJs
+    Open Cmd or Terminal and go to Css Generator directory
+    Enter npm i
 
-- 2 - open cmd or terminal and go to css-generator directory
-- 3 - type npm i
-- 4 - open home.html :D
+# Preview
+![css-generator](https://user-images.githubusercontent.com/89915857/137693802-0738bc64-ca17-41fd-ac1b-fb8dcbe7855c.png)
+
+# Best Feature ( comming soon ):
+CSS Generator has some nice tools to make components for your project like:
+- Glassmorphism
+- Neomorphism
+- Animation
+- Button Generator
+- More nice tools are comming
+
+# Other Tools
+You have a lot of tools like:
+- Box tools:
+  - Box-Shadow
+  - Border
+  - Border-Radius ( comming soon )
+  - Opacity
+- Text tools:
+  - Color
+  - Font-Size
+  - Font-Weight
+  - Text-Gradient ( comming soon)
+  - Text-Shadow
+  - Letter-Spacing
+  - Text-Stroke
+  - Text-Align
+  - Line-Height
+  - Text-Decoration
+  - Text-Transform
+  - White-Space
+  - Text-Overflow
+- Transform tools:
+  - TranslateX
+  - TransformY
+  - ScaleX
+  - ScaleY
+  - SkewX
+  - SkewY
+  - Other tools are comming
+- Filter tools:
+  - Blur
+  - Brightness
+  - Contrast
+  - GrayScale
+  - Hue-Rotate
+  - Invert
+  - Saturate
+  - Sepia
