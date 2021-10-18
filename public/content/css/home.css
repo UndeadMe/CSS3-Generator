@@ -18,6 +18,19 @@ body {
     width: 100%;
     height: 100%;
 }
+/* ! --------------------------- scrollToTop circle --------------------------- ! */
+.scrollToTop-circle {
+    position: fixed;
+    bottom: 20px ;
+    right: 20px;
+    z-index: 999;
+    padding: 8px 12px;
+    background: linear-gradient(45deg, var(--prety-blue) 50%, var(--light-purple));
+    border: rgba(255, 255, 255, 0.5) 1px groove;
+    color: var(--white);
+    border-radius: 100%;
+    outline: none;
+}
 /* ! ---------------------------------- wrap ---------------------------------- ! */
 .wrap {
     width: 100%;
@@ -174,6 +187,13 @@ body {
 }
 .tool-box-button span {
     margin-right: 12px;
+}
+.tool-box-button.active {
+    background: var(--prety-blue);
+    transform: scale(1.09);
+}
+.tool-box-button.active::after {
+    width: 100%;
 }
 /* ! ---------------------- tools comming soon upgrad box --------------------- ! */
 .tools-comming-soon-button {

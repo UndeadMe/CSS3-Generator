@@ -18,6 +18,11 @@
     <div class="triangle">
         <img src="public/content/img/triangle/triangle.png" alt="">
     </div>
+
+    <!-- ! ------------------------- scrollToTop circle -------------------------- ! -->
+    <button class="scrollToTop-circle">
+        <i class="bi bi-arrow-up"></i>
+    </button>
     
     <!-- ! -------------------------------- wrap --------------------------------- ! -->
     <div class="wrap">
@@ -29,7 +34,7 @@
                     <h1 class="main-title text-center">css generator</h1>
                     
                     <h5 class="text-center mt-4 main-title-desc">
-                        <i class="bi bi-search me-2"></i> search your tool
+                        <span class="search-icon"><i class="bi bi-search me-2"></i></span> search your tool
                     </h5>
     
                     <!-- ! ----------------------------- search box ------------------------------ ! -->
@@ -101,28 +106,28 @@
 
                         <div class="tools-row">
                             <div class="tool-box">
-                                <a href="public/assets/box-shadow-tool.html" class="tool-box-button">
+                                <a href="public/assets/box-shadow-tool.html" class="tool-box-button" data-tool="box shadow">
                                     <span class="tool-icon"><i class="bi bi-exclude"></i></span>
                                     box shadow
                                 </a>
                             </div>
         
                             <div class="tool-box">
-                                <a href="public/assets/border-tool.html" class="tool-box-button">
+                                <a href="public/assets/border-tool.html" class="tool-box-button" data-tool="border">
                                     <span class="tool-icon"><i class="bi bi-border"></i></span>
                                     border
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="" class="tool-box-button">
+                                <a href="" class="tool-box-button" data-tool="border-radius">
                                     <span class="tool-icon"><i class="bi bi-border"></i></span>
                                     border radius
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/opacity-tool.html" class="tool-box-button">
+                                <a href="public/assets/opacity-tool.html" class="tool-box-button" data-tool="opacity">
                                     <span class="tool-icon"><i class="bi bi-droplet-half"></i></span>
                                     opacity
                                 </a>
@@ -137,14 +142,14 @@
 
                         <div class="tools-row">
                             <div class="tool-box">
-                                <a href="public/assets/text-color-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-color-tool.html" class="tool-box-button" data-tool="color">
                                     <span class="tool-icon"><i class="bi bi-palette"></i></span>
                                     color
                                 </a>
                             </div>
                             
                             <div class="tool-box">
-                                <a href="public/assets/font-size-tool.html" class="tool-box-button">
+                                <a href="public/assets/font-size-tool.html" class="tool-box-button" data-tool="font size">
                                     <span class="tool-icon">
                                         <svg class="w-64 h-64" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 6V4H20V20H12V18H8V16H4V8H8V6H12ZM14 6H18V18H14V6ZM12 8H10V16H12V8ZM8 10V14H6V10H8Z" fill="currentColor"></path>
@@ -155,7 +160,7 @@
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/font-weight-tool.html" class="tool-box-button">
+                                <a href="public/assets/font-weight-tool.html" class="tool-box-button" data-tool="font weight">
                                     <span class="tool-icon"><i class="bi bi-border-width"></i></span>
                                     font weight
                                 </a>
@@ -169,14 +174,14 @@
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-shadow-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-shadow-tool.html" class="tool-box-button" data-tool="text shadow">
                                     <span class="tool-icon"><i class="bi bi-back"></i></span>
                                     text shadow
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/letter-spacing-tool.html" class="tool-box-button">
+                                <a href="public/assets/letter-spacing-tool.html" class="tool-box-button" data-tool="letter spacing">
                                     <span class="tool-icon">
                                         <svg class="w-64 h-64" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path d="M5 12v-5.5a2.5 2.5 0 0 1 5 0v5.5m0 -4h-5"></path>
@@ -191,42 +196,42 @@
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-stroke-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-stroke-tool.html" class="tool-box-button" data-tool="text stroke">
                                     <span class="tool-icon"><i class="bi bi-border-outer"></i></span>
                                     stroke
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-align-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-align-tool.html" class="tool-box-button" data-tool="text align">
                                     <span class="tool-icon"><i class="bi bi-justify-left"></i></span>
                                     text align
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/line-height-tool.html" class="tool-box-button">
+                                <a href="public/assets/line-height-tool.html" class="tool-box-button" data-tool="line height">
                                     <span class="tool-icon"><i class="bi bi-bar-chart-steps"></i></span>
                                     line height
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-decoration-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-decoration-tool.html" class="tool-box-button" data-tool="text decoration">
                                     <span class="tool-icon"><i class="bi bi-filter-left"></i></span>
                                     text decoration
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-transform-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-transform-tool.html" class="tool-box-button" data-tool="text transform">
                                     <span class="tool-icon"><i class="bi bi-type"></i></span>
                                     text transform
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/white-space-tool.html" class="tool-box-button">
+                                <a href="public/assets/white-space-tool.html" class="tool-box-button" data-tool="white space">
                                     <span class="tool-icon">
                                         <svg class="w-64 h-64" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19 5L15 5L15 19H19V17H17L17 7L19 7V5Z" fill="currentColor"></path>
@@ -239,7 +244,7 @@
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/text-overflow-tool.html" class="tool-box-button">
+                                <a href="public/assets/text-overflow-tool.html" class="tool-box-button" data-tool="text overflow">
                                     <span class="tool-icon">
                                         <svg class="w-64 h-64" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.2" d="M22 11C22 13.6522 20.9464 16.1957 19.0711 18.0711C17.1957 19.9464 14.6522 21 12 21C9.34784 21 6.8043 19.9464 4.92893 18.0711C3.05357 16.1957 2 13.6522 2 11L22 11Z" fill="currentColor"></path>
@@ -259,28 +264,28 @@
 
                         <div class="tools-row">
                             <div class="tool-box">
-                                <a href="public/assets/translateX-tool.html" class="tool-box-button">
+                                <a href="public/assets/translateX-tool.html" class="tool-box-button" data-tool="translateX">
                                     <span class="tool-icon"><i class="bi bi-arrow-left-right"></i></span>
                                     translateX
                                 </a>
                             </div>
         
                             <div class="tool-box">
-                                <a href="public/assets/translateY-tool.html" class="tool-box-button">
+                                <a href="public/assets/translateY-tool.html" class="tool-box-button" data-tool="translateY">
                                     <span class="tool-icon"><i class="bi bi-arrow-down-up"></i></span>
                                     translateY
                                 </a>
                             </div>
         
                             <div class="tool-box">
-                                <a href="public/assets/scaleX-tool.html" class="tool-box-button">
+                                <a href="public/assets/scaleX-tool.html" class="tool-box-button" data-tool="scaleX">
                                     <span class="tool-icon"><i class="bi bi-zoom-in"></i></span>
                                     scaleX
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/scaleY-tool.html" class="tool-box-button">
+                                <a href="public/assets/scaleY-tool.html" class="tool-box-button" data-tool="scaleY">
                                     <span class="tool-icon"><i class="bi bi-zoom-in"></i></span>
                                     scaleY
                                 </a>
@@ -288,7 +293,7 @@
 
                             
                             <div class="tool-box">
-                                <a href="public/assets/skewX-tool.html" class="tool-box-button">
+                                <a href="public/assets/skewX-tool.html" class="tool-box-button" data-tool="skewX">
                                     <span class="tool-icon"><i class="bi bi-zoom-in"></i></span>
                                     skewX
                                 </a>
@@ -296,7 +301,7 @@
 
                             
                             <div class="tool-box">
-                                <a href="public/assets/skewY-tool.html" class="tool-box-button">
+                                <a href="public/assets/skewY-tool.html" class="tool-box-button" data-tool="skewY">
                                     <span class="tool-icon"><i class="bi bi-zoom-in"></i></span>
                                     skewY
                                 </a>
@@ -311,56 +316,56 @@
 
                         <div class="tools-row">
                             <div class="tool-box">
-                                <a href="public/assets/blur-tool.html" class="tool-box-button">
+                                <a href="public/assets/blur-tool.html" class="tool-box-button" data-tool="blur">
                                     <span class="tool-icon"><i class="bi bi-bricks"></i></span>
                                     blur
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/brightness-tool.html" class="tool-box-button">
+                                <a href="public/assets/brightness-tool.html" class="tool-box-button" data-tool="brightness">
                                     <span class="tool-icon"><i class="bi bi-brightness-high"></i></span>
                                     brightness
                                 </a>
                             </div>
         
                             <div class="tool-box">
-                                <a href="public/assets/contrast-tool.html" class="tool-box-button">
+                                <a href="public/assets/contrast-tool.html" class="tool-box-button" data-tool="contrast">
                                     <span class="tool-icon"><i class="bi bi-lightbulb"></i></span>
                                     contrast
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/grayscale-tool.html" class="tool-box-button">
+                                <a href="public/assets/grayscale-tool.html" class="tool-box-button" data-tool="grayscale">
                                     <span class="tool-icon"><i class="bi bi-heart-half"></i></span>
                                     grayscale
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/hue-rotate-tool.html" class="tool-box-button">
+                                <a href="public/assets/hue-rotate-tool.html" class="tool-box-button" data-tool="hue rotate">
                                     <span class="tool-icon"><i class="bi bi-tornado"></i></span>
                                     hue rotate
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/invert-tool.html" class="tool-box-button">
+                                <a href="public/assets/invert-tool.html" class="tool-box-button" data-tool="invert">
                                     <span class="tool-icon"><i class="bi bi-symmetry-vertical"></i></span>
                                     invert
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/saturate-tool.html" class="tool-box-button">
+                                <a href="public/assets/saturate-tool.html" class="tool-box-button" data-tool="saturate">
                                     <span class="tool-icon"><i class="bi bi-palette"></i></span>
                                     saturate
                                 </a>
                             </div>
 
                             <div class="tool-box">
-                                <a href="public/assets/sepia-tool.html" class="tool-box-button">
+                                <a href="public/assets/sepia-tool.html" class="tool-box-button" data-tool="sepia">
                                     <span class="tool-icon"><i class="bi bi-thermometer-sun"></i></span>
                                     sepia
                                 </a>
@@ -373,5 +378,8 @@
 
         </div>
     </div>
+    
+    <!-- ! ------------------------------- script -------------------------------- ! -->
+    <script src="public/content/js/home.js"></script>
 </body>
 </html>
