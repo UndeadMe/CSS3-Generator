@@ -16,13 +16,16 @@ const findToolBoxes = () => {
             return String(button.dataset.tool).toLowerCase().includes(searchValue.toLowerCase())
         })
         
-        //? scroll to this tool
-        window.scrollTo({
-            top: SearchToolBox.getBoundingClientRect().top - 50,
-            behavior: "smooth"
-        })
+        //? if search tool box !== null or ...
+        if (SearchToolBox) {
+            //? scroll to this tool
+            window.scrollTo({
+                top: SearchToolBox.getBoundingClientRect().top - 50,
+                behavior: "smooth"
+            })
 
-        SearchToolBox.classList.add("active")
+            SearchToolBox.classList.add("active")
+        }
     }
 }
 
