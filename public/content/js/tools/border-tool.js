@@ -126,17 +126,14 @@ const checkValidation = () => {
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(widthInp.value) <= 30 && Number(widthInp.value) >= 0) {
         Border.widthValidate = true
         Border.border.width = Number(value)
         validationBorderElem.innerHTML = ""
         addStyleToResizable()
     } else {
         Border.widthValidate = false
-        validationBorderElem.innerHTML = "Please select a positive number from 0 to 100"
+        validationBorderElem.innerHTML = "Please select a positive number from 0 to 30"
     }
     
 }
