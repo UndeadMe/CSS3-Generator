@@ -18,18 +18,26 @@ body {
     width: 100%;
     height: 100%;
 }
-/* ! --------------------------- scrollToTop circle --------------------------- ! */
-.scrollToTop-circle {
+/* ! -------------------- scrollToTop circle , github link -------------------- ! */
+.scrollToTop-circle, .github-link {
     position: fixed;
-    bottom: 20px ;
     right: 20px;
     z-index: 999;
     padding: 8px 12px;
-    background: linear-gradient(45deg, var(--prety-blue) 50%, var(--light-purple));
     border: rgba(255, 255, 255, 0.5) 1px groove;
-    color: var(--white);
+    color: var(--white) !important;
     border-radius: 100%;
     outline: none;
+}
+.scrollToTop-circle {
+    bottom: 20px ;
+    background: linear-gradient(45deg, var(--prety-blue) 50%, var(--light-purple));
+}
+.github-link {
+    bottom: 80px;
+    padding: 5px 10px;
+    background: linear-gradient(-45deg, var(--prety-blue) 50%, var(--light-purple));
+    font-size: 1.3rem;
 }
 /* ! ---------------------------------- wrap ---------------------------------- ! */
 .wrap {
