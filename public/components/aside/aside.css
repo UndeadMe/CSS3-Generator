@@ -123,5 +123,6 @@
         position: static ;
         flex-direction: row ;
         justify-content: end;
+        margin-right: 20px !important;
     }
 }
