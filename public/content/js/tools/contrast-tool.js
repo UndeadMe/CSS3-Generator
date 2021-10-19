@@ -56,17 +56,14 @@ const removeContrastDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(contrastInp.value) <= 20 && Number(contrastInp.value) >= 0) {
         Contrast.contrastValidate = true
         Contrast.contrast = Number(value)
         validationContrastElem.innerHTML = ""
         addStyleToImage()
     } else {
         Contrast.contrastValidate = false
-        validationContrastElem.innerHTML = "Please select a positive number from 0 to 100"
+        validationContrastElem.innerHTML = "Please select a positive number from 0 to 20"
     }
     
 }

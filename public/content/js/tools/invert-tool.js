@@ -56,10 +56,7 @@ const removeInvertDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(invertInp.value) <= 1 && Number(invertInp.value) >= 0 && invertInp.value.length <= 4) {
         Invert.invertValidate = true
         Invert.invert = Number(value)
         validationInvertElem.innerHTML = ""

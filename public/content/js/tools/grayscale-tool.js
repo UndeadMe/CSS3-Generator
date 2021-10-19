@@ -56,10 +56,7 @@ const removeGrayscaleDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(grayscaleInp.value) <= 1 && Number(grayscaleInp.value) >= 0 && grayscaleInp.value.length <= 4) {
         Grayscale.grayscaleValidate = true
         Grayscale.grayscale = Number(value)
         validationGrayscaleElem.innerHTML = ""

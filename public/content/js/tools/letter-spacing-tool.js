@@ -95,17 +95,14 @@ const closeGeneratePannel = () => {
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(letterSpacingInp.value) <= 30 && Number(letterSpacingInp.value) >= 0) {
         letter_spacing.letterSpacingValidation = true
         letter_spacing.space = Number(value)
         letterSpacingValidation.innerHTML = ""
         addStyleToText()
     } else {
         letter_spacing.letterSpacingValidation = false
-        letterSpacingValidation.innerHTML = "Please select a positive number from 0 to 20"
+        letterSpacingValidation.innerHTML = "Please select a positive number from 0 to 30"
     }
     
 }

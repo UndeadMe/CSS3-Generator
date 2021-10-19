@@ -144,10 +144,10 @@ const openGeneratePannel = () => {
     if (Border.isInit) {
         if (Border.widthValidate) {
             generateWrapBox.classList.add("active")
-            text = `.${Border.elemClass} { border: ${Border.border.width}px ${Border.border.style} ${Border.border.color} }`
+            text = `.${Border.elemClass} { border: ${Border.border.width}px ${Border.border.style} ${Border.border.color}; }`
             
             codePennel.innerHTML = `.${Border.elemClass} { <br>
-                &nbsp;&nbsp;&nbsp; border: ${Border.border.width}px ${Border.border.style} ${Border.border.color} <br>
+                &nbsp;&nbspborder: ${Border.border.width}px ${Border.border.style} ${Border.border.color}; <br>
             }`
             
         } else 

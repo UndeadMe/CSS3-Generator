@@ -95,10 +95,7 @@ const closeGeneratePannel = () => {
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(fontSizeInp.value) <= 70 && Number(fontSizeInp.value) >= 0) {
         Font_Size.fontSizeValidation = true
         Font_Size.size = Number(value)
         fontSizeValidation.innerHTML = ""

@@ -82,11 +82,8 @@ const checkElemClassNameInput = (e) => {
 
 //? check scaleX and scaleY validation
 const checkValidateInput = (value, initScaleX) => {
-    let regexCode = /^(0|-[1-9]{1,2}|-[1-9]{1}0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/
-    let regexResult = regexCode.test(value)
-    
     if (initScaleX) {
-        if (regexResult) {
+        if (!isNaN(value) && Number(scaleX_inp.value) <= 1 && Number(scaleX_inp.value) >= 0 && scaleX_inp.value.length <= 4) {
             Scale.validation.scaleX_validate = true
             
             scaleX_elem.innerHTML = ""
@@ -96,10 +93,10 @@ const checkValidateInput = (value, initScaleX) => {
             addStyleToResizable()
         } else {
             Scale.validation.scaleX_validate = false
-            scaleX_elem.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"
+            scaleX_elem.innerHTML = "Please select a positive number from 0 to 1"
         }
     } else {
-        if (regexResult) {
+        if (!isNaN(value) && Number(scaleY_inp.value) <= 1 && Number(scaleY_inp.value) >= 0 && scaleY_inp.value.length <= 4) {
             Scale.validation.scaleY_validate = true
             
             scaleY_elem.innerHTML = ""
@@ -109,7 +106,7 @@ const checkValidateInput = (value, initScaleX) => {
             addStyleToResizable()
         } else {
             Scale.validation.scaleY_validate = false
-            scaleY_elem.innerHTML = "Please select a negative number from -100 to 0 or a positive number from 0 to 100"
+            scaleY_elem.innerHTML = "Please select a positive number from 0 to 1"
         }
     }
 }

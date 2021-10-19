@@ -56,17 +56,14 @@ const removeBrightnessDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(brightnessInp.value) <= 40 && Number(brightnessInp.value) >= 0) {
         Brightness.brightnessValidate = true
         Brightness.brightness = Number(value)
         validationBrightnessElem.innerHTML = ""
         addStyleToImage()
     } else {
         Brightness.brightnessValidate = false
-        validationBrightnessElem.innerHTML = "Please select a positive number from 0 to 100"
+        validationBrightnessElem.innerHTML = "Please select a positive number from 0 to 40"
     }
     
 }

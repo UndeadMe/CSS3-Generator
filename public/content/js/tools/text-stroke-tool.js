@@ -118,17 +118,14 @@ const closeGeneratePannel = () => {
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(strokeInp.value) <= 5 && Number(strokeInp.value) >= 0) {
         Stroke.strokeValidation = true
         Stroke.text.stroke = Number(value)
         strokeValidation.innerHTML = ""
         addStyleToText()
     } else {
         Stroke.strokeValidation = false
-        strokeValidation.innerHTML = "Please select a positive number from 0 to 100"
+        strokeValidation.innerHTML = "Please select a positive number from 0 to 5"
     }
 }
 

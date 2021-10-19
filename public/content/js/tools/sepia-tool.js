@@ -56,10 +56,7 @@ const removeSepiaDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(sepiaInp.value) <= 1 && Number(sepiaInp.value) >= 0 && sepiaInp.value.length <= 4) {
         Sepia.sepiaValidate = true
         Sepia.sepia = Number(value)
         validationSepiaElem.innerHTML = ""

@@ -61,10 +61,7 @@ const removeOpacityDataFromInputs = () =>
 
 //? check validation
 const checkValidateInputs = (value) => {
-    const regexCode = /^(0|\+?[1-9]{1,2}|\+?[1-9]{1}0)$/g // FIXME
-    const regexResult = regexCode.test(value)
-
-    if (regexResult) {
+    if (!isNaN(value) && Number(opacityInp.value) <= 1 && Number(opacityInp.value) >= 0 && opacityInp.value.length <= 4) {
         Opacity.opacityValidate = true
         Opacity.opacity = Number(value)
         validationOpacityElem.innerHTML = ""
@@ -80,14 +77,16 @@ const checkValidateInputs = (value) => {
 let text = undefined
 const openGeneratePannel = () => {
     if (Opacity.isInit) {
-        generateWrapBox.classList.add("active")
+        if (Opacity.opacityValidate) {
+            generateWrapBox.classList.add("active")
         
-        text = `.${Opacity.elemClass} {opacity: ${Opacity.opacity}}`
-
-        codePennel.innerHTML = `.${Opacity.elemClass} { <br>
-            &nbsp;&nbsp;&nbsp; opacity: ${Opacity.opacity} <br>
-        }`
-        
+            text = `.${Opacity.elemClass} {opacity: ${Opacity.opacity};}`
+    
+            codePennel.innerHTML = `.${Opacity.elemClass} { <br>
+                &nbsp;&nbsp;&nbsp; opacity: ${Opacity.opacity}; <br>
+            }`
+        } else 
+            alert("Please enter the information correctly")
     } else
         alert("Please enter the fields above")
 }
