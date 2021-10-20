@@ -11,19 +11,28 @@
     <link rel="stylesheet" href="public/content/css/comming-soon.css">
 </head>
 <body>
+    <?php
+
+    if ($_GET['result'] == '1') {
+        echo '<script>alert("اطلاعات با موفقیت ثبت شد")</script>';
+    } else {
+        echo '<script>alert("مشکلی در ثبت اطلاعات وجود دارد")</script>';
+    }
+    
+    ?>
     <!-- ! -------------------------------- wrap --------------------------------- ! -->
     <div class="wrap d-flex flex-row-reverse">
         <!-- ! --------------------------- wrap left box ---------------------------- ! -->
         <div class="wrap-left-box h-100 col-md-7 col-lg-6 d-flex align-items-center justify-content-center">
             <div class="col-xxl-7 col-xl-8 col-lg-10" style="z-index: 9999;">
                 <div class="form-wrap">
-                    <form action="">
+                    <form action="server/coming-soon.php" method="post" autocomplete="off">
                         <h5 class="text-capitalize text-white form-wrap-title text-center mt-2">Send to your email</h5>
                         <!-- ! ------------------------------ username ------------------------------- ! -->
                         <div class="col-12 mt-4">
                             <div class="input-group border-bottom">
                                 <span class="input-group-text"><i class="bi bi-cursor-text"></i></span>
-                                <input type="text" class="form-control user-name-inp" placeholder="Name">
+                                <input type="text" class="form-control user-name-inp" placeholder="Name" name="name">
                             </div>
                             <!-- ! --------------------------- validation text --------------------------- ! -->
                             <p class="mt-3 validation-text">please enter the information corrcetly</p>
@@ -32,15 +41,13 @@
                         <div class="col-12 mt-4">
                             <div class="input-group border-bottom">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input type="text" class="form-control email-inp" placeholder="Email">
+                                <input type="text" class="form-control email-inp" placeholder="Email" name="email">
                             </div>
                             <!-- ! --------------------------- validation text --------------------------- ! -->
                             <p class="mt-3 validation-text">please enter the information corrcetly</p>
                         </div>
                         <div class="col-12 mt-5">
-                            <button class="send-btn" disabled>
-                                send
-                            </button>
+                            <input type="submit" class="send-btn" value="SEND" />
                         </div>
                     </form>
                 </div>
