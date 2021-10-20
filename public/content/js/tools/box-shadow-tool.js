@@ -182,7 +182,7 @@ const disableAllInputs = (isHover) => {
         colorPickerNoHover.disabled = true
     }
 }
-
+disableAllInputs(true)
 disableAllInputs(false)
 
 //? upload shadow data in inputs
