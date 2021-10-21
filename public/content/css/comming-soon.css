@@ -13,7 +13,7 @@ body {
 /* ! ------------------------------ wrap left box ----------------------------- ! */
 .wrap-left-box {
     position: relative;
-    background-image: url(/public/content/img/css-img/css3.jpg);
+    background-image: url(../../content/img/css-img/css3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
