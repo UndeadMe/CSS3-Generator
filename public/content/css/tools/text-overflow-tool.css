@@ -1,4 +1,4 @@
-@import url(/public/components/aside/aside.css);
+@import url(../../../components/aside/aside.css);
 /* ! ---------------------------------- body ---------------------------------- ! */
 body {
     background : var(--home-gradient) ;
@@ -92,7 +92,7 @@ body {
     right: 0;
     width: 100%;
     height: 530px;
-    background-image: url(/public/content/img/pannel/pannel_back/pannel_back.png);
+    background-image: url(../../../content/img/pannel/pannel_back/pannel_back.png);
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
