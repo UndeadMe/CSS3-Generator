@@ -25,11 +25,12 @@ You have a lot of tools like:
   - Border
   - Border-Radius ( comming soon )
   - Opacity
+  - Other tools are comming
 - Text tools:
   - Color
   - Font-Size
   - Font-Weight
-  - Text-Gradient ( comming soon)
+  - Text-Gradient ( comming soon )
   - Text-Shadow
   - Letter-Spacing
   - Text-Stroke
