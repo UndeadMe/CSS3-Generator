@@ -51,7 +51,7 @@ body {
     color: var(--white) ;
 }
 .validation-text {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: var(--light-purple);
     text-transform: capitalize;
 }
@@ -66,7 +66,7 @@ body {
     font-size: 1.3rem;
     text-transform: capitalize;
 }
-.send-btn:hover {
+.send-btn:hover:not(.send-btn:disabled) {
     filter: brightness(80%);
 }
 .send-btn:disabled {

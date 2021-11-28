@@ -18,7 +18,7 @@
         <div class="wrap-left-box h-100 col-md-7 col-lg-6 d-flex align-items-center justify-content-center">
             <div class="col-xxl-7 col-xl-8 col-lg-10" style="z-index: 9999;">
                 <div class="form-wrap">
-                    <form action="server/coming-soon.php" method="post" autocomplete="off">
+                    <form accept="" method="">
                         <h5 class="text-capitalize text-white form-wrap-title text-center mt-2">Send to your email</h5>
                         <!-- ! ------------------------------ username ------------------------------- ! -->
                         <div class="col-12 mt-4">
@@ -27,7 +27,7 @@
                                 <input type="text" class="form-control user-name-inp" placeholder="Name" name="name">
                             </div>
                             <!-- ! --------------------------- validation text --------------------------- ! -->
-                            <p class="mt-3 validation-text">please enter the information corrcetly</p>
+                            <p class="mt-3 validation-text" id="user-name-validate"></p>
                         </div>
                         <!-- ! -------------------------------- email -------------------------------- ! -->
                         <div class="col-12 mt-4">
@@ -36,10 +36,10 @@
                                 <input type="text" class="form-control email-inp" placeholder="Email" name="email">
                             </div>
                             <!-- ! --------------------------- validation text --------------------------- ! -->
-                            <p class="mt-3 validation-text">please enter the information corrcetly</p>
+                            <p class="mt-3 validation-text" id="email-validate"></p>
                         </div>
                         <div class="col-12 mt-5">
-                            <input type="submit" class="send-btn" value="SEND" />
+                            <input type="submit" class="send-btn" disabled value="SEND" />
                         </div>
                     </form>
                 </div>
@@ -53,5 +53,7 @@
             </div>
         </div>
     </div>
+
+    <script src="public/content/js/validate-inputs-comming-soon.js"></script>
 </body>
 </html>
