@@ -6,6 +6,7 @@ Css Generator helps you to get acquainted with different types of properties in 
     Install NodeJs
     Open Cmd or Terminal and go to Css Generator directory
     Enter npm i
+    then open with live-server
 
 # Preview
 ![css-generator](https://user-images.githubusercontent.com/89915857/137693802-0738bc64-ca17-41fd-ac1b-fb8dcbe7855c.png)
